@@ -1,0 +1,56 @@
+﻿using System.Collections.Generic;
+using Schuhladen_WW.DataLayer.Mapping;
+using Schuhladen_WW.Mapping;
+
+
+namespace Schuhladen_WW.DataLayer
+{
+    public class Model : BaseClassDataLayer
+    {
+        private int int_id { get; set; }
+        private string str_description { get; set; }
+        private int int_manufacturer { get; set; }
+
+        [PropertyBridge("ID")]
+        public int int_Id
+        {
+            get { return int_id; }
+            set
+            {
+                if (int_id != value)
+                {
+                    int_id = value;
+                    RaiseEvent(this.GetType(), "ID", int_id);
+                }
+            }
+        }
+
+        [PropertyBridge("Bezeichnung")]
+        public string str_Description
+        {
+            get { return str_description; }
+            set
+            {
+                if (str_description != value)
+                {
+                    str_description = value;
+                    RaiseEvent(this.GetType(), "Bezeichnung", str_description);
+                }
+            }
+        }
+
+        [PropertyBridge("Hersteller")]
+        public int int_Manufacturer
+        {
+            get { return int_manufacturer; }
+            set
+            {
+                if (int_manufacturer != value)
+                {
+                    int_manufacturer = value;
+                    RaiseEvent(this.GetType(), "Hersteller", int_manufacturer);
+                }
+            }
+        }
+    }
+}
