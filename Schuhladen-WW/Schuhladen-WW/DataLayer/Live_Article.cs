@@ -22,7 +22,8 @@ namespace Schuhladen_WW.DataLayer
         private int int_modelid { get; set; }
         private int int_sizeid { get; set; }
 
-        public Model model => DataController.ReturnModels().Where(x => x.int_Id == int_modelid).First();
+        public Model _Model => DataController.ReturnModels().Where(x => x.int_Id == int_modelid).First();
+        public Groesse _Groesse => DataController.ReturnGroesse().Where(x => x.int_Id == int_sizeid).First();
 
         // public Methods
         [PropertyBridge("ID")]

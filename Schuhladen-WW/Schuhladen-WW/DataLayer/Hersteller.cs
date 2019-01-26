@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Schuhladen_WW.Mapping;
+using Schuhladen_WW.DataLayer.Mapping;
 
 namespace Schuhladen_WW.DataLayer
 {
@@ -13,7 +14,9 @@ namespace Schuhladen_WW.DataLayer
         private string str_name;
         private int int_adressid;
 
-       [PropertyBridge("ID")]
+        public Adresse _Adresse => DataController.ReturnAdresse().Where(x => x.int_Id == int_adressid).First();
+
+        [PropertyBridge("ID")]
        public int int_ID
         {
             get { return int_id; }

@@ -47,8 +47,13 @@
   <ItemGroup>
     <Compile Include="CustomEvents\INotifyCustmPropertyChanged.cs" />
     <Compile Include="Database\DBConnection.cs" />
+    <Compile Include="DataLayer\Adresse.cs" />
+    <Compile Include="DataLayer\AusgangsRechnung.cs" />
     <Compile Include="DataLayer\Base\BaseClassDataLayer.cs" />
+    <Compile Include="DataLayer\Benutzer.cs" />
+    <Compile Include="DataLayer\Groesse.cs" />
     <Compile Include="DataLayer\Hersteller.cs" />
+    <Compile Include="DataLayer\Lieferant.cs" />
     <Compile Include="DataLayer\Live_Article.cs" />
     <Compile Include="DataLayer\Mapping\DataController.cs" />
     <Compile Include="DataLayer\Mapping\Generic\CastPrimitives.cs" />
@@ -57,6 +62,7 @@
     <Compile Include="DataLayer\Mapping\PropertyValues.cs" />
     <Compile Include="DataLayer\Mapping\PropertyMapper.cs" />
     <Compile Include="DataLayer\Model.cs" />
+    <Compile Include="DataLayer\Status.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
