@@ -53,6 +53,7 @@
     <Compile Include="DataLayer\Benutzer.cs" />
     <Compile Include="DataLayer\Groesse.cs" />
     <Compile Include="DataLayer\Hersteller.cs" />
+    <Compile Include="DataLayer\Kategorie.cs" />
     <Compile Include="DataLayer\Lieferant.cs" />
     <Compile Include="DataLayer\Live_Article.cs" />
     <Compile Include="DataLayer\Mapping\DataController.cs" />

@@ -49,7 +49,7 @@ namespace Schuhladen_WW.DataLayer.Mapping
         private static PropertyMapper<Lieferant> ___LieferantListMapper = new PropertyMapper<Lieferant>();
 
 
-        // Pulls all from db and creates datalayer according to dbm realtions
+        // Pulls all from db and creates datalayer according to dbm relations
         public static void CreateDataLayer()
         {
             // Gets Live_Article collection
