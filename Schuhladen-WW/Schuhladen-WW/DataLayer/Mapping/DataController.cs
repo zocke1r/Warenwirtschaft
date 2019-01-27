@@ -9,8 +9,6 @@ using Schuhladen_WW.Mapping;
 using System.Data;
 using System.ComponentModel;
 
-
-
 namespace Schuhladen_WW.DataLayer.Mapping
 {
     public static class DataController
@@ -19,34 +17,35 @@ namespace Schuhladen_WW.DataLayer.Mapping
         private static DBConnection _Connection = DBConnection.Instance();
 
         // Collections (Lazyloading)
-        static List<Live_Article> __LiveArticle { get; set; }
+        private static List<Live_Article> __LiveArticle { get; set; }
 
-        static List<Model> __Model { get; set; }
+        private static List<Model> __Model { get; set; }
 
-        static List<Groesse> __Groesse { get; set; }
+        private static List<Groesse> __Groesse { get; set; }
 
-        static List<Hersteller> __Hersteller { get; set; }
+        private static List<Hersteller> __Hersteller { get; set; }
 
-        static List<Adresse> __Adresse { get; set; }
+        private static List<Adresse> __Adresse { get; set; }
 
-        static List<AusgangsRechnung> __AusgangsRechnung { get; set; }
+        private static List<AusgangsRechnung> __AusgangsRechnung { get; set; }
 
-        static List<Status> __Status { get; set; }
-        
-        static List<Benutzer> __Benutzer { get; set; }
+        private static List<Status> __Status { get; set; }
 
-        static List<Lieferant> __Lieferant { get; set; }
+        private static List<Benutzer> __Benutzer { get; set; }
 
-        static List<Kategorie> __Kategorie { get; set; }
+        private static List<Lieferant> __Lieferant { get; set; }
 
-        static List<Bestellung> __Bestellung { get; set; }
+        private static List<Kategorie> __Kategorie { get; set; }
 
-        static List<BestellungPositionPosition> __BestellungPositionPosition { get; set; }
+        private static List<Bestellung> __Bestellung { get; set; }
 
-        static List<AusgangsrechnungPosition> __AusgangsrechnungPosition { get; set; }
+        private static List<BestellungPositionPosition> __BestellungPositionPosition { get; set; }
+
+        private static List<AusgangsrechnungPosition> __AusgangsrechnungPosition { get; set; }
 
         // Initialize object mappers
         private static PropertyMapper<Live_Article> ___LiveArticleMapper = new PropertyMapper<Live_Article>();
+
         private static PropertyMapper<Model> ___ModelListMapper = new PropertyMapper<Model>();
         private static PropertyMapper<Groesse> ___GroesseListMapper = new PropertyMapper<Groesse>();
         private static PropertyMapper<Hersteller> ___HerstellerListMapper = new PropertyMapper<Hersteller>();
@@ -61,7 +60,7 @@ namespace Schuhladen_WW.DataLayer.Mapping
         private static PropertyMapper<AusgangsrechnungPosition> ___AusgangsrechnungPositionListMapper = new PropertyMapper<AusgangsrechnungPosition>();
 
         // Pulls all from db and creates datalayer according to dbm relations
-        public static void CreateDataLayer()
+        public static void CreateDataLayer ()
         {
             // Gets Live_Article collection
             __LiveArticle = ___LiveArticleMapper.Map(_Connection.GetData("SELECT * FROM dbo.LiveArticle;")).ToList();
@@ -97,49 +96,49 @@ namespace Schuhladen_WW.DataLayer.Mapping
             __Bestellung = ___BestellungListMapper.Map(_Connection.GetData("SELECT * FROM dbo.Bestellung;")).ToList();
 
             // Get BestellungPositionPosition collection
-            __BestellungPositionPosition = ___BestellungPositionPositionListMapper.Map(_Connection.GetData("SELECT * FROM dbo.BestellungPositionPosition;")).ToList();
+            __BestellungPositionPosition = ___BestellungPositionPositionListMapper.Map(_Connection.GetData("SELECT * FROM dbo.BestellungPosition;")).ToList();
 
             // Get AusgangsrechnungPosition collection
             __AusgangsrechnungPosition = ___AusgangsrechnungPositionListMapper.Map(_Connection.GetData("SELECT * FROM dbo.AusgangsrechnungPosition;")).ToList();
         }
 
         // Public methods
-        public static List<Model> ReturnModels()
+        public static List<Model> ReturnModels ()
         {
             return __Model;
         }
 
-        public static List<Groesse> ReturnGroesse()
+        public static List<Groesse> ReturnGroesse ()
         {
             return __Groesse;
         }
 
-        public static List<Status> ReturnStatus()
+        public static List<Status> ReturnStatus ()
         {
             return __Status;
         }
 
-        public static List<Adresse> ReturnAdresse()
+        public static List<Adresse> ReturnAdresse ()
         {
             return __Adresse;
         }
 
-        public static List<Lieferant> ReturnLieferant()
+        public static List<Lieferant> ReturnLieferant ()
         {
             return __Lieferant;
         }
 
-        public static List<Live_Article> ReturnLiveArtikel()
+        public static List<Live_Article> ReturnLiveArtikel ()
         {
             return __LiveArticle;
         }
 
-        public static List<Bestellung> ReturnBestellung()
+        public static List<Bestellung> ReturnBestellung ()
         {
             return __Bestellung;
         }
 
-        public static List<AusgangsRechnung> ReturnAusgangsRechnung()
+        public static List<AusgangsRechnung> ReturnAusgangsRechnung ()
         {
             return __AusgangsRechnung;
         }
