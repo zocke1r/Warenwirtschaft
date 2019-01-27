@@ -41,6 +41,8 @@ namespace Schuhladen_WW.DataLayer.Mapping
 
         static List<Bestellung> __Bestellung { get; set; }
 
+        static List<BestellungPositionPosition> __BestellungPositionPosition { get; set; }
+
         // Initialize object mappers
         private static PropertyMapper<Live_Article> ___LiveArticleMapper = new PropertyMapper<Live_Article>();
         private static PropertyMapper<Model> ___ModelListMapper = new PropertyMapper<Model>();
@@ -53,6 +55,7 @@ namespace Schuhladen_WW.DataLayer.Mapping
         private static PropertyMapper<Lieferant> ___LieferantListMapper = new PropertyMapper<Lieferant>();
         private static PropertyMapper<Kategorie> ___KategorieListMapper = new PropertyMapper<Kategorie>();
         private static PropertyMapper<Bestellung> ___BestellungListMapper = new PropertyMapper<Bestellung>();
+        private static PropertyMapper<BestellungPositionPosition> ___BestellungPositionPositionListMapper = new PropertyMapper<BestellungPositionPosition>();
 
         // Pulls all from db and creates datalayer according to dbm relations
         public static void CreateDataLayer()
@@ -89,6 +92,9 @@ namespace Schuhladen_WW.DataLayer.Mapping
 
             // Get Bestellung collection
             __Bestellung = ___BestellungListMapper.Map(_Connection.GetData("SELECT * FROM dbo.Bestellung;")).ToList();
+
+            // Get BestellungPositionPosition collection
+            __BestellungPositionPosition = ___BestellungPositionPositionListMapper.Map(_Connection.GetData("SELECT * FROM dbo.BestellungPositionPosition;")).ToList();
         }
 
         // Public methods
@@ -117,5 +123,14 @@ namespace Schuhladen_WW.DataLayer.Mapping
             return __Lieferant;
         }
 
+        public static List<Live_Article> ReturnLiveArtikel()
+        {
+            return __LiveArticle;
+        }
+
+        public static List<Bestellung> ReturnBestellung()
+        {
+            return __Bestellung;
+        }
     }
 }
