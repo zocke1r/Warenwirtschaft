@@ -9,8 +9,6 @@ using Schuhladen_WW.Mapping;
 using System.Data;
 using System.ComponentModel;
 
-
-
 namespace Schuhladen_WW.DataLayer.Mapping
 {
     public static class DataController
@@ -19,26 +17,29 @@ namespace Schuhladen_WW.DataLayer.Mapping
         private static DBConnection _Connection = DBConnection.Instance();
 
         // Collections (Lazyloading)
-        static List<Live_Article> __LiveArticle { get; set; }
+        private static Lazy<List<Live_Article>> __LiveArticle = new Lazy<List<Live_Article>>(() => ___LiveArticleMapper.Map(_Connection.GetData("SELECT * FROM dbo.Live_Artikel;")).ToList());
 
-        static List<Model> __Model { get; set; }
+        public static List<Live_Article> Live_Articles => __LiveArticle.Value;
 
-        static List<Groesse> __Groesse { get; set; }
+        private static List<Model> __Model { get; set; }
 
-        static List<Hersteller> __Hersteller { get; set; }
+        private static List<Groesse> __Groesse { get; set; }
 
-        static List<Adresse> __Adresse { get; set; }
+        private static List<Hersteller> __Hersteller { get; set; }
 
-        static List<AusgangsRechnung> __AusgangsRechnung { get; set; }
+        private static List<Adresse> __Adresse { get; set; }
 
-        static List<Status> __Status { get; set; }
-        
-        static List<Benutzer> __Benutzer { get; set; }
+        private static List<AusgangsRechnung> __AusgangsRechnung { get; set; }
 
-        static List<Lieferant> __Lieferant { get; set; }
+        private static List<Status> __Status { get; set; }
+
+        private static List<Benutzer> __Benutzer { get; set; }
+
+        private static List<Lieferant> __Lieferant { get; set; }
 
         // Initialize object mappers
         private static PropertyMapper<Live_Article> ___LiveArticleMapper = new PropertyMapper<Live_Article>();
+
         private static PropertyMapper<Model> ___ModelListMapper = new PropertyMapper<Model>();
         private static PropertyMapper<Groesse> ___GroesseListMapper = new PropertyMapper<Groesse>();
         private static PropertyMapper<Hersteller> ___HerstellerListMapper = new PropertyMapper<Hersteller>();
@@ -48,13 +49,9 @@ namespace Schuhladen_WW.DataLayer.Mapping
         private static PropertyMapper<Benutzer> ___BenutzerListMapper = new PropertyMapper<Benutzer>();
         private static PropertyMapper<Lieferant> ___LieferantListMapper = new PropertyMapper<Lieferant>();
 
-
         // Pulls all from db and creates datalayer according to dbm realtions
-        public static void CreateDataLayer()
+        public static void CreateDataLayer ()
         {
-            // Gets Live_Article collection
-            __LiveArticle = ___LiveArticleMapper.Map(_Connection.GetData("SELECT * FROM dbo.LiveArticle;")).ToList();
-
             // Gets Model collection
             __Model = ___ModelListMapper.Map(_Connection.GetData("SELECT * FROM dbo.Model;")).ToList();
 
@@ -81,30 +78,29 @@ namespace Schuhladen_WW.DataLayer.Mapping
         }
 
         // Public methods
-        public static List<Model> ReturnModels()
+        public static List<Model> ReturnModels ()
         {
             return __Model;
         }
 
-        public static List<Groesse> ReturnGroesse()
+        public static List<Groesse> ReturnGroesse ()
         {
             return __Groesse;
         }
 
-        public static List<Status> ReturnStatus()
+        public static List<Status> ReturnStatus ()
         {
             return __Status;
         }
 
-        public static List<Adresse> ReturnAdresse()
+        public static List<Adresse> ReturnAdresse ()
         {
             return __Adresse;
         }
 
-        public static List<Lieferant> ReturnLiéferant()
+        public static List<Lieferant> ReturnLieferant ()
         {
             return __Lieferant;
         }
-
     }
 }
