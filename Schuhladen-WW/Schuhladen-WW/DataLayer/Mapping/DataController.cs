@@ -37,6 +37,10 @@ namespace Schuhladen_WW.DataLayer.Mapping
 
         static List<Lieferant> __Lieferant { get; set; }
 
+        static List<Kategorie> __Kategorie { get; set; }
+
+        static List<Bestellung> __Bestellung { get; set; }
+
         // Initialize object mappers
         private static PropertyMapper<Live_Article> ___LiveArticleMapper = new PropertyMapper<Live_Article>();
         private static PropertyMapper<Model> ___ModelListMapper = new PropertyMapper<Model>();
@@ -47,7 +51,8 @@ namespace Schuhladen_WW.DataLayer.Mapping
         private static PropertyMapper<Status> ___StatusListMapper = new PropertyMapper<Status>();
         private static PropertyMapper<Benutzer> ___BenutzerListMapper = new PropertyMapper<Benutzer>();
         private static PropertyMapper<Lieferant> ___LieferantListMapper = new PropertyMapper<Lieferant>();
-
+        private static PropertyMapper<Kategorie> ___KategorieListMapper = new PropertyMapper<Kategorie>();
+        private static PropertyMapper<Bestellung> ___BestellungListMapper = new PropertyMapper<Bestellung>();
 
         // Pulls all from db and creates datalayer according to dbm relations
         public static void CreateDataLayer()
@@ -78,6 +83,12 @@ namespace Schuhladen_WW.DataLayer.Mapping
 
             // Get Lieferant collection
             __Lieferant = ___LieferantListMapper.Map(_Connection.GetData("SELECT * FROM dbo.Lieferant;")).ToList();
+
+            // Get Kategorie collection
+            __Kategorie = ___KategorieListMapper.Map(_Connection.GetData("SELECT * FROM dbo.Kategorie;")).ToList();
+
+            // Get Bestellung collection
+            __Bestellung = ___BestellungListMapper.Map(_Connection.GetData("SELECT * FROM dbo.Bestellung;")).ToList();
         }
 
         // Public methods
@@ -101,7 +112,7 @@ namespace Schuhladen_WW.DataLayer.Mapping
             return __Adresse;
         }
 
-        public static List<Lieferant> ReturnLiéferant()
+        public static List<Lieferant> ReturnLieferant()
         {
             return __Lieferant;
         }
