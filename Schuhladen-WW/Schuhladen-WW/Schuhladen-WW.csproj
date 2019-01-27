@@ -49,6 +49,7 @@
     <Compile Include="Database\DBConnection.cs" />
     <Compile Include="DataLayer\Adresse.cs" />
     <Compile Include="DataLayer\AusgangsRechnung.cs" />
+    <Compile Include="DataLayer\AusgangsrechnungPosition.cs" />
     <Compile Include="DataLayer\Base\BaseClassDataLayer.cs" />
     <Compile Include="DataLayer\Benutzer.cs" />
     <Compile Include="DataLayer\Bestellung.cs" />

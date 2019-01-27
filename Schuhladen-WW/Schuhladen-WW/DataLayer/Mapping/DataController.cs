@@ -43,6 +43,8 @@ namespace Schuhladen_WW.DataLayer.Mapping
 
         static List<BestellungPositionPosition> __BestellungPositionPosition { get; set; }
 
+        static List<AusgangsrechnungPosition> __AusgangsrechnungPosition { get; set; }
+
         // Initialize object mappers
         private static PropertyMapper<Live_Article> ___LiveArticleMapper = new PropertyMapper<Live_Article>();
         private static PropertyMapper<Model> ___ModelListMapper = new PropertyMapper<Model>();
@@ -56,6 +58,7 @@ namespace Schuhladen_WW.DataLayer.Mapping
         private static PropertyMapper<Kategorie> ___KategorieListMapper = new PropertyMapper<Kategorie>();
         private static PropertyMapper<Bestellung> ___BestellungListMapper = new PropertyMapper<Bestellung>();
         private static PropertyMapper<BestellungPositionPosition> ___BestellungPositionPositionListMapper = new PropertyMapper<BestellungPositionPosition>();
+        private static PropertyMapper<AusgangsrechnungPosition> ___AusgangsrechnungPositionListMapper = new PropertyMapper<AusgangsrechnungPosition>();
 
         // Pulls all from db and creates datalayer according to dbm relations
         public static void CreateDataLayer()
@@ -95,6 +98,9 @@ namespace Schuhladen_WW.DataLayer.Mapping
 
             // Get BestellungPositionPosition collection
             __BestellungPositionPosition = ___BestellungPositionPositionListMapper.Map(_Connection.GetData("SELECT * FROM dbo.BestellungPositionPosition;")).ToList();
+
+            // Get AusgangsrechnungPosition collection
+            __AusgangsrechnungPosition = ___AusgangsrechnungPositionListMapper.Map(_Connection.GetData("SELECT * FROM dbo.AusgangsrechnungPosition;")).ToList();
         }
 
         // Public methods
@@ -131,6 +137,11 @@ namespace Schuhladen_WW.DataLayer.Mapping
         public static List<Bestellung> ReturnBestellung()
         {
             return __Bestellung;
+        }
+
+        public static List<AusgangsRechnung> ReturnAusgangsRechnung()
+        {
+            return __AusgangsRechnung;
         }
     }
 }
