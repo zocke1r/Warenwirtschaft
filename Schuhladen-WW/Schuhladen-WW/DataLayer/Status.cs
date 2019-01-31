@@ -4,16 +4,20 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Schuhladen_WW.Mapping;
+using System.Data.SqlClient;
+using Schuhladen_WW.DataLayer.Mapping;
 
 namespace Schuhladen_WW.DataLayer
 {
     public class Status : BaseClassDataLayer
     {
-        private int int_id;
+		#region private Members
+		private int int_id;
         private int int_numeral;
         private string str_bezeichnung;
-
-        [PropertyBridge("ID")]
+		#endregion
+		#region public members
+		[PropertyBridge ("ID")]
         public int int_Id
         {
             get { return int_id; }
@@ -54,5 +58,17 @@ namespace Schuhladen_WW.DataLayer
                 }
             }
         }
-    }
+
+		public override void Update () {
+			// Insert validation method here :)
+			SqlCommandBuilder _CommandBuilder = new SqlCommandBuilder ();
+			_CommandBuilder.GetUpdateCommand ().CommandText = "dbo.UpdateStatusRow";
+			_CommandBuilder.GetUpdateCommand ().Parameters.Add (new SqlParameter ("@Bezeichnung", this.str_Bezeichnung));
+			_CommandBuilder.GetUpdateCommand ().Parameters.Add (new SqlParameter ("@Numeral", this.int_Numeral));
+			_CommandBuilder.GetUpdateCommand ().Parameters.Add (new SqlParameter ("@ID", this.int_Id));
+
+			DataController.UpdateObject (_CommandBuilder);
+		}
+		#endregion
+	}
 }

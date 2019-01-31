@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Schuhladen_WW.Mapping;
+using System.Data.SqlClient;
 
 namespace Schuhladen_WW.DataLayer
 {
@@ -83,5 +84,16 @@ namespace Schuhladen_WW.DataLayer
                 }
             }
         }
-    }
+
+		public override void Update () {
+			// Insert validation method here :)
+			SqlCommandBuilder _CommandBuilder = new SqlCommandBuilder ();
+			_CommandBuilder.GetUpdateCommand ().CommandText = "dbo.UpdateKategorieRow";
+			_CommandBuilder.GetUpdateCommand ().Parameters.Add (new SqlParameter ("@Name", this.str_Name));
+			_CommandBuilder.GetUpdateCommand ().Parameters.Add (new SqlParameter ("@Adresse", this.int_AdressId));
+			_CommandBuilder.GetUpdateCommand ().Parameters.Add (new SqlParameter ("@ID", this.int_ID));
+
+			DataController.UpdateObject (_CommandBuilder);
+		}
+	}
 }
