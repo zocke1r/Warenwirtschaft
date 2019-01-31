@@ -1,0 +1,85 @@
+Stored Procedure [UPDATE]
+
+--dbo.Status
+--------------------------------------------------------------------------------------------------------------
+ALTER PROCEDURE [dbo].[UpdateStatusRow]
+    @ID uniqueidentifier,
+    @Numeral int = 0,
+    @Bezeichnung nvarchar(50) = "Not Set"
+AS
+BEGIN
+    UPDATE dbo.Status
+    SET Numeral=@Numeral, Bezeichnung=@Bezeichnung
+    WHERE ID=@ID
+END
+--------------------------------------------------------------------------------------------------------------
+--dbo.Model
+--------------------------------------------------------------------------------------------------------------
+ALTER PROCEDURE [dbo].[UpdateModelRow]
+    @ID uniqueidentifier,    
+    @Hersteller int, 
+    @Bezeichnung NVARCHAR(50) = "Not Set",
+AS
+BEGIN
+    UPDATE dbo.Model
+    SET Hersteller=@Hersteller, Bezeichnung=@Bezeichnung
+    WHERE ID=@ID
+END
+--------------------------------------------------------------------------------------------------------------
+--dbo.Live_Artikel
+--------------------------------------------------------------------------------------------------------------
+ALTER PROCEDURE [dbo].[UpdateLiveArtikelRow]
+    @ID uniqueidentifier,    
+    @Model int, 
+    @Groesse int, 
+    @EAN NVARCHAR(255) = "Not Set",    
+    @EK numeric(15,4) = 0,
+    @VK numeric(15,4) = 0,    
+    @Bestand int = 0
+AS
+BEGIN
+    UPDATE dbo.Live_Artikel
+    SET Model=@Model, Groesse=@Groesse, EAN=@EAN, EK=@EK, VK=@VK, Bestand=@Bestand
+    WHERE ID=@ID
+END
+--------------------------------------------------------------------------------------------------------------
+--dbo.Kategorie
+--------------------------------------------------------------------------------------------------------------
+ALTER PROCEDURE [dbo].[UpdateKategorieRow]
+    @ID uniqueidentifier,    
+    @Bezeichnung nvarchar(50) = 'Not Set'
+AS
+BEGIN
+    UPDATE dbo.Kategorie
+    SET Bezeichnung=@Bezeichnung
+    WHERE ID=@ID
+END
+--------------------------------------------------------------------------------------------------------------
+--dbo.Hersteller
+--------------------------------------------------------------------------------------------------------------
+ALTER PROCEDURE [dbo].[UpdateHerstellerRow]
+    @ID uniqueidentifier,
+    @Adresse int,
+    @Name nvarchar(50) = 'Not Set'
+AS
+BEGIN
+    UPDATE dbo.Hersteller
+    SET Adresse=@Adresse,Name=@Name
+    WHERE ID=@ID
+END
+--------------------------------------------------------------------------------------------------------------
+--dbo.Groesse
+--------------------------------------------------------------------------------------------------------------
+ALTER PROCEDURE [dbo].[UpdateHerstellerRow]
+    @ID uniqueidentifier,
+    @US nvarchar(50) = 'Not Set',
+    @EU nvarchar(50) = 'Not Set',
+    @GB nvarchar(50) = 'Not Set',
+    @cm numeric(15,4) = 'Not Set',
+AS
+BEGIN
+    UPDATE dbo.Hersteller
+    SET US=@US,EU=@EU,GB=@GB,cm=@cm
+    WHERE ID=@ID
+END
+--------------------------------------------------------------------------------------------------------------
