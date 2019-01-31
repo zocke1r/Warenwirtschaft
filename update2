@@ -38,8 +38,7 @@ ALTER PROCEDURE [dbo].[UpdateAusgangsrechnungPositionRow]
     @Anzahl INT(20) = 0,
     @Preis numeric(15,4) = 0,
     @Ausgangsrechnung INT(20),
-    @Artikel INT(20),
-    @Anzahl INT(20) = 0
+    @Artikel INT(20)
 AS
 BEGIN
     UPDATE dbo.AusgangsrechnungPositiion
