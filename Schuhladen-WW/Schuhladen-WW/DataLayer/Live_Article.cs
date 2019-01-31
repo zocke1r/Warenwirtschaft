@@ -7,7 +7,7 @@ using Schuhladen_WW.Mapping;
 using System.Runtime.CompilerServices;
 using System.Reflection;
 using Schuhladen_WW.DataLayer.Mapping;
-
+using System.Data.SqlClient;
 
 namespace Schuhladen_WW.DataLayer
 {
@@ -124,5 +124,20 @@ namespace Schuhladen_WW.DataLayer
                 }
             }
         }
-    }
+
+		public override void Update () {
+			// Insert validation method here :)
+			SqlCommandBuilder _CommandBuilder = new SqlCommandBuilder ();
+			_CommandBuilder.GetUpdateCommand ().CommandText = "dbo.UpdateLiveArtikelRow";
+			_CommandBuilder.GetUpdateCommand ().Parameters.Add (new SqlParameter ("@EAN", this.str_EAN));
+			_CommandBuilder.GetUpdateCommand ().Parameters.Add (new SqlParameter ("@VK", this.dbl_SellPrice));
+			_CommandBuilder.GetUpdateCommand ().Parameters.Add (new SqlParameter ("@EK", this.dbl_BuyPrice));
+			_CommandBuilder.GetUpdateCommand ().Parameters.Add (new SqlParameter ("@Bestand", this.int_Stock));
+			_CommandBuilder.GetUpdateCommand ().Parameters.Add (new SqlParameter ("@Model", this.int_ModelID));
+			_CommandBuilder.GetUpdateCommand ().Parameters.Add (new SqlParameter ("@Groesse", this.int_SizeID));
+			_CommandBuilder.GetUpdateCommand ().Parameters.Add (new SqlParameter ("@ID", this.int_ID));
+
+			DataController.UpdateObject (_CommandBuilder);
+		}
+	}
 }
