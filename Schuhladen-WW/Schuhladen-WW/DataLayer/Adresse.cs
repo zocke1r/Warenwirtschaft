@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Schuhladen_WW.Mapping;
 using System.Data.SqlClient;
+using Schuhladen_WW.DataLayer.Mapping;
 using System.Data;
 
 namespace Schuhladen_WW.DataLayer
@@ -110,11 +111,13 @@ namespace Schuhladen_WW.DataLayer
             // Insert validation method here :)
             SqlCommandBuilder _CommandBuilder = new SqlCommandBuilder();
             _CommandBuilder.GetUpdateCommand().CommandText = "dbo.UpdateAdressRow";
+            _CommandBuilder.GetUpdateCommand().Parameters.Add(new SqlParameter("@ID", this.int_Id));
             _CommandBuilder.GetUpdateCommand().Parameters.Add(new SqlParameter("@Strasse", this.str_Strasse));
             _CommandBuilder.GetUpdateCommand().Parameters.Add(new SqlParameter("@Hausnummer", this.str_Hausnummer));
             _CommandBuilder.GetUpdateCommand().Parameters.Add(new SqlParameter("@Ort", this.str_Ort));
             _CommandBuilder.GetUpdateCommand().Parameters.Add(new SqlParameter("@PLZ", this.str_Plz));
             _CommandBuilder.GetUpdateCommand().Parameters.Add(new SqlParameter("@Adresszusatz", this.str_Adresszusatz));
+            DataController.UpdateObject(_CommandBuilder);
         }
         #endregion
 

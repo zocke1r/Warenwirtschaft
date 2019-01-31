@@ -5,17 +5,23 @@ using System.Text;
 using System.Threading.Tasks;
 using Schuhladen_WW.Mapping;
 using Schuhladen_WW.DataLayer.Mapping;
+using System.Data.SqlClient;
+using Schuhladen_WW.DataLayer.Mapping;
 
 namespace Schuhladen_WW.DataLayer
 {
     public class AusgangsRechnung : BaseClassDataLayer
     {
+
+        #region Private Members
         private int int_id;
         private string str_nummer;
         private DateTime t_datum;
         private int int_status;
         private string str_betrag;
+        #endregion
 
+        #region Public Members
         public Status _Status => DataController.ReturnStatus().Where(x => x.int_Id == int_Status).First();
 
         [PropertyBridge("ID")]
@@ -87,5 +93,19 @@ namespace Schuhladen_WW.DataLayer
                 }
             }
         }
+
+        public override void Update()
+        {
+            // Insert validation method here :)
+            SqlCommandBuilder _CommandBuilder = new SqlCommandBuilder();
+            _CommandBuilder.GetUpdateCommand().CommandText = "dbo.UpdateAusgangsrechnungRow";
+            _CommandBuilder.GetUpdateCommand().Parameters.Add(new SqlParameter("@ID", this.int_Id));
+            _CommandBuilder.GetUpdateCommand().Parameters.Add(new SqlParameter("@Nummer ", this.str_Nummer));
+            _CommandBuilder.GetUpdateCommand().Parameters.Add(new SqlParameter("@Datum ", this.t_Datum));
+            _CommandBuilder.GetUpdateCommand().Parameters.Add(new SqlParameter("@Status", this.int_Status));
+            _CommandBuilder.GetUpdateCommand().Parameters.Add(new SqlParameter("@Betrag ", this.str_Betrag));
+            DataController.UpdateObject(_CommandBuilder);
+        }
+        #endregion
     }
 }

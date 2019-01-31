@@ -5,17 +5,21 @@ using System.Text;
 using System.Threading.Tasks;
 using Schuhladen_WW.Mapping;
 using Schuhladen_WW.DataLayer.Mapping;
+using System.Data.SqlClient;
 
 namespace Schuhladen_WW.DataLayer
 {
     public class AusgangsrechnungPosition : BaseClassDataLayer
     {
+        #region Private Members
         private int int_id;
         private int int_anzahl;
         private double dbl_preis;
         private int int_ausgangsrechnung;
         private int int_artikel;
+        #endregion
 
+        #region Public Members
         public Live_Article _LiveArticle => DataController.ReturnLiveArtikel().Where(x => x.int_ID == int_artikel).First();
         public AusgangsRechnung _AusgangsRechnung => DataController.ReturnAusgangsRechnung().Where(x => x.int_Id == int_ausgangsrechnung).First();
 
@@ -87,5 +91,19 @@ namespace Schuhladen_WW.DataLayer
                 }
             }
         }
+
+        public override void Update()
+        {
+            // Insert validation method here :)
+            SqlCommandBuilder _CommandBuilder = new SqlCommandBuilder();
+            _CommandBuilder.GetUpdateCommand().CommandText = "dbo.UpdateAusgangsrechnungPositionRow";
+            _CommandBuilder.GetUpdateCommand().Parameters.Add(new SqlParameter("@ID", this.int_Id));
+            _CommandBuilder.GetUpdateCommand().Parameters.Add(new SqlParameter("@Anzahl", this.int_Anzahl));
+            _CommandBuilder.GetUpdateCommand().Parameters.Add(new SqlParameter("@Preis ", this.dbl_Preis));
+            _CommandBuilder.GetUpdateCommand().Parameters.Add(new SqlParameter("@Ausgangsrechnung", this.int_AusgansRechnung));
+            _CommandBuilder.GetUpdateCommand().Parameters.Add(new SqlParameter("@Artikel  ", this.int_Artikel));
+            DataController.UpdateObject(_CommandBuilder);
+        }
+        #endregion
     }
 }
