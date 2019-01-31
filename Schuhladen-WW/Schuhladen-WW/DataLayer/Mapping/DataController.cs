@@ -1,18 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Schuhladen_WW.DataBase;
-using Schuhladen_WW.DataLayer.Mapping;
 using Schuhladen_WW.Mapping;
-using System.Data;
-using System.ComponentModel;
+using System.Data.SqlClient;
 
 namespace Schuhladen_WW.DataLayer.Mapping
 {
     public static class DataController
     {
+        #region Private Members
         // New database connection
         private static DBConnection _Connection = DBConnection.Instance();
 
@@ -58,9 +54,52 @@ namespace Schuhladen_WW.DataLayer.Mapping
         private static PropertyMapper<Bestellung> ___BestellungListMapper = new PropertyMapper<Bestellung>();
         private static PropertyMapper<BestellungPositionPosition> ___BestellungPositionPositionListMapper = new PropertyMapper<BestellungPositionPosition>();
         private static PropertyMapper<AusgangsrechnungPosition> ___AusgangsrechnungPositionListMapper = new PropertyMapper<AusgangsrechnungPosition>();
+        #endregion
 
-        // Pulls all from db and creates datalayer according to dbm relations
-        public static void CreateDataLayer ()
+        #region Public Members
+        public static List<Model> ReturnModels ()
+        {
+            return __Model;
+        }
+
+        public static List<Groesse> ReturnGroesse ()
+        {
+            return __Groesse;
+        }
+
+        public static List<Status> ReturnStatus ()
+        {
+            return __Status;
+        }
+
+        public static List<Adresse> ReturnAdresse ()
+        {
+            return __Adresse;
+        }
+
+        public static List<Lieferant> ReturnLieferant ()
+        {
+            return __Lieferant;
+        }
+
+        public static List<Live_Article> ReturnLiveArtikel ()
+        {
+            return __LiveArticle;
+        }
+
+        public static List<Bestellung> ReturnBestellung ()
+        {
+            return __Bestellung;
+        }
+
+        public static List<AusgangsRechnung> ReturnAusgangsRechnung ()
+        {
+            return __AusgangsRechnung;
+        }
+        #endregion
+
+        #region Public Methods
+        public static void CreateDataLayer()
         {
             // Gets Live_Article collection
             __LiveArticle = ___LiveArticleMapper.Map(_Connection.GetData("SELECT * FROM dbo.LiveArticle;")).ToList();
@@ -102,45 +141,16 @@ namespace Schuhladen_WW.DataLayer.Mapping
             __AusgangsrechnungPosition = ___AusgangsrechnungPositionListMapper.Map(_Connection.GetData("SELECT * FROM dbo.AusgangsrechnungPosition;")).ToList();
         }
 
-        // Public methods
-        public static List<Model> ReturnModels ()
+        public static bool UpdateObject(SqlCommandBuilder _CommandBuilder)
         {
-            return __Model;
+            if (_Connection.UpdateData(_CommandBuilder))
+            {
+                return true;
+            }
+            return false;
         }
 
-        public static List<Groesse> ReturnGroesse ()
-        {
-            return __Groesse;
-        }
+        #endregion
 
-        public static List<Status> ReturnStatus ()
-        {
-            return __Status;
-        }
-
-        public static List<Adresse> ReturnAdresse ()
-        {
-            return __Adresse;
-        }
-
-        public static List<Lieferant> ReturnLieferant ()
-        {
-            return __Lieferant;
-        }
-
-        public static List<Live_Article> ReturnLiveArtikel ()
-        {
-            return __LiveArticle;
-        }
-
-        public static List<Bestellung> ReturnBestellung ()
-        {
-            return __Bestellung;
-        }
-
-        public static List<AusgangsRechnung> ReturnAusgangsRechnung ()
-        {
-            return __AusgangsRechnung;
-        }
     }
 }

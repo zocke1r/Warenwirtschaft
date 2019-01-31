@@ -21,5 +21,7 @@ namespace Schuhladen_WW.DataLayer
             if (_CustomPropertyChanged !=null)
                 _CustomPropertyChanged(_Type, str_ColumnName, obj_Value);
         }
+
+        public abstract void Update();
     }
 }

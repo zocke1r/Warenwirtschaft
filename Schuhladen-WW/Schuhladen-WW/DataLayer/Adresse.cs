@@ -4,18 +4,23 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Schuhladen_WW.Mapping;
+using System.Data.SqlClient;
+using System.Data;
 
 namespace Schuhladen_WW.DataLayer
 {
     public class Adresse : BaseClassDataLayer
     {
+        #region Private Members
         private int int_id;
         private string str_strasse;
         private string str_hausnummer;
         private string str_ort;
         private string str_plz;
         private string str_adresszusatz;
+        #endregion
 
+        #region Public Members
         [PropertyBridge("ID")]
         public int int_Id
         {
@@ -99,5 +104,19 @@ namespace Schuhladen_WW.DataLayer
                 }
             }
         }
+
+        public override void Update()
+        {
+            // Insert validation method here :)
+            SqlCommandBuilder _CommandBuilder = new SqlCommandBuilder();
+            _CommandBuilder.GetUpdateCommand().CommandText = "dbo.UpdateAdressRow";
+            _CommandBuilder.GetUpdateCommand().Parameters.Add(new SqlParameter("@Strasse", this.str_Strasse));
+            _CommandBuilder.GetUpdateCommand().Parameters.Add(new SqlParameter("@Hausnummer", this.str_Hausnummer));
+            _CommandBuilder.GetUpdateCommand().Parameters.Add(new SqlParameter("@Ort", this.str_Ort));
+            _CommandBuilder.GetUpdateCommand().Parameters.Add(new SqlParameter("@PLZ", this.str_Plz));
+            _CommandBuilder.GetUpdateCommand().Parameters.Add(new SqlParameter("@Adresszusatz", this.str_Adresszusatz));
+        }
+        #endregion
+
     }
 }

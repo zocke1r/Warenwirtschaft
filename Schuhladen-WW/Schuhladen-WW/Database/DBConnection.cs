@@ -62,13 +62,14 @@ namespace Schuhladen_WW.DataBase
         }
 
         // Aktualisiert Daten in der Datenbank
-        public bool UpdateData(string str_QueryString)
+        public bool UpdateData(SqlCommandBuilder _CommandBuilder)
         {
             try
             {
                 if (Open())
                 {
-                    SqlCommand _Commant = new SqlCommand(str_QueryString, _Connection);
+                    _CommandBuilder.GetUpdateCommand().Connection = _Connection;
+                    _CommandBuilder.GetUpdateCommand().ExecuteNonQuery();
                     Close();
                     return true;
                 }
