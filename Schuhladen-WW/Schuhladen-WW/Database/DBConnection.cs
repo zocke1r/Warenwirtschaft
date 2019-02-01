@@ -102,6 +102,21 @@ namespace Schuhladen_WW.DataBase
             }
         }
 
+		public bool InsertData (SqlCommand cmd) {
+			try {
+				if (Open()) {
+					cmd.Connection = _Connection;
+					cmd.ExecuteNonQuery ();
+				}
+			} catch (Exception ex) {
+				Console.WriteLine ("An Exception occured: " + ex.Message);
+				return false;
+			} finally {
+				Close ();
+			}
+			return true;
+		}
+
         #endregion
 
         #region Private Methods

@@ -16,6 +16,9 @@ namespace Schuhladen_WW
     {
         static void Main(string[] args)
         {
+			List<t2> l = new List<t2> ();
+			Console.WriteLine (typeof (l));
+			test (new t2 ());
 
             DataController.PullArticles();
 
@@ -28,6 +31,14 @@ namespace Schuhladen_WW
 
             
         }
+
+		static void test (t1 t) {
+			Console.WriteLine (t.GetType ().Name);
+		}
+
+		 abstract class t1 { }
+
+		class t2 : t1 { }
 
         private static void Program__CustomPropertyChanged(Type _Type, string str_ColumnName, object obj_Value)
         {

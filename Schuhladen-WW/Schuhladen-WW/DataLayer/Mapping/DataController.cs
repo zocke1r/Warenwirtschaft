@@ -3,6 +3,7 @@ using System.Linq;
 using Schuhladen_WW.DataBase;
 using Schuhladen_WW.Mapping;
 using System.Data.SqlClient;
+using System;
 
 namespace Schuhladen_WW.DataLayer.Mapping
 {
@@ -172,7 +173,18 @@ namespace Schuhladen_WW.DataLayer.Mapping
             return false;
         }
 
-        #endregion
+		//public static bool insertAdresse (BaseClassDataLayer adr) {
+		//	switch (adr.GetType().Name) {
+		//		case "Adresse":
+		//			__Adresse.Add ((Adresse) adr);
+		//			break;
+		//		default:
+		//			break;
+		//	}
+		//	return _Connection.InsertData (adr.InsertCommand());
+		//}
 
-    }
+		#endregion
+
+	}
 }
