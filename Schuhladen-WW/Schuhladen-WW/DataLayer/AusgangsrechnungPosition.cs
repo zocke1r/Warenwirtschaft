@@ -95,14 +95,15 @@ namespace Schuhladen_WW.DataLayer
         public override void Update()
         {
             // Insert validation method here :)
-            SqlCommandBuilder _CommandBuilder = new SqlCommandBuilder();
-            _CommandBuilder.GetUpdateCommand().CommandText = "dbo.UpdateAusgangsrechnungPositionRow";
-            _CommandBuilder.GetUpdateCommand().Parameters.Add(new SqlParameter("@ID", this.int_Id));
-            _CommandBuilder.GetUpdateCommand().Parameters.Add(new SqlParameter("@Anzahl", this.int_Anzahl));
-            _CommandBuilder.GetUpdateCommand().Parameters.Add(new SqlParameter("@Preis ", this.dbl_Preis));
-            _CommandBuilder.GetUpdateCommand().Parameters.Add(new SqlParameter("@Ausgangsrechnung", this.int_AusgansRechnung));
-            _CommandBuilder.GetUpdateCommand().Parameters.Add(new SqlParameter("@Artikel  ", this.int_Artikel));
-            DataController.UpdateObject(_CommandBuilder);
+            SqlCommand cmd_Command = new SqlCommand();
+            cmd_Command.CommandType = System.Data.CommandType.StoredProcedure;
+            cmd_Command.CommandText = "dbo.UpdateAusgangsrechnungPositionRow";
+            cmd_Command.Parameters.Add(new SqlParameter("@ID", this.int_Id));
+            cmd_Command.Parameters.Add(new SqlParameter("@Anzahl", this.int_Anzahl));
+            cmd_Command.Parameters.Add(new SqlParameter("@Preis ", this.dbl_Preis));
+            cmd_Command.Parameters.Add(new SqlParameter("@Ausgangsrechnung", this.int_AusgansRechnung));
+            cmd_Command.Parameters.Add(new SqlParameter("@Artikel  ", this.int_Artikel));
+            DataController.UpdateObject(cmd_Command);
         }
         #endregion
     }

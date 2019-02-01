@@ -109,15 +109,16 @@ namespace Schuhladen_WW.DataLayer
         public override void Update()
         {
             // Insert validation method here :)
-            SqlCommandBuilder _CommandBuilder = new SqlCommandBuilder();
-            _CommandBuilder.GetUpdateCommand().CommandText = "dbo.UpdateAdressRow";
-            _CommandBuilder.GetUpdateCommand().Parameters.Add(new SqlParameter("@ID", this.int_Id));
-            _CommandBuilder.GetUpdateCommand().Parameters.Add(new SqlParameter("@Strasse", this.str_Strasse));
-            _CommandBuilder.GetUpdateCommand().Parameters.Add(new SqlParameter("@Hausnummer", this.str_Hausnummer));
-            _CommandBuilder.GetUpdateCommand().Parameters.Add(new SqlParameter("@Ort", this.str_Ort));
-            _CommandBuilder.GetUpdateCommand().Parameters.Add(new SqlParameter("@PLZ", this.str_Plz));
-            _CommandBuilder.GetUpdateCommand().Parameters.Add(new SqlParameter("@Adresszusatz", this.str_Adresszusatz));
-            DataController.UpdateObject(_CommandBuilder);
+            SqlCommand cmd_Command = new SqlCommand();
+            cmd_Command.CommandType = System.Data.CommandType.StoredProcedure;
+            cmd_Command.CommandText = "dbo.UpdateAdressRow";
+            cmd_Command.Parameters.Add(new SqlParameter("@ID", this.int_Id));
+            cmd_Command.Parameters.Add(new SqlParameter("@Strasse", this.str_Strasse));
+            cmd_Command.Parameters.Add(new SqlParameter("@Hausnummer", this.str_Hausnummer));
+            cmd_Command.Parameters.Add(new SqlParameter("@Ort", this.str_Ort));
+            cmd_Command.Parameters.Add(new SqlParameter("@PLZ", this.str_Plz));
+            cmd_Command.Parameters.Add(new SqlParameter("@Adresszusatz", this.str_Adresszusatz));
+            DataController.UpdateObject(cmd_Command);
         }
         #endregion
 

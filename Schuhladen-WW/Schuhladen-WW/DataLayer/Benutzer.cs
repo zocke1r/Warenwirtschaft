@@ -122,17 +122,18 @@ namespace Schuhladen_WW.DataLayer
         public override void Update()
         {
             // Insert validation method here :)
-            SqlCommandBuilder _CommandBuilder = new SqlCommandBuilder();
-            _CommandBuilder.GetUpdateCommand().CommandText = "dbo.UpdateAdressRow";
-            _CommandBuilder.GetUpdateCommand().Parameters.Add(new SqlParameter("@ID", this.int_Id));
-            _CommandBuilder.GetUpdateCommand().Parameters.Add(new SqlParameter("@Name", this.str_Name));
-            _CommandBuilder.GetUpdateCommand().Parameters.Add(new SqlParameter("@Password", this.str_Password));
-            _CommandBuilder.GetUpdateCommand().Parameters.Add(new SqlParameter("@Adresse", this.int_Adresse));
-            _CommandBuilder.GetUpdateCommand().Parameters.Add(new SqlParameter("@Email", this.str_Email));
-            _CommandBuilder.GetUpdateCommand().Parameters.Add(new SqlParameter("@Berechtigung", this.str_Berechtigung));
-            _CommandBuilder.GetUpdateCommand().Parameters.Add(new SqlParameter("@Telefon", this.str_Telefon));
+            SqlCommand cmd_Command = new SqlCommand();
+            cmd_Command.CommandType = System.Data.CommandType.StoredProcedure;
+            cmd_Command.CommandText = "dbo.UpdateBenutzerRow";
+            cmd_Command.Parameters.Add(new SqlParameter("@ID", this.int_Id));
+            cmd_Command.Parameters.Add(new SqlParameter("@Name", this.str_Name));
+            cmd_Command.Parameters.Add(new SqlParameter("@Password", this.str_Password));
+            cmd_Command.Parameters.Add(new SqlParameter("@Adresse", this.int_Adresse));
+            cmd_Command.Parameters.Add(new SqlParameter("@Email", this.str_Email));
+            cmd_Command.Parameters.Add(new SqlParameter("@Berechtigung", this.str_Berechtigung));
+            cmd_Command.Parameters.Add(new SqlParameter("@Telefon", this.str_Telefon));
 
-            DataController.UpdateObject(_CommandBuilder);
+            DataController.UpdateObject(cmd_Command);
         }
     }
 }

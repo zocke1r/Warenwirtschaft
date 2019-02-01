@@ -127,19 +127,17 @@ namespace Schuhladen_WW.DataLayer
 
 		public override void Update () {
 			// Insert validation method here :)
-			SqlCommandBuilder _CommandBuilder = new SqlCommandBuilder ();
-            SqlCommand cmd = new SqlCommand();
-            cmd.CommandType = System.Data.CommandType.StoredProcedure;
-            cmd.CommandText = "dbo.UpdateLiveArtikelRow";
-            cmd.Parameters.Add (new SqlParameter ("@EAN", this.str_EAN));
-			cmd.Parameters.Add (new SqlParameter ("@VK", this.dbl_SellPrice));
-			cmd.Parameters.Add (new SqlParameter ("@EK", this.dbl_BuyPrice));
-			cmd.Parameters.Add (new SqlParameter ("@Bestand", this.int_Stock));
-			cmd.Parameters.Add (new SqlParameter ("@Model", this.int_ModelID));
-			cmd.Parameters.Add (new SqlParameter ("@Groesse", this.int_SizeID));
-			cmd.Parameters.Add (new SqlParameter ("@ID", this.int_ID));
-
-			DataController.UpdateObject (cmd);
+            SqlCommand cmd_Command = new SqlCommand();
+            cmd_Command.CommandType = System.Data.CommandType.StoredProcedure;
+            cmd_Command.CommandText = "dbo.UpdateLiveArtikelRow";
+            cmd_Command.Parameters.Add (new SqlParameter ("@EAN", this.str_EAN));
+            cmd_Command.Parameters.Add (new SqlParameter ("@VK", this.dbl_SellPrice));
+            cmd_Command.Parameters.Add (new SqlParameter ("@EK", this.dbl_BuyPrice));
+            cmd_Command.Parameters.Add (new SqlParameter ("@Bestand", this.int_Stock));
+            cmd_Command.Parameters.Add (new SqlParameter ("@Model", this.int_ModelID));
+            cmd_Command.Parameters.Add (new SqlParameter ("@Groesse", this.int_SizeID));
+            cmd_Command.Parameters.Add (new SqlParameter ("@ID", this.int_ID));
+			DataController.UpdateObject (cmd_Command);
 		}
 	}
 }
