@@ -2,8 +2,9 @@
 
 --dbo.Adresse
 --------------------------------------------------------------------------------------------------------------
-ALTER PROCEDURE [dbo].[UpdateAdressRow]
-    @ID uniqueidentifier,
+GO
+CREATE PROCEDURE [dbo].[UpdateAdressRow]
+    @ID int,
     @Strasse nvarchar(20) = "Not Set",
     @Hausnummer nvarchar(5) = "Not Set",
     @Ort nvarchar(20) = "Not Set",
@@ -18,11 +19,12 @@ END
 --------------------------------------------------------------------------------------------------------------
 --dbo.AusgangsRechnung
 --------------------------------------------------------------------------------------------------------------
-ALTER PROCEDURE [dbo].[UpdateAusgangsrechnungRow]
-    @ID uniqueidentifier,
+GO
+CREATE PROCEDURE [dbo].[UpdateAusgangsrechnungRow]
+    @ID int,
     @Nummer NVARCHAR(20) = "Not Set",
     @Datum DATE = GetDate(),
-    @Status INT(20),
+    @Status int,
     @Betrag numeric(15,4) = 0
 AS
 BEGIN
@@ -33,28 +35,30 @@ END
 --------------------------------------------------------------------------------------------------------------
 --dbo.AusgangsrechnungPosition
 --------------------------------------------------------------------------------------------------------------
-ALTER PROCEDURE [dbo].[UpdateAusgangsrechnungPositionRow]
-    @ID uniqueidentifier,
-    @Anzahl INT(20) = 0,
+GO
+CREATE PROCEDURE [dbo].[UpdateAusgangsrechnungPositionRow]
+    @ID int,
+    @Anzahl int = 0,
     @Preis numeric(15,4) = 0,
-    @Ausgangsrechnung INT(20),
-    @Artikel INT(20)
+    @Ausgangsrechnung int,
+    @Artikel int
 AS
 BEGIN
     UPDATE dbo.AusgangsrechnungPositiion
-    SET Anzahl=@Anzahl, Preis=@Preis, Ausgangsrechnung=@Ausgangsrechnung, Artikel=@Artikel, Anzahl=@Anzahl
+    SET Anzahl=@Anzahl, Preis=@Preis, Ausgangsrechnung=@Ausgangsrechnung, Artikel=@Artikel
     WHERE ID=@ID
 END
 --------------------------------------------------------------------------------------------------------------
 --dbo.Benutzer
 --------------------------------------------------------------------------------------------------------------
-ALTER PROCEDURE [dbo].[UpdateBenutzerRow]
-    @ID uniqueidentifier,
+GO
+CREATE PROCEDURE [dbo].[UpdateBenutzerRow]
+    @ID int,
     @Name NVARCHAR(50) = "Not Set",
     @Password NVARCHAR(50) = "Not Set",
-    @Adresse INT(20),
+    @Adresse int,
     @Email NVARCHAR(50) = "NOT Set",
-    @Berechtigung INT(20) = 0,
+    @Berechtigung int = 0,
     @Telefon NVARCHAR(50) = "Not Set"
 AS
 BEGIN
@@ -65,28 +69,30 @@ END
 --------------------------------------------------------------------------------------------------------------
 --dbo.Bestellung
 --------------------------------------------------------------------------------------------------------------
-ALTER PROCEDURE [dbo].[UpdateBestellungRow]
-    @ID uniqueidentifier,
+GO
+CREATE PROCEDURE [dbo].[UpdateBestellungRow]
+    @ID int,
     @Nummer NVARCHAR(50) = "Not Set",
     @Datum Date = GetDate(),
-    @Lieferant INT(20),
-    @Status INT(50),
+    @Lieferant int,
+    @Status int,
     @Betrag NUMERIC(15,4) = 0
 AS
 BEGIN
-    UPDATE dbo.Benutzer
+    UPDATE dbo.Bestellung
     SET Nummer=@Nummer, Datum=@Datum, Lieferant=@Lieferant, Status=@Status, Betrag=@Betrag
     WHERE ID=@ID
 END
 --------------------------------------------------------------------------------------------------------------
 --dbo.BestellungPosition
 --------------------------------------------------------------------------------------------------------------
-ALTER PROCEDURE [dbo].[UpdatebestellungPositionRow]
-    @ID uniqueidentifier,
-    @Anzahl INT(50) = 0,
+GO
+CREATE PROCEDURE [dbo].[UpdatebestellungPositionRow]
+    @ID int,
+    @Anzahl int = 0,
     @Preis numeric(15,4) = 0,
-    @Bestellung INT(20),
-    @Artikel INT(50)
+    @Bestellung int,
+    @Artikel int
 AS
 BEGIN
     UPDATE dbo.Benutzer
@@ -96,8 +102,9 @@ END
 --------------------------------------------------------------------------------------------------------------
 --dbo.Status
 --------------------------------------------------------------------------------------------------------------
-ALTER PROCEDURE [dbo].[UpdateStatusRow]
-    @ID uniqueidentifier,
+GO
+CREATE PROCEDURE [dbo].[UpdateStatusRow]
+    @ID int,
     @Numeral int = 0,
     @Bezeichnung nvarchar(50) = "Not Set"
 AS
@@ -109,8 +116,9 @@ END
 --------------------------------------------------------------------------------------------------------------
 --dbo.Model
 --------------------------------------------------------------------------------------------------------------
-ALTER PROCEDURE [dbo].[UpdateModelRow]
-    @ID uniqueidentifier,    
+GO
+CREATE PROCEDURE [dbo].[UpdateModelRow]
+    @ID int,    
     @Hersteller int, 
     @Bezeichnung NVARCHAR(50) = "Not Set",
 AS
@@ -122,8 +130,9 @@ END
 --------------------------------------------------------------------------------------------------------------
 --dbo.Live_Artikel
 --------------------------------------------------------------------------------------------------------------
-ALTER PROCEDURE [dbo].[UpdateLiveArtikelRow]
-    @ID uniqueidentifier,    
+GO
+CREATE PROCEDURE [dbo].[UpdateLiveArtikelRow]
+    @ID int,    
     @Model int, 
     @Groesse int, 
     @EAN NVARCHAR(255) = "Not Set",    
@@ -139,8 +148,9 @@ END
 --------------------------------------------------------------------------------------------------------------
 --dbo.Kategorie
 --------------------------------------------------------------------------------------------------------------
-ALTER PROCEDURE [dbo].[UpdateKategorieRow]
-    @ID uniqueidentifier,    
+GO
+CREATE PROCEDURE [dbo].[UpdateKategorieRow]
+    @ID int,    
     @Bezeichnung nvarchar(50) = 'Not Set'
 AS
 BEGIN
@@ -151,8 +161,9 @@ END
 --------------------------------------------------------------------------------------------------------------
 --dbo.Hersteller
 --------------------------------------------------------------------------------------------------------------
-ALTER PROCEDURE [dbo].[UpdateHerstellerRow]
-    @ID uniqueidentifier,
+GO
+CREATE PROCEDURE [dbo].[UpdateHerstellerRow]
+    @ID int,
     @Adresse int,
     @Name nvarchar(50) = 'Not Set'
 AS
@@ -164,8 +175,9 @@ END
 --------------------------------------------------------------------------------------------------------------
 --dbo.Groesse
 --------------------------------------------------------------------------------------------------------------
-ALTER PROCEDURE [dbo].[UpdateHerstellerRow]
-    @ID uniqueidentifier,
+GO
+CREATE PROCEDURE [dbo].[UpdateHerstellerRow]
+    @ID int,
     @US nvarchar(50) = 'Not Set',
     @EU nvarchar(50) = 'Not Set',
     @GB nvarchar(50) = 'Not Set',
@@ -176,4 +188,5 @@ BEGIN
     SET US=@US,EU=@EU,GB=@GB,cm=@cm
     WHERE ID=@ID
 END
+GO
 --------------------------------------------------------------------------------------------------------------
