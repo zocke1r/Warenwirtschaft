@@ -62,13 +62,14 @@ namespace Schuhladen_WW.DataBase
         }
 
         // Aktualisiert Daten in der Datenbank
-        public bool UpdateData(string str_QueryString)
+        public bool UpdateData(SqlCommandBuilder _CommandBuilder)
         {
             try
             {
                 if (Open())
                 {
-                    SqlCommand _Commant = new SqlCommand(str_QueryString, _Connection);
+                    _CommandBuilder.GetUpdateCommand().Connection = _Connection;
+                    _CommandBuilder.GetUpdateCommand().ExecuteNonQuery();
                     Close();
                     return true;
                 }
@@ -80,6 +81,41 @@ namespace Schuhladen_WW.DataBase
                 return false;
             }
         }
+
+        public bool UpdateData(SqlCommand _CommandBuilder)
+        {
+            try
+            {
+                if (Open())
+                {
+                    _CommandBuilder.Connection = _Connection;
+                    _CommandBuilder.ExecuteNonQuery();
+                    Close();
+                    return true;
+                }
+                return false;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("An Exception occured: " + ex.Message);
+                return false;
+            }
+        }
+
+		public bool InsertData (SqlCommand cmd) {
+			try {
+				if (Open()) {
+					cmd.Connection = _Connection;
+					cmd.ExecuteNonQuery ();
+				}
+			} catch (Exception ex) {
+				Console.WriteLine ("An Exception occured: " + ex.Message);
+				return false;
+			} finally {
+				Close ();
+			}
+			return true;
+		}
 
         #endregion
 

@@ -1,25 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Schuhladen_WW.DataBase;
-using Schuhladen_WW.DataLayer.Mapping;
 using Schuhladen_WW.Mapping;
-using System.Data;
-using System.ComponentModel;
+using System.Data.SqlClient;
+using System;
 
 namespace Schuhladen_WW.DataLayer.Mapping
 {
     public static class DataController
     {
+        #region Private Members
         // New database connection
         private static DBConnection _Connection = DBConnection.Instance();
 
         // Collections (Lazyloading)
-        private static Lazy<List<Live_Article>> __LiveArticle = new Lazy<List<Live_Article>>(() => ___LiveArticleMapper.Map(_Connection.GetData("SELECT * FROM dbo.Live_Artikel;")).ToList());
-
-        public static List<Live_Article> Live_Articles => __LiveArticle.Value;
+        private static List<Live_Article> __LiveArticle { get; set; }
 
         private static List<Model> __Model { get; set; }
 
@@ -37,6 +32,14 @@ namespace Schuhladen_WW.DataLayer.Mapping
 
         private static List<Lieferant> __Lieferant { get; set; }
 
+        private static List<Kategorie> __Kategorie { get; set; }
+
+        private static List<Bestellung> __Bestellung { get; set; }
+
+        private static List<BestellungPositionPosition> __BestellungPositionPosition { get; set; }
+
+        private static List<AusgangsrechnungPosition> __AusgangsrechnungPosition { get; set; }
+
         // Initialize object mappers
         private static PropertyMapper<Live_Article> ___LiveArticleMapper = new PropertyMapper<Live_Article>();
 
@@ -48,36 +51,13 @@ namespace Schuhladen_WW.DataLayer.Mapping
         private static PropertyMapper<Status> ___StatusListMapper = new PropertyMapper<Status>();
         private static PropertyMapper<Benutzer> ___BenutzerListMapper = new PropertyMapper<Benutzer>();
         private static PropertyMapper<Lieferant> ___LieferantListMapper = new PropertyMapper<Lieferant>();
+        private static PropertyMapper<Kategorie> ___KategorieListMapper = new PropertyMapper<Kategorie>();
+        private static PropertyMapper<Bestellung> ___BestellungListMapper = new PropertyMapper<Bestellung>();
+        private static PropertyMapper<BestellungPositionPosition> ___BestellungPositionPositionListMapper = new PropertyMapper<BestellungPositionPosition>();
+        private static PropertyMapper<AusgangsrechnungPosition> ___AusgangsrechnungPositionListMapper = new PropertyMapper<AusgangsrechnungPosition>();
+        #endregion
 
-        // Pulls all from db and creates datalayer according to dbm realtions
-        public static void CreateDataLayer ()
-        {
-            // Gets Model collection
-            __Model = ___ModelListMapper.Map(_Connection.GetData("SELECT * FROM dbo.Model;")).ToList();
-
-            // Get Groesse collection
-            __Groesse = ___GroesseListMapper.Map(_Connection.GetData("SELECT * FROM dbo.Groesse;")).ToList();
-
-            // Get Groesse collection
-            __Hersteller = ___HerstellerListMapper.Map(_Connection.GetData("SELECT * FROM dbo.Hersteller;")).ToList();
-
-            // Get Adresse collection
-            __Adresse = ___AdresseListMapper.Map(_Connection.GetData("SELECT * FROM dbo.Adresse;")).ToList();
-
-            // Get Status collection
-            __Status = ___StatusListMapper.Map(_Connection.GetData("SELECT * FROM dbo.Status;")).ToList();
-
-            // Get AusgangsRechnung collection
-            __AusgangsRechnung = ___AusgangsRechnungListMapper.Map(_Connection.GetData("SELECT * FROM dbo.AusgangsRechnung;")).ToList();
-
-            // GetBenutzer collection
-            __Benutzer = ___BenutzerListMapper.Map(_Connection.GetData("SELECT * FROM dbo.Benutzer;")).ToList();
-
-            // Get Lieferant collection
-            __Lieferant = ___LieferantListMapper.Map(_Connection.GetData("SELECT * FROM dbo.Lieferant;")).ToList();
-        }
-
-        // Public methods
+        #region Public Members
         public static List<Model> ReturnModels ()
         {
             return __Model;
@@ -102,5 +82,109 @@ namespace Schuhladen_WW.DataLayer.Mapping
         {
             return __Lieferant;
         }
-    }
+
+        public static List<Live_Article> ReturnLiveArtikel ()
+        {
+            return __LiveArticle;
+        }
+
+        public static List<Bestellung> ReturnBestellung ()
+        {
+            return __Bestellung;
+        }
+
+        public static List<AusgangsRechnung> ReturnAusgangsRechnung ()
+        {
+            return __AusgangsRechnung;
+        }
+        #endregion
+
+        #region Public Methods
+
+        public static void PullArticles()
+        {
+            // Gets Model collection
+            __Model = ___ModelListMapper.Map(_Connection.GetData("SELECT * FROM dbo.Model;")).ToList();
+
+            // Get Groesse collection
+            __Groesse = ___GroesseListMapper.Map(_Connection.GetData("SELECT * FROM dbo.Groesse;")).ToList();
+
+            __LiveArticle = ___LiveArticleMapper.Map(_Connection.GetData("SELECT * FROM dbo.Live_Artikel;")).ToList();
+
+        }
+
+        public static void CreateDataLayer()
+        {
+            // Gets Live_Article collection
+            __LiveArticle = ___LiveArticleMapper.Map(_Connection.GetData("SELECT * FROM dbo.LiveArticle;")).ToList();
+
+            // Gets Model collection
+            __Model = ___ModelListMapper.Map(_Connection.GetData("SELECT * FROM dbo.Model;")).ToList();
+
+            // Get Groesse collection
+            __Groesse = ___GroesseListMapper.Map(_Connection.GetData("SELECT * FROM dbo.Groesse;")).ToList();
+
+            // Get Groesse collection
+            __Hersteller = ___HerstellerListMapper.Map(_Connection.GetData("SELECT * FROM dbo.Hersteller;")).ToList();
+
+            // Get Adresse collection
+            __Adresse = ___AdresseListMapper.Map(_Connection.GetData("SELECT * FROM dbo.Adresse;")).ToList();
+
+            // Get Status collection
+            __Status = ___StatusListMapper.Map(_Connection.GetData("SELECT * FROM dbo.Status;")).ToList();
+
+            // Get AusgangsRechnung collection
+            __AusgangsRechnung = ___AusgangsRechnungListMapper.Map(_Connection.GetData("SELECT * FROM dbo.AusgangsRechnung;")).ToList();
+
+            // GetBenutzer collection
+            __Benutzer = ___BenutzerListMapper.Map(_Connection.GetData("SELECT * FROM dbo.Benutzer;")).ToList();
+
+            // Get Lieferant collection
+            __Lieferant = ___LieferantListMapper.Map(_Connection.GetData("SELECT * FROM dbo.Lieferant;")).ToList();
+
+            // Get Kategorie collection
+            __Kategorie = ___KategorieListMapper.Map(_Connection.GetData("SELECT * FROM dbo.Kategorie;")).ToList();
+
+            // Get Bestellung collection
+            __Bestellung = ___BestellungListMapper.Map(_Connection.GetData("SELECT * FROM dbo.Bestellung;")).ToList();
+
+            // Get BestellungPositionPosition collection
+            __BestellungPositionPosition = ___BestellungPositionPositionListMapper.Map(_Connection.GetData("SELECT * FROM dbo.BestellungPosition;")).ToList();
+
+            // Get AusgangsrechnungPosition collection
+            __AusgangsrechnungPosition = ___AusgangsrechnungPositionListMapper.Map(_Connection.GetData("SELECT * FROM dbo.AusgangsrechnungPosition;")).ToList();
+        }
+
+        public static bool UpdateObject(SqlCommandBuilder _CommandBuilder)
+        {
+            if (_Connection.UpdateData(_CommandBuilder))
+            {
+                return true;
+            }
+            return false;
+        }
+
+        public static bool UpdateObject(SqlCommand _CommandBuilder)
+        {
+            if (_Connection.UpdateData(_CommandBuilder))
+            {
+                return true;
+            }
+            return false;
+        }
+
+		//public static bool insertAdresse (BaseClassDataLayer adr) {
+		//	switch (adr.GetType().Name) {
+		//		case "Adresse":
+		//			__Adresse.Add ((Adresse) adr);
+		//			break;
+		//		default:
+		//			break;
+		//	}
+		//	return _Connection.InsertData (adr.InsertCommand());
+		//}
+
+		#endregion
+
+	}
 }

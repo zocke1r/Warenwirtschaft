@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Schuhladen_WW.Mapping;
 using Schuhladen_WW.DataLayer.Mapping;
+using System.Data.SqlClient;
 
 namespace Schuhladen_WW.DataLayer
 {
@@ -116,6 +117,23 @@ namespace Schuhladen_WW.DataLayer
                     RaiseEvent(this.GetType(), "Telefon", str_telefon);
                 }
             }
+        }
+
+        public override void Update()
+        {
+            // Insert validation method here :)
+            SqlCommand cmd_Command = new SqlCommand();
+            cmd_Command.CommandType = System.Data.CommandType.StoredProcedure;
+            cmd_Command.CommandText = "dbo.UpdateBenutzerRow";
+            cmd_Command.Parameters.Add(new SqlParameter("@ID", this.int_Id));
+            cmd_Command.Parameters.Add(new SqlParameter("@Name", this.str_Name));
+            cmd_Command.Parameters.Add(new SqlParameter("@Password", this.str_Password));
+            cmd_Command.Parameters.Add(new SqlParameter("@Adresse", this.int_Adresse));
+            cmd_Command.Parameters.Add(new SqlParameter("@Email", this.str_Email));
+            cmd_Command.Parameters.Add(new SqlParameter("@Berechtigung", this.str_Berechtigung));
+            cmd_Command.Parameters.Add(new SqlParameter("@Telefon", this.str_Telefon));
+
+            DataController.UpdateObject(cmd_Command);
         }
     }
 }

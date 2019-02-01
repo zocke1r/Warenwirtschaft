@@ -6,23 +6,20 @@ using System.Threading.Tasks;
 using Schuhladen_WW.Mapping;
 using Schuhladen_WW.DataLayer.Mapping;
 using System.Data.SqlClient;
-using Schuhladen_WW.DataLayer.Mapping;
 
 namespace Schuhladen_WW.DataLayer
 {
-    public class AusgangsRechnung : BaseClassDataLayer
+    public class Bestellung : BaseClassDataLayer
     {
-
-        #region Private Members
         private int int_id;
         private string str_nummer;
         private DateTime t_datum;
+        private int int_lieferant;
         private int int_status;
         private string str_betrag;
-        #endregion
 
-        #region Public Members
-        public Status _Status => DataController.ReturnStatus().Where(x => x.int_Id == int_Status).First();
+        public Lieferant _Lieferant => DataController.ReturnLieferant().Where(x => x.int_Id == int_Id).First();
+        public Status _Status => DataController.ReturnStatus().Where(x => x.int_Id == int_status).First();
 
         [PropertyBridge("ID")]
         public int int_Id
@@ -39,7 +36,7 @@ namespace Schuhladen_WW.DataLayer
         }
 
         [PropertyBridge("Nummer")]
-        private string str_Nummer
+        public string str_Nummer
         {
             get { return str_nummer; }
             set
@@ -58,10 +55,24 @@ namespace Schuhladen_WW.DataLayer
             get { return t_datum; }
             set
             {
-                if(t_datum != value)
+                if (t_datum != value)
                 {
                     t_datum = value;
                     RaiseEvent(this.GetType(), "Datum", t_datum);
+                }
+            }
+        }
+
+        [PropertyBridge("Lieferant")]
+        public int int_Lieferant
+        {
+            get { return int_lieferant; }
+            set
+            {
+                if (int_lieferant != value)
+                {
+                    int_lieferant = value;
+                    RaiseEvent(this.GetType(), "Lieferant", int_lieferant);
                 }
             }
         }
@@ -97,16 +108,16 @@ namespace Schuhladen_WW.DataLayer
         public override void Update()
         {
             // Insert validation method here :)
-            SqlCommand cmd_Command = new SqlCommand();
-            cmd_Command.CommandType = System.Data.CommandType.StoredProcedure;
-            cmd_Command.CommandText = "dbo.UpdateAusgangsrechnungRow";
-            cmd_Command.Parameters.Add(new SqlParameter("@ID", this.int_Id));
-            cmd_Command.Parameters.Add(new SqlParameter("@Nummer ", this.str_Nummer));
-            cmd_Command.Parameters.Add(new SqlParameter("@Datum ", this.t_Datum));
-            cmd_Command.Parameters.Add(new SqlParameter("@Status", this.int_Status));
-            cmd_Command.Parameters.Add(new SqlParameter("@Betrag ", this.str_Betrag));
-            DataController.UpdateObject(cmd_Command);
+			var cmd = new SqlCommand ();
+			cmd.CommandType = System.Data.CommandType.StoredProcedure;
+			cmd.CommandText = "dbo.UpdateBestellungRow";
+			cmd.Parameters.Add(new SqlParameter ("@ID", this.int_Id));
+			cmd.Parameters.Add(new SqlParameter ("@Nummer", this.str_Nummer));
+			cmd.Parameters.Add(new SqlParameter ("@Datum", this.t_datum));
+			cmd.Parameters.Add(new SqlParameter ("@Lieferant", this.int_Lieferant));
+			cmd.Parameters.Add(new SqlParameter ("@Status", this.int_Status));
+			cmd.Parameters.Add(new SqlParameter ("@Betrag", this.str_Betrag));
+            DataController.UpdateObject(cmd);
         }
-        #endregion
     }
 }

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.ComponentModel;
 using Schuhladen_WW.CustomEvents;
 using System.Reflection;
+using System.Data.SqlClient;
 
 namespace Schuhladen_WW.DataLayer
 {
@@ -21,5 +22,9 @@ namespace Schuhladen_WW.DataLayer
             if (_CustomPropertyChanged !=null)
                 _CustomPropertyChanged(_Type, str_ColumnName, obj_Value);
         }
-    }
+
+        public abstract void Update();
+
+		//public abstract SqlCommand InsertCommand ();
+	}
 }

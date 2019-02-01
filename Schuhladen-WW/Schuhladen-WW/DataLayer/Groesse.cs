@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Schuhladen_WW.Mapping;
+using System.Data.SqlClient;
+using Schuhladen_WW.DataLayer.Mapping;
 
 namespace Schuhladen_WW.DataLayer
 {
@@ -13,7 +15,7 @@ namespace Schuhladen_WW.DataLayer
         private string str_us;
         private string str_eu;
         private string str_gb;
-        private string str_cm;
+        private double dbl_cm;
 
         [PropertyBridge("ID")]
         public int int_Id
@@ -71,17 +73,30 @@ namespace Schuhladen_WW.DataLayer
         }
 
         [PropertyBridge("CM")]
-        public string str_CM
+        public double dbl_CM
         {
-            get { return str_cm; }
+            get { return dbl_cm; }
             set
             {
-                if (str_cm != value)
+                if (dbl_cm != value)
                 {
-                    str_cm = value;
-                    RaiseEvent(this.GetType(), "CM", str_cm);
+                    dbl_cm = value;
+                    RaiseEvent(this.GetType(), "CM", dbl_cm);
                 }
             }
         }
-    }
+
+		public override void Update () {
+			// Insert validation method here :)
+			var cmd = new SqlCommand ();
+			cmd.CommandType = System.Data.CommandType.StoredProcedure;
+			cmd.CommandText = "dbo.UpdateKategorieRow";
+			cmd.Parameters.Add (new SqlParameter ("@US", this.str_US));
+			cmd.Parameters.Add (new SqlParameter ("@EU", this.str_EU));
+			cmd.Parameters.Add (new SqlParameter ("@GB", this.str_GB));
+			cmd.Parameters.Add (new SqlParameter ("@cm", this.dbl_CM));
+
+			DataController.UpdateObject (cmd);
+		}
+	}
 }

@@ -49,10 +49,14 @@
     <Compile Include="Database\DBConnection.cs" />
     <Compile Include="DataLayer\Adresse.cs" />
     <Compile Include="DataLayer\AusgangsRechnung.cs" />
+    <Compile Include="DataLayer\AusgangsrechnungPosition.cs" />
     <Compile Include="DataLayer\Base\BaseClassDataLayer.cs" />
     <Compile Include="DataLayer\Benutzer.cs" />
+    <Compile Include="DataLayer\Bestellung.cs" />
+    <Compile Include="DataLayer\BestellungPositionPosition.cs" />
     <Compile Include="DataLayer\Groesse.cs" />
     <Compile Include="DataLayer\Hersteller.cs" />
+    <Compile Include="DataLayer\Kategorie.cs" />
     <Compile Include="DataLayer\Lieferant.cs" />
     <Compile Include="DataLayer\Live_Article.cs" />
     <Compile Include="DataLayer\Mapping\DataController.cs" />

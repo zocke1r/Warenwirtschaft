@@ -1,0 +1,12 @@
+--Stored Procedure [DELETE]
+
+--------------------------------------------------------------------------------------------------------------
+ALTER PROCEDURE [dbo].[DeleteRow]
+    @ID uniqueidentifier,
+    @Table nvarchar(50)
+AS
+BEGIN
+  SET @statement = 'DELETE dbo.' + @Table + ' WHERE ID = ' + @ID
+
+  EXECUTE sp_executesql @statement
+END

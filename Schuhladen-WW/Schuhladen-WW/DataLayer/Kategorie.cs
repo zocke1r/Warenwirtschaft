@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Schuhladen_WW.Mapping;
 using Schuhladen_WW.DataLayer.Mapping;
+using Schuhladen_WW.Mapping;
 using System.Data.SqlClient;
 
 namespace Schuhladen_WW.DataLayer
 {
-    public class Lieferant : BaseClassDataLayer
+    public class Kategorie : BaseClassDataLayer
     {
         private int int_id;
         private string str_bezeichnung;
@@ -29,7 +29,7 @@ namespace Schuhladen_WW.DataLayer
         }
 
         [PropertyBridge("Bezeichnung")]
-        public string str_Description
+        public string str_Bezeichnung
         {
             get { return str_bezeichnung; }
             set
@@ -44,10 +44,10 @@ namespace Schuhladen_WW.DataLayer
 
 		public override void Update () {
 			// Insert validation method here :)
-			var cmd = new SqlCommand();
+			var cmd = new SqlCommand ();
 			cmd.CommandType = System.Data.CommandType.StoredProcedure;
-			cmd.CommandText = "dbo.UpdateLieferantRow";
-			cmd.Parameters.Add (new SqlParameter ("@Bezeichnung", this.str_Description));
+			cmd.CommandText = "dbo.UpdateKategorieRow";
+			cmd.Parameters.Add (new SqlParameter ("@Bezeichnung", this.str_Bezeichnung));
 			cmd.Parameters.Add (new SqlParameter ("@ID", this.int_Id));
 
 			DataController.UpdateObject (cmd);
