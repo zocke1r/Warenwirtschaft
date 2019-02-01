@@ -90,9 +90,10 @@ namespace Schuhladen_WW.DataLayer
 			// Insert validation method here :)
 			SqlCommandBuilder _CommandBuilder = new SqlCommandBuilder ();
 			_CommandBuilder.GetUpdateCommand ().CommandText = "dbo.UpdateKategorieRow";
-			_CommandBuilder.GetUpdateCommand ().Parameters.Add (new SqlParameter ("@Name", this.str_Name));
-			_CommandBuilder.GetUpdateCommand ().Parameters.Add (new SqlParameter ("@Adresse", this.int_AdressId));
-			_CommandBuilder.GetUpdateCommand ().Parameters.Add (new SqlParameter ("@ID", this.int_ID));
+			_CommandBuilder.GetUpdateCommand ().Parameters.Add (new SqlParameter ("@US", this.str_US));
+			_CommandBuilder.GetUpdateCommand ().Parameters.Add (new SqlParameter ("@EU", this.str_EU));
+			_CommandBuilder.GetUpdateCommand ().Parameters.Add (new SqlParameter ("@GB", this.str_GB));
+			_CommandBuilder.GetUpdateCommand ().Parameters.Add (new SqlParameter ("@cm", this.str_CM));
 
 			DataController.UpdateObject (_CommandBuilder);
 		}
