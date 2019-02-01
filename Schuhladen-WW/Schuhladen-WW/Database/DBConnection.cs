@@ -82,6 +82,26 @@ namespace Schuhladen_WW.DataBase
             }
         }
 
+        public bool UpdateData(SqlCommand _CommandBuilder)
+        {
+            try
+            {
+                if (Open())
+                {
+                    _CommandBuilder.Connection = _Connection;
+                    _CommandBuilder.ExecuteNonQuery();
+                    Close();
+                    return true;
+                }
+                return false;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("An Exception occured: " + ex.Message);
+                return false;
+            }
+        }
+
         #endregion
 
         #region Private Methods

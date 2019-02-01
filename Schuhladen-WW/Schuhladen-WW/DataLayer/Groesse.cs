@@ -15,7 +15,7 @@ namespace Schuhladen_WW.DataLayer
         private string str_us;
         private string str_eu;
         private string str_gb;
-        private string str_cm;
+        private double dbl_cm;
 
         [PropertyBridge("ID")]
         public int int_Id
@@ -73,15 +73,15 @@ namespace Schuhladen_WW.DataLayer
         }
 
         [PropertyBridge("CM")]
-        public string str_CM
+        public double dbl_CM
         {
-            get { return str_cm; }
+            get { return dbl_cm; }
             set
             {
-                if (str_cm != value)
+                if (dbl_cm != value)
                 {
-                    str_cm = value;
-                    RaiseEvent(this.GetType(), "CM", str_cm);
+                    dbl_cm = value;
+                    RaiseEvent(this.GetType(), "CM", dbl_cm);
                 }
             }
         }
@@ -93,7 +93,7 @@ namespace Schuhladen_WW.DataLayer
 			_CommandBuilder.GetUpdateCommand ().Parameters.Add (new SqlParameter ("@US", this.str_US));
 			_CommandBuilder.GetUpdateCommand ().Parameters.Add (new SqlParameter ("@EU", this.str_EU));
 			_CommandBuilder.GetUpdateCommand ().Parameters.Add (new SqlParameter ("@GB", this.str_GB));
-			_CommandBuilder.GetUpdateCommand ().Parameters.Add (new SqlParameter ("@cm", this.str_CM));
+			_CommandBuilder.GetUpdateCommand ().Parameters.Add (new SqlParameter ("@cm", this.dbl_CM));
 
 			DataController.UpdateObject (_CommandBuilder);
 		}

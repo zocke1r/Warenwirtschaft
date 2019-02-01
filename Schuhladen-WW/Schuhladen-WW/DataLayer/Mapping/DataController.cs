@@ -99,6 +99,19 @@ namespace Schuhladen_WW.DataLayer.Mapping
         #endregion
 
         #region Public Methods
+
+        public static void PullArticles()
+        {
+            // Gets Model collection
+            __Model = ___ModelListMapper.Map(_Connection.GetData("SELECT * FROM dbo.Model;")).ToList();
+
+            // Get Groesse collection
+            __Groesse = ___GroesseListMapper.Map(_Connection.GetData("SELECT * FROM dbo.Groesse;")).ToList();
+
+            __LiveArticle = ___LiveArticleMapper.Map(_Connection.GetData("SELECT * FROM dbo.Live_Artikel;")).ToList();
+
+        }
+
         public static void CreateDataLayer()
         {
             // Gets Live_Article collection
@@ -142,6 +155,15 @@ namespace Schuhladen_WW.DataLayer.Mapping
         }
 
         public static bool UpdateObject(SqlCommandBuilder _CommandBuilder)
+        {
+            if (_Connection.UpdateData(_CommandBuilder))
+            {
+                return true;
+            }
+            return false;
+        }
+
+        public static bool UpdateObject(SqlCommand _CommandBuilder)
         {
             if (_Connection.UpdateData(_CommandBuilder))
             {

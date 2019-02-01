@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Schuhladen_WW.Mapping;
 using Schuhladen_WW.DataLayer.Mapping;
+using System.Data.SqlClient;
 
 namespace Schuhladen_WW.DataLayer
 {
@@ -102,6 +103,20 @@ namespace Schuhladen_WW.DataLayer
                     RaiseEvent(this.GetType(), "Betrag", str_betrag);
                 }
             }
+        }
+
+        public override void Update()
+        {
+            // Insert validation method here :)
+            SqlCommandBuilder _CommandBuilder = new SqlCommandBuilder();
+            _CommandBuilder.GetUpdateCommand().CommandText = "dbo.UpdateAdressRow";
+            _CommandBuilder.GetUpdateCommand().Parameters.Add(new SqlParameter("@ID", this.int_Id));
+            _CommandBuilder.GetUpdateCommand().Parameters.Add(new SqlParameter("@Nummer", this.str_Nummer));
+            _CommandBuilder.GetUpdateCommand().Parameters.Add(new SqlParameter("@Datum", this.t_datum));
+            _CommandBuilder.GetUpdateCommand().Parameters.Add(new SqlParameter("@Lieferant", this.int_Lieferant));
+            _CommandBuilder.GetUpdateCommand().Parameters.Add(new SqlParameter("@Status", this.int_Status));
+            _CommandBuilder.GetUpdateCommand().Parameters.Add(new SqlParameter("@Betrag", this.str_Betrag));
+            DataController.UpdateObject(_CommandBuilder);
         }
     }
 }

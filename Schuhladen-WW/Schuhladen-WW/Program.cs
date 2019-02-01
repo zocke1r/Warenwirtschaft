@@ -16,18 +16,15 @@ namespace Schuhladen_WW
     {
         static void Main(string[] args)
         {
-            DBConnection _Con = DBConnection.Instance();
-            DataTable dt_DataTable = _Con.GetData("SELECT * FROM dbo.Live_Artikel;");
 
-            
+            DataController.PullArticles();
 
-            PropertyMapper<Live_Article> ___LiveArticleMapper = new PropertyMapper<Live_Article>();
-            List<Live_Article> _LiveArticle = ___LiveArticleMapper.Map(dt_DataTable).ToList();
+            List<Live_Article> __LiveArticle = DataController.ReturnLiveArtikel();
 
-            foreach (Live_Article item in _LiveArticle)
-            {
-                Console.WriteLine(item.int_ID);
-            }
+            __LiveArticle[0].int_Stock = 3;
+            __LiveArticle[0].Update();
+
+            Console.ReadKey();
 
             
         }
