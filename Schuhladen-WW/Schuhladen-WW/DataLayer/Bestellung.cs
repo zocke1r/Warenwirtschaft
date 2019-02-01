@@ -108,15 +108,16 @@ namespace Schuhladen_WW.DataLayer
         public override void Update()
         {
             // Insert validation method here :)
-            SqlCommandBuilder _CommandBuilder = new SqlCommandBuilder();
-            _CommandBuilder.GetUpdateCommand().CommandText = "dbo.UpdateAdressRow";
-            _CommandBuilder.GetUpdateCommand().Parameters.Add(new SqlParameter("@ID", this.int_Id));
-            _CommandBuilder.GetUpdateCommand().Parameters.Add(new SqlParameter("@Nummer", this.str_Nummer));
-            _CommandBuilder.GetUpdateCommand().Parameters.Add(new SqlParameter("@Datum", this.t_datum));
-            _CommandBuilder.GetUpdateCommand().Parameters.Add(new SqlParameter("@Lieferant", this.int_Lieferant));
-            _CommandBuilder.GetUpdateCommand().Parameters.Add(new SqlParameter("@Status", this.int_Status));
-            _CommandBuilder.GetUpdateCommand().Parameters.Add(new SqlParameter("@Betrag", this.str_Betrag));
-            DataController.UpdateObject(_CommandBuilder);
+			var cmd = new SqlCommand ();
+			cmd.CommandType = System.Data.CommandType.StoredProcedure;
+			cmd.CommandText = "dbo.UpdateBestellungRow";
+			cmd.Parameters.Add(new SqlParameter ("@ID", this.int_Id));
+			cmd.Parameters.Add(new SqlParameter ("@Nummer", this.str_Nummer));
+			cmd.Parameters.Add(new SqlParameter ("@Datum", this.t_datum));
+			cmd.Parameters.Add(new SqlParameter ("@Lieferant", this.int_Lieferant));
+			cmd.Parameters.Add(new SqlParameter ("@Status", this.int_Status));
+			cmd.Parameters.Add(new SqlParameter ("@Betrag", this.str_Betrag));
+            DataController.UpdateObject(cmd);
         }
     }
 }

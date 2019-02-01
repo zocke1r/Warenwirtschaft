@@ -44,12 +44,13 @@ namespace Schuhladen_WW.DataLayer
 
 		public override void Update () {
 			// Insert validation method here :)
-			SqlCommandBuilder _CommandBuilder = new SqlCommandBuilder ();
-			_CommandBuilder.GetUpdateCommand ().CommandText = "dbo.UpdateLieferantRow";
-			_CommandBuilder.GetUpdateCommand ().Parameters.Add (new SqlParameter ("@Bezeichnung", this.str_Description));
-			_CommandBuilder.GetUpdateCommand ().Parameters.Add (new SqlParameter ("@ID", this.int_Id));
+			var cmd = new SqlCommand();
+			cmd.CommandType = System.Data.CommandType.StoredProcedure;
+			cmd.CommandText = "dbo.UpdateLieferantRow";
+			cmd.Parameters.Add (new SqlParameter ("@Bezeichnung", this.str_Description));
+			cmd.Parameters.Add (new SqlParameter ("@ID", this.int_Id));
 
-			DataController.UpdateObject (_CommandBuilder);
+			DataController.UpdateObject (cmd);
 		}
 	}
 }

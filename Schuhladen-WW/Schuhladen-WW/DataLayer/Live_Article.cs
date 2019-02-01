@@ -127,7 +127,6 @@ namespace Schuhladen_WW.DataLayer
 
 		public override void Update () {
 			// Insert validation method here :)
-			SqlCommandBuilder _CommandBuilder = new SqlCommandBuilder ();
             SqlCommand cmd = new SqlCommand();
             cmd.CommandType = System.Data.CommandType.StoredProcedure;
             cmd.CommandText = "dbo.UpdateLiveArtikelRow";
