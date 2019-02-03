@@ -58,6 +58,9 @@ namespace Schuhladen_WW.DataBase
             {
                 Console.WriteLine("An Exception occured: " + ex.Message);
                 return _ResultTable;
+            } finally
+            {
+                _Connection.Close();
             }
         }
 
@@ -79,6 +82,9 @@ namespace Schuhladen_WW.DataBase
             {
                 Console.WriteLine("An Exception occured: " + ex.Message);
                 return false;
+            } finally
+            {
+                _Connection.Close();
             }
         }
 
@@ -99,6 +105,9 @@ namespace Schuhladen_WW.DataBase
             {
                 Console.WriteLine("An Exception occured: " + ex.Message);
                 return false;
+            } finally
+            {
+                _Connection.Close();
             }
         }
 
@@ -142,6 +151,9 @@ namespace Schuhladen_WW.DataBase
             {
                 Console.WriteLine("An Exception occured: " + ex.Message);
                 return false;
+            } finally
+            {
+                _Connection.Close();
             }
         }
 

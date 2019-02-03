@@ -96,26 +96,28 @@ namespace Schuhladen_WW.DataLayer.Mapping
         {
             return __AusgangsRechnung;
         }
+
+        public static List<Hersteller> ReturnHersteller()
+        {
+            return __Hersteller;
+        }
         #endregion
 
         #region Public Methods
 
-        public static void PullArticles()
+        public static void UpdateHerstellerRelations()
         {
-            // Gets Model collection
-            __Model = ___ModelListMapper.Map(_Connection.GetData("SELECT * FROM dbo.Model;")).ToList();
-
-            // Get Groesse collection
-            __Groesse = ___GroesseListMapper.Map(_Connection.GetData("SELECT * FROM dbo.Groesse;")).ToList();
-
-            __LiveArticle = ___LiveArticleMapper.Map(_Connection.GetData("SELECT * FROM dbo.Live_Artikel;")).ToList();
-
+            // Get Hersteller collection
+            __Hersteller = ___HerstellerListMapper.Map(_Connection.GetData("SELECT * FROM dbo.Hersteller;")).ToList();
+           
+            // Get Adresse collection
+            __Adresse = ___AdresseListMapper.Map(_Connection.GetData("SELECT * FROM dbo.Adresse;")).ToList();
         }
 
         public static void CreateDataLayer()
         {
             // Gets Live_Article collection
-            __LiveArticle = ___LiveArticleMapper.Map(_Connection.GetData("SELECT * FROM dbo.LiveArticle;")).ToList();
+            __LiveArticle = ___LiveArticleMapper.Map(_Connection.GetData("SELECT * FROM dbo.Live_Artikel;")).ToList();
 
             // Gets Model collection
             __Model = ___ModelListMapper.Map(_Connection.GetData("SELECT * FROM dbo.Model;")).ToList();
@@ -123,7 +125,7 @@ namespace Schuhladen_WW.DataLayer.Mapping
             // Get Groesse collection
             __Groesse = ___GroesseListMapper.Map(_Connection.GetData("SELECT * FROM dbo.Groesse;")).ToList();
 
-            // Get Groesse collection
+            // Get Hersteller collection
             __Hersteller = ___HerstellerListMapper.Map(_Connection.GetData("SELECT * FROM dbo.Hersteller;")).ToList();
 
             // Get Adresse collection

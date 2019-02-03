@@ -63,7 +63,7 @@ namespace Schuhladen_WW.DataLayer
 			// Insert validation method here :)
 			var cmd = new SqlCommand ();
 			cmd.CommandType = System.Data.CommandType.StoredProcedure;
-			cmd.CommandText = "dbo.UpdateKategorieRow";
+			cmd.CommandText = "dbo.UpdateHerstellerRow";
 			cmd.Parameters.Add (new SqlParameter ("@Name", this.str_Name));
 			cmd.Parameters.Add (new SqlParameter ("@Adresse", this.int_AdressId));
 			cmd.Parameters.Add (new SqlParameter ("@ID", this.int_ID));

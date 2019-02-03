@@ -16,7 +16,7 @@ namespace Schuhladen_WW.DataLayer
         private string str_password;
         private int int_adresse;
         private string str_email;
-        private string str_berechtigung;
+        private int int_berechtigung;
         private string str_telefon;
 
         public Adresse _Adresse => DataController.ReturnAdresse().Where(x => x.int_Id == int_adresse).First();
@@ -92,15 +92,15 @@ namespace Schuhladen_WW.DataLayer
         }
 
         [PropertyBridge("Berechtigung")]
-        public string str_Berechtigung
+        public int str_Berechtigung
         {
-            get { return str_berechtigung; }
+            get { return int_berechtigung; }
             set
             {
-                if (str_berechtigung != value)
+                if (int_berechtigung != value)
                 {
-                    str_email = value;
-                    RaiseEvent(this.GetType(), "Berechtigung", str_berechtigung);
+                    int_berechtigung = value;
+                    RaiseEvent(this.GetType(), "Berechtigung", int_berechtigung);
                 }
             }
         }
@@ -130,7 +130,7 @@ namespace Schuhladen_WW.DataLayer
             cmd_Command.Parameters.Add(new SqlParameter("@Password", this.str_Password));
             cmd_Command.Parameters.Add(new SqlParameter("@Adresse", this.int_Adresse));
             cmd_Command.Parameters.Add(new SqlParameter("@Email", this.str_Email));
-            cmd_Command.Parameters.Add(new SqlParameter("@Berechtigung", this.str_Berechtigung));
+            cmd_Command.Parameters.Add(new SqlParameter("@Berechtigung", this.int_berechtigung));
             cmd_Command.Parameters.Add(new SqlParameter("@Telefon", this.str_Telefon));
 
             DataController.UpdateObject(cmd_Command);
