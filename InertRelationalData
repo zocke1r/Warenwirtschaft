@@ -1,1 +1,20 @@
+--Stored Procedure [Insert]
+
+--dbo.Hersteller
+--------------------------------------------------------------------------------------------------------------
+GO
+CREATE PROCEDURE [dbo].[InsertHerstellerRow]
+    @Bezeichnung NVARCHAR(50) = "Not Set",
+    @Strasse nvarchar(20) = "Not Set",
+    @Hausnummer nvarchar(5) = "Not Set",
+    @Ort nvarchar(20) = "Not Set",
+    @PLZ nvarchar (20) = "Not Set",
+		 nvarchar(20) = "Not Set"
+AS
+BEGIN 
+    INSERT INTO dbo.Adresse (Strasse, Hausnummer, Ort, PLZ, Adresszusatz) 
+    VALUES(@Strasse, @Hausnummer, @Ort, @PLZ, @Adresszusatz);
+    INSERT INTO dbo.Hersteller (Name, Adresse)
+    VALUES(@Bezeichnung, IDENT_CURRENT('dbo.Adresse'))
+END
 
