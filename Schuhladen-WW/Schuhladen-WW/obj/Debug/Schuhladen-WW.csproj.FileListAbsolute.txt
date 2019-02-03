@@ -5,7 +5,6 @@ C:\Users\Kevin\Documents\Visual Studio 2017\Projects\Schuhladen-WW\Schuhladen-WW
 C:\Users\Kevin\Documents\Visual Studio 2017\Projects\Schuhladen-WW\Schuhladen-WW\obj\Debug\Schuhladen-WW.exe
 C:\Users\Kevin\Documents\Visual Studio 2017\Projects\Schuhladen-WW\Schuhladen-WW\obj\Debug\Schuhladen-WW.pdb
 C:\Users\Kevin\Documents\Visual Studio 2017\Projects\Schuhladen-WW\Schuhladen-WW\obj\Debug\Schuhladen-WW.csprojResolveAssemblyReference.cache
-C:\Users\Kevin\Source\Repos\Warenwirtschaft\Schuhladen-WW\Schuhladen-WW\obj\Debug\Schuhladen-WW.csprojAssemblyReference.cache
 C:\Users\Kevin\Source\Repos\Warenwirtschaft\Schuhladen-WW\Schuhladen-WW\obj\Debug\Schuhladen-WW.csproj.CoreCompileInputs.cache
 C:\Users\Kevin\Source\Repos\Warenwirtschaft\Schuhladen-WW\Schuhladen-WW\obj\Debug\Schuhladen-WW.exe
 C:\Users\Kevin\Source\Repos\Warenwirtschaft\Schuhladen-WW\Schuhladen-WW\obj\Debug\Schuhladen-WW.pdb
@@ -15,3 +14,4 @@ C:\Users\5216142312\Source\Repos\Warenwirtschaft\Schuhladen-WW\Schuhladen-WW\obj
 C:\Users\Kevin\Source\Repos\Warenwirtschaft\Schuhladen-WW\Schuhladen-WW\bin\Debug\Schuhladen-WW.exe.config
 C:\Users\Kevin\Source\Repos\Warenwirtschaft\Schuhladen-WW\Schuhladen-WW\bin\Debug\Schuhladen-WW.exe
 C:\Users\Kevin\Source\Repos\Warenwirtschaft\Schuhladen-WW\Schuhladen-WW\bin\Debug\Schuhladen-WW.pdb
+C:\Users\Kevin\Source\Repos\Warenwirtschaft\Schuhladen-WW\Schuhladen-WW\obj\Debug\Schuhladen-WW.csprojAssemblyReference.cache

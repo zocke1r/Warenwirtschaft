@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using Schuhladen_WW.DataLayer.Mapping;
 using Schuhladen_WW.Mapping;
 using System.Data.SqlClient;
+using Schuhladen_WW.DataLayer;
+using System.Linq;
 
 namespace Schuhladen_WW.DataLayer
 {
@@ -11,6 +13,8 @@ namespace Schuhladen_WW.DataLayer
         private int int_id { get; set; }
         private string str_description { get; set; }
         private int int_manufacturer { get; set; }
+
+        public Hersteller _Hersteller => DataController.ReturnHersteller().Where(x => x.int_ID == int_manufacturer).First();
 
         [PropertyBridge("ID")]
         public int int_Id

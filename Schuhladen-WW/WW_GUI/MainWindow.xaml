@@ -1,0 +1,112 @@
+﻿<Controls:MetroWindow x:Class="WW_GUI.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        xmlns:local="clr-namespace:WW_GUI"
+        mc:Ignorable="d"
+        Title="Schuhladen - Warenwirtschaft" Height="592" Width="1066.932" FontFamily="Titillium Web" ResizeMode="NoResize">
+    <Grid>
+        <StatusBar HorizontalAlignment="Left" Height="21" Margin="0,542,-9,0" VerticalAlignment="Top" Width="1070">
+            <StatusBar.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="200" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="170" />
+                        </Grid.ColumnDefinitions>
+                    </Grid>
+                </ItemsPanelTemplate>
+            </StatusBar.ItemsPanel>
+            <StatusBarItem>
+                <ProgressBar Value="100" Width="200" Height="16" HorizontalAlignment="Center"/>
+            </StatusBarItem>
+            <Separator Grid.Column="1" />
+            <StatusBarItem Grid.Column="2">
+                <TextBlock Text="Benutzer: Testuser" />
+            </StatusBarItem>
+            <Separator Grid.Column="3" />
+            <StatusBarItem Grid.Column="4">
+                <TextBlock Text="Schuhladen-WW - V 0.0.1.1" />
+            </StatusBarItem>
+        </StatusBar>
+        <TabControl HorizontalAlignment="Left" Height="448" Margin="10,51,0,0" VerticalAlignment="Top" Width="121">
+            <TabItem Header="Artikel">
+                <Grid Background="White" Margin="135,-113,-914,-33">
+                    <DataGrid x:Name="ArticleGrid" Margin="286,0,0,0" FontFamily="Titillium Web" GridLinesVisibility="All" HorizontalGridLinesBrush="Black" VerticalGridLinesBrush="Black" EnableColumnVirtualization="True" Controls:ScrollViewerHelper.IsHorizontalScrollWheelEnabled="True" IsReadOnly="True" Background="#FFDEE3E1">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="#" Width="35" Binding="{Binding int_ID}"/>
+                            <DataGridTextColumn Header="Model" Width="70" Binding="{Binding _Model.str_Description}" />
+                            <DataGridTextColumn Header="Hersteller" Width="100" Binding="{Binding _Model._Hersteller.str_Name}" />
+                            <DataGridTextColumn Header="EAN" Width="105" Binding="{Binding str_EAN}" />
+                            <DataGridTextColumn Header="Größe" Width="80" Binding="{Binding _Groesse.dbl_CM}" />
+                            <DataGridTextColumn Header="EK" Width="60" Binding="{Binding dbl_BuyPrice}"/>
+                            <DataGridTextColumn Header="VK" Width="60" Binding="{Binding dbl_SellPrice}"/>
+                            <DataGridTextColumn Header="Bestand" Width="*" Binding="{Binding int_Stock}"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <TabControl HorizontalAlignment="Left" Height="488" Margin="10,10,0,0" VerticalAlignment="Top" Width="260" BorderBrush="Black" BorderThickness="1,0,1,0">
+                        <TabItem Header="Erstellen">
+                            <Grid Background="White" Margin="0,0,0,1"/>
+                        </TabItem>
+                        <TabItem Header="Bearbeiten">
+                            <Grid Background="White" Margin="0,0,0,1"/>
+                        </TabItem>
+                    </TabControl>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Hersteller">
+                <Grid Background="White" Margin="135,-113,-914,-33">
+                    <DataGrid x:Name="HerstellerGrid" Margin="286,0,0,0" FontFamily="Titillium Web" GridLinesVisibility="All" HorizontalGridLinesBrush="Black" VerticalGridLinesBrush="Black" EnableColumnVirtualization="True" Controls:ScrollViewerHelper.IsHorizontalScrollWheelEnabled="True" IsReadOnly="True" Background="#FFDEE3E1" SelectionChanged="HerstellerGrid_SelectionChanged_1">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="#" Width="35" Binding="{Binding int_ID}"/>
+                            <DataGridTextColumn Header="Namen" Width="100" Binding="{Binding str_Name}" />
+                            <DataGridTextColumn Header="Strasse" Width="170" Binding="{Binding _Adresse.str_Strasse}" />
+                            <DataGridTextColumn Header="Hausnr." Width="80" Binding="{Binding _Adresse.str_Hausnummer}" />
+                            <DataGridTextColumn Header="Ort" Width="60" Binding="{Binding _Adresse.str_Ort}"/>
+                            <DataGridTextColumn Header="PLZ" Width="60" Binding="{Binding _Adresse.str_Plz}"/>
+                            <DataGridTextColumn Header="Adresszusatz" Width="*" Binding="{Binding _Adresse.str_Adresszusatz}"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <TabControl HorizontalAlignment="Left" Height="488" Margin="10,10,0,0" VerticalAlignment="Top" Width="260" BorderBrush="Black" BorderThickness="1,0,1,0">
+                        <TabItem Header="Erstellen">
+                            <Grid Background="White" Margin="0,0,0,-5">
+                            </Grid>
+                        </TabItem>
+                        <TabItem Header="Bearbeiten">
+                            <Grid Background="White" Margin="0,0,0,-5">
+                                <Label x:Name="HerstellerNothingSelected" Content="Selektieren Sie einen Datensatz. " HorizontalAlignment="Center" Margin="38,10,39,0" VerticalAlignment="Top" RenderTransformOrigin="0.378,0.393" Width="177" Height="29" FontWeight="Medium" Foreground="Red" IsEnabled="False" />
+                                <Label Content="Namen:" HorizontalAlignment="Left" Margin="10,60,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.081,-0.321" Height="29" Width="53"/>
+                                <Label Content="Strasse:" HorizontalAlignment="Left" Margin="10,94,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.081,-0.321" Height="29" Width="53"/>
+                                <Label Content="Hausnr.:" HorizontalAlignment="Left" Margin="10,128,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.081,-0.321" Height="29" Width="53"/>
+                                <Label Content="Ort:" HorizontalAlignment="Left" Margin="10,162,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.081,-0.321" Height="29" Width="53"/>
+                                <Label Content="Postleitzahl:" HorizontalAlignment="Left" Margin="10,196,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.081,-0.321" Height="29" Width="72"/>
+                                <Label Content="Adresszusatz:" HorizontalAlignment="Left" Margin="10,230,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.081,-0.321" Height="29" Width="82"/>
+                                <TextBox x:Name="HerstellerNameUpdate" HorizontalAlignment="Left" Height="23" Margin="95,63,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="149" BorderBrush="LightGray" BorderThickness="1,1,1,1"/>
+                                <TextBox x:Name="HerstellerStrasseUpdate" HorizontalAlignment="Left" Height="23" Margin="95,97,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="149" BorderBrush="LightGray" BorderThickness="1,1,1,1"/>
+                                <TextBox x:Name="HerstellerHausnummerUpdate" HorizontalAlignment="Left" Height="23" Margin="95,128,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="149" BorderBrush="LightGray" BorderThickness="1,1,1,1"/>
+                                <TextBox x:Name="HerstellerOrtUpdate" HorizontalAlignment="Left" Height="23" Margin="95,162,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="149" BorderBrush="LightGray" BorderThickness="1,1,1,1"/>
+                                <TextBox x:Name="HerstellerPostleitzahlUpdate" HorizontalAlignment="Left" Height="23" Margin="95,196,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="149" BorderBrush="LightGray" BorderThickness="1,1,1,1"/>
+                                <TextBox x:Name="HerstellerAdresszusatzUpdate" HorizontalAlignment="Left" Height="23" Margin="95,230,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="149" BorderBrush="LightGray" BorderThickness="1,1,1,1"/>
+                                <Button x:Name="HerstellerSaveButton" Content="Speichern" HorizontalAlignment="Left" Margin="10,407,0,0" VerticalAlignment="Top" Width="234" RenderTransformOrigin="0.16,0.185" Click="Button_Click"/>
+                            </Grid>
+                        </TabItem>
+                    </TabControl>
+                </Grid>
+            </TabItem>
+        </TabControl>
+        <Label Content="Menü" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="121" Height="36" FontSize="20" />
+
+    </Grid>
+
+
+
+
+
+</Controls:MetroWindow>
+
+

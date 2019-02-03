@@ -17,13 +17,6 @@ namespace Schuhladen_WW
         static void Main(string[] args)
         {
 
-            DataController.PullArticles();
-
-            List<Live_Article> __LiveArticle = DataController.ReturnLiveArtikel();
-
-            __LiveArticle[0].int_Stock = 3;
-            __LiveArticle[0].Update();
-
             Console.ReadKey();
 
             
