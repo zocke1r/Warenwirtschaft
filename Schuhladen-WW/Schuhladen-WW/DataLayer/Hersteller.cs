@@ -60,7 +60,6 @@ namespace Schuhladen_WW.DataLayer
         }
 
 		public override void Update () {
-			// Insert validation method here :)
 			var cmd = new SqlCommand ();
 			cmd.CommandType = System.Data.CommandType.StoredProcedure;
 			cmd.CommandText = "dbo.UpdateHerstellerRow";
@@ -69,6 +68,40 @@ namespace Schuhladen_WW.DataLayer
 			cmd.Parameters.Add (new SqlParameter ("@ID", this.int_ID));
 
 			DataController.UpdateObject (cmd);
-		}
-	}
+        }
+
+        public void InsertNewHersteller(Hersteller _Hersteller, Adresse __Adresse)
+        {
+            var cmd = new SqlCommand();
+            cmd.CommandType = System.Data.CommandType.StoredProcedure;
+            cmd.CommandText = "dbo.InsertHerstellerRow";
+            cmd.Parameters.Add(new SqlParameter("@Bezeichnung", _Hersteller.str_Name));
+            cmd.Parameters.Add(new SqlParameter("@Strasse", __Adresse.str_Strasse));
+            cmd.Parameters.Add(new SqlParameter("@Hausnummer", __Adresse.str_Hausnummer));
+            cmd.Parameters.Add(new SqlParameter("@Ort", __Adresse.str_Ort));
+            cmd.Parameters.Add(new SqlParameter("@Plz", __Adresse.str_Plz));
+            cmd.Parameters.Add(new SqlParameter("@Adresszusatz", __Adresse.str_Adresszusatz));
+
+            DataController.UpdateObject(cmd);
+        }
+
+        public void DeleteHersteller()
+        {
+            var cmd = new SqlCommand();
+            cmd.CommandType = System.Data.CommandType.StoredProcedure;
+            cmd.CommandText = "dbo.DeleteRow";
+            cmd.Parameters.Add(new SqlParameter("@ID", this.int_ID));
+            cmd.Parameters.Add(new SqlParameter("@Table", this.GetType().Name));
+
+            DataController.UpdateObject(cmd);
+
+            var cmd1 = new SqlCommand();
+            cmd1.CommandType = System.Data.CommandType.StoredProcedure;
+            cmd1.CommandText = "dbo.DeleteRow";
+            cmd1.Parameters.Add(new SqlParameter("@ID", this._Adresse.int_Id));
+            cmd1.Parameters.Add(new SqlParameter("@Table", this._Adresse.GetType().Name));
+
+            DataController.UpdateObject(cmd1);
+        }
+    }
 }

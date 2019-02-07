@@ -59,6 +59,50 @@ namespace WW_GUI
             }
         }
 
+        #region Erstellen
+
+        private void textBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            // Leider keine Zeit mehr für Validierung des Inputs gehabt...
+            if (HerstellerNameUpdateInsert.Text != "" && HerstellerStrasseUpdateInsert.Text != "" && HerstellerHausnummerUpdateInsert.Text != "" && HerstellerPostleitzahlUpdateInsert.Text != "" && HerstellerOrtUpdateInsert.Text != "" && HerstellerAdresszusatzUpdateInsert.Text != "")
+            {
+                HerstellerSaveButtonInsert.IsEnabled = true;
+            }
+        }
+
+        private void HerstellerSaveButtonInsert_Click(object sender, RoutedEventArgs e)
+        {
+            Hersteller _Hersteller = new Hersteller();
+            Adresse _Adresse = new Adresse();
+
+            _Hersteller.str_Name = HerstellerNameUpdateInsert.Text;
+            _Adresse.str_Strasse = HerstellerStrasseUpdateInsert.Text;
+            _Adresse.str_Hausnummer = HerstellerHausnummerUpdateInsert.Text;
+            _Adresse.str_Plz = HerstellerPostleitzahlUpdateInsert.Text;
+            _Adresse.str_Ort = HerstellerOrtUpdateInsert.Text;
+            _Adresse.str_Adresszusatz = HerstellerAdresszusatzUpdateInsert.Text;
+
+            _Hersteller.InsertNewHersteller(_Hersteller, _Adresse);
+
+            FillHerstellerGrid();
+            HerstellerGrid.Items.Refresh();
+
+            // Clear formular
+            HerstellerNameUpdateInsert.Text = "";
+            HerstellerStrasseUpdateInsert.Text = "";
+            HerstellerHausnummerUpdateInsert.Text = "";
+            HerstellerPostleitzahlUpdateInsert.Text = "";
+            HerstellerOrtUpdateInsert.Text = "";
+            HerstellerAdresszusatzUpdateInsert.Text = "";
+
+            HerstellerNothingSelectedInsert.Content = "Datensatz erfolgreich erstellt!";
+            HerstellerNothingSelectedInsert.Foreground = Brushes.Green;
+            HerstellerNothingSelectedInsert.Visibility = Visibility.Visible;
+            HerstellerSaveButtonInsert.IsEnabled = false;
+
+        }
+        #endregion
+
         #region Bearbeiten
         private void HerstellerGrid_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
         {
@@ -68,6 +112,7 @@ namespace WW_GUI
                 HerstellerNothingSelected.Visibility = Visibility.Hidden;
                 HerstellerNothingSelected.Content = "Selektieren Sie einen Datensatz";
                 HerstellerSaveButton.IsEnabled = true;
+                HerstellerDeleteButton.IsEnabled = true;
 
                 HerstellerNameUpdate.Text = _Hersteller.str_Name;
                 HerstellerStrasseUpdate.Text = _Hersteller._Adresse.str_Strasse;
@@ -78,8 +123,10 @@ namespace WW_GUI
             }
         }
 
+        // Speichern
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            // Leider keine Zeit mehr für Validierung des Inputs gehabt...
             if (HerstellerNameUpdate.Text != "" && HerstellerStrasseUpdate.Text != "" && HerstellerHausnummerUpdate.Text != "" && HerstellerPostleitzahlUpdate.Text != "" && HerstellerOrtUpdate.Text != "" && HerstellerAdresszusatzUpdate.Text != "")
             {
                 // Fill objects for update
@@ -95,9 +142,7 @@ namespace WW_GUI
                 _Hersteller.Update();
                 _Hersteller._Adresse.Update();
 
-                // Recreate data layer
-                DataController.UpdateHerstellerRelations();
-
+                FillHerstellerGrid();
                 HerstellerGrid.Items.Refresh();
 
                 HerstellerNothingSelected.Content = "Datensatz erfolgreich aktualisiert!";
@@ -106,8 +151,61 @@ namespace WW_GUI
                 HerstellerSaveButton.IsEnabled = false;
             }
         }
+
+        // Löschen
+        private void HerstellerDeleteButton_Click(object sender, RoutedEventArgs e)
+        {
+            Hersteller _Hersteller = (Hersteller)HerstellerGrid.SelectedItem;
+            _Hersteller.DeleteHersteller();
+
+            HerstellerNameUpdate.Text = "";
+            HerstellerStrasseUpdate.Text = "";
+            HerstellerHausnummerUpdate.Text = "";
+            HerstellerPostleitzahlUpdate.Text = "";
+            HerstellerOrtUpdate.Text = "";
+            HerstellerAdresszusatzUpdate.Text = "";
+
+            DataController.UpdateHerstellerRelations();
+            FillHerstellerGrid();
+            HerstellerGrid.Items.Refresh();
+            HerstellerGrid.UnselectAll();
+
+            HerstellerNothingSelected.Content = "Datensatz erfolgreich gelöscht!";
+            HerstellerNothingSelected.Foreground = Brushes.Green;
+            HerstellerNothingSelected.Visibility = Visibility.Visible;
+            HerstellerSaveButton.IsEnabled = false;
+        }
+
         #endregion
 
         #endregion
+
+        #region Live_Artikel
+
+        private void ArtikelGrid_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
+        {
+            if (ArticleGrid.SelectedIndex != -1)
+            {
+                Live_Article _LiveArtikel = (Live_Article)ArticleGrid.SelectedItem;
+                ArtikelNothingSelected.Visibility = Visibility.Hidden;
+                ArtikelNothingSelected.Content = "Selektieren Sie einen Datensatz";
+                ArtikelSaveButtonUpdate.IsEnabled = true;
+                // ArtikelDeleteButton.IsEnabled = true;
+
+                ArtikelModelUpdate.Text = _LiveArtikel._Model.str_Description;
+                ArtikelHerstellerUpdate.Text = _LiveArtikel._Model._Hersteller.str_Name;
+                ArtikelEANUpdate.Text = _LiveArtikel.str_EAN;
+                ArtikelGroesseUpdate.Text = _Hersteller._Adresse.str_Plz;
+                HerstellerOrtUpdate.Text = _Hersteller._Adresse.str_Ort;
+                HerstellerAdresszusatzUpdate.Text = _Hersteller._Adresse.str_Adresszusatz;
+            }
+        }
+
+        private void ArtikelSaveButtonUpdate_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+        #endregion
     }
+
 }

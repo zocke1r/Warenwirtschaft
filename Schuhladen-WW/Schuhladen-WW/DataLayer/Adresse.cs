@@ -119,6 +119,8 @@ namespace Schuhladen_WW.DataLayer
             cmd_Command.Parameters.Add(new SqlParameter("@PLZ", this.str_Plz));
             cmd_Command.Parameters.Add(new SqlParameter("@Adresszusatz", this.str_Adresszusatz));
             DataController.UpdateObject(cmd_Command);
+            DataController.UpdateHerstellerRelations();
+
         }
         #endregion
 

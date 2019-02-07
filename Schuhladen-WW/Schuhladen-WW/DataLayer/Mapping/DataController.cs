@@ -156,15 +156,6 @@ namespace Schuhladen_WW.DataLayer.Mapping
             __AusgangsrechnungPosition = ___AusgangsrechnungPositionListMapper.Map(_Connection.GetData("SELECT * FROM dbo.AusgangsrechnungPosition;")).ToList();
         }
 
-        public static bool UpdateObject(SqlCommandBuilder _CommandBuilder)
-        {
-            if (_Connection.UpdateData(_CommandBuilder))
-            {
-                return true;
-            }
-            return false;
-        }
-
         public static bool UpdateObject(SqlCommand _CommandBuilder)
         {
             if (_Connection.UpdateData(_CommandBuilder))

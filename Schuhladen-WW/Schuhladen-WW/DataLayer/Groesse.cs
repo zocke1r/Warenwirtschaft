@@ -17,6 +17,9 @@ namespace Schuhladen_WW.DataLayer
         private string str_gb;
         private double dbl_cm;
 
+        private Dictionary<string, string> _SizeList = new Dictionary<string, string>();
+
+
         [PropertyBridge("ID")]
         public int int_Id
         {
