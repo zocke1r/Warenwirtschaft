@@ -38,5 +38,25 @@ namespace Schuhladen_WW.DataLayer
 		}
 
 		public abstract void Insert ();
+
+		protected virtual void executeCommand (string commandText, bool needsId= false) {
+			SqlCommand command = new SqlCommand (commandText);
+			command.CommandType = CommandType.StoredProcedure;
+			if (needsId) {
+				command.Parameters.Add (new SqlParameter ("@ID", this.int_id));
+			}
+			fillParameter (command);
+			executeCommand (command);
+		}
+
+		protected abstract void fillParameter (SqlCommand cmd_Command);
+
+		protected void executeCommand (SqlCommand cmd_Command) {
+			DataController.UpdateObject (cmd_Command);
+		}
+
+		protected void executeUpdate(string commandText) {
+			executeCommand (commandText, true);
+		}
 	}
 }
