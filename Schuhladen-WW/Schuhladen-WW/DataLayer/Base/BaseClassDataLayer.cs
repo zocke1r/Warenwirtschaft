@@ -6,15 +6,18 @@ using System.Threading.Tasks;
 using System.ComponentModel;
 using Schuhladen_WW.CustomEvents;
 using System.Reflection;
+using Schuhladen_WW.DataLayer.Mapping;
+using System.Data.SqlClient;
+using System.Data;
 
 namespace Schuhladen_WW.DataLayer
 {
     public  abstract class BaseClassDataLayer : INotifyCustmPropertyChanged
     {
 
-        private int int_id;
+        protected int int_id;
 
-        public event CustomPropertyChanged _CustomPropertyChanged;
+		public event CustomPropertyChanged _CustomPropertyChanged;
 
         protected virtual void RaiseEvent(Type _Type, string str_ColumnName, object obj_Value)
         {
@@ -23,5 +26,17 @@ namespace Schuhladen_WW.DataLayer
         }
 
         public abstract void Update();
-    }
+
+		public virtual void Delete () {
+			var cmd = new SqlCommand ();
+			cmd.CommandType = System.Data.CommandType.StoredProcedure;
+			cmd.CommandText = "dbo.DeleteRow";
+			cmd.Parameters.Add (new SqlParameter ("@ID", this.int_id));
+			cmd.Parameters.Add (new SqlParameter ("@Table", this.GetType ().Name));
+
+			DataController.UpdateObject (cmd);
+		}
+
+		public abstract void Insert ();
+	}
 }

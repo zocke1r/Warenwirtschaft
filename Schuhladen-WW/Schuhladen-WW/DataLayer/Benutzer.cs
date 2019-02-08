@@ -119,21 +119,33 @@ namespace Schuhladen_WW.DataLayer
             }
         }
 
-        public override void Update()
-        {
-            // Insert validation method here :)
-            SqlCommand cmd_Command = new SqlCommand();
-            cmd_Command.CommandType = System.Data.CommandType.StoredProcedure;
-            cmd_Command.CommandText = "dbo.UpdateBenutzerRow";
-            cmd_Command.Parameters.Add(new SqlParameter("@ID", this.int_Id));
-            cmd_Command.Parameters.Add(new SqlParameter("@Name", this.str_Name));
-            cmd_Command.Parameters.Add(new SqlParameter("@Password", this.str_Password));
-            cmd_Command.Parameters.Add(new SqlParameter("@Adresse", this.int_Adresse));
-            cmd_Command.Parameters.Add(new SqlParameter("@Email", this.str_Email));
-            cmd_Command.Parameters.Add(new SqlParameter("@Berechtigung", this.int_berechtigung));
-            cmd_Command.Parameters.Add(new SqlParameter("@Telefon", this.str_Telefon));
+        public override void Update() {
+			// Insert validation method here :)
+			SqlCommand cmd_Command = new SqlCommand ();
+			cmd_Command.CommandType = System.Data.CommandType.StoredProcedure;
+			cmd_Command.CommandText = "dbo.UpdateBenutzerRow";
+			cmd_Command.Parameters.Add (new SqlParameter ("@ID", this.int_Id));
+			fillParameter (cmd_Command);
 
-            DataController.UpdateObject(cmd_Command);
-        }
-    }
+			DataController.UpdateObject (cmd_Command);
+		}
+
+		private void fillParameter (SqlCommand cmd_Command) {
+			cmd_Command.Parameters.Add (new SqlParameter ("@Name", this.str_Name));
+			cmd_Command.Parameters.Add (new SqlParameter ("@Password", this.str_Password));
+			cmd_Command.Parameters.Add (new SqlParameter ("@Adresse", this.int_Adresse));
+			cmd_Command.Parameters.Add (new SqlParameter ("@Email", this.str_Email));
+			cmd_Command.Parameters.Add (new SqlParameter ("@Berechtigung", this.int_berechtigung));
+			cmd_Command.Parameters.Add (new SqlParameter ("@Telefon", this.str_Telefon));
+		}
+
+		public override void Insert () {
+			SqlCommand cmd_Command = new SqlCommand ();
+			cmd_Command.CommandType = System.Data.CommandType.StoredProcedure;
+			cmd_Command.CommandText = "dbo.InsertBenutzerRow";
+			fillParameter (cmd_Command);
+
+			DataController.UpdateObject (cmd_Command);
+		}
+	}
 }

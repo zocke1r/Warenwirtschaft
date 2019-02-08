@@ -3,6 +3,7 @@ using System.Linq;
 using Schuhladen_WW.DataBase;
 using Schuhladen_WW.Mapping;
 using System.Data.SqlClient;
+using System;
 
 namespace Schuhladen_WW.DataLayer.Mapping
 {
@@ -38,6 +39,7 @@ namespace Schuhladen_WW.DataLayer.Mapping
         private static List<BestellungPositionPosition> __BestellungPositionPosition { get; set; }
 
         private static List<AusgangsrechnungPosition> __AusgangsrechnungPosition { get; set; }
+		
 
         // Initialize object mappers
         private static PropertyMapper<Live_Article> ___LiveArticleMapper = new PropertyMapper<Live_Article>();
@@ -156,9 +158,9 @@ namespace Schuhladen_WW.DataLayer.Mapping
             __AusgangsrechnungPosition = ___AusgangsrechnungPositionListMapper.Map(_Connection.GetData("SELECT * FROM dbo.AusgangsrechnungPosition;")).ToList();
         }
 
-        public static bool UpdateObject(SqlCommand _CommandBuilder)
+        public static bool UpdateObject(SqlCommand _Command)
         {
-            if (_Connection.UpdateData(_CommandBuilder))
+            if (_Connection.UpdateData(_Command))
             {
                 return true;
             }

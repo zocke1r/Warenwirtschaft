@@ -11,7 +11,6 @@ namespace Schuhladen_WW.DataLayer
 {
     public class BestellungPositionPosition : BaseClassDataLayer
     {
-        private int int_id;
         private int int_anzahl;
         private double dbl_preis;
         private int int_bestellung;
@@ -89,18 +88,29 @@ namespace Schuhladen_WW.DataLayer
             }
         }
 
-        public override void Update()
-        {
-            // Insert validation method here :)
+        public override void Update() {
+			// Insert validation method here :)
 			var cmd = new SqlCommand ();
 			cmd.CommandText = "dbo.UpdateBestellungPositionRow";
-			cmd.Parameters.Add(new SqlParameter ("@ID", this.int_Id));
-			cmd.Parameters.Add(new SqlParameter ("@Anzahl", this.int_Anzahl));
-			cmd.Parameters.Add(new SqlParameter ("@Preis", this.dbl_Preis));
-			cmd.Parameters.Add(new SqlParameter ("@Bestellung", this.int_Bestellung));
-			cmd.Parameters.Add(new SqlParameter ("@Artikel", this.int_Artikel));
+			cmd.Parameters.Add (new SqlParameter ("@ID", this.int_Id));
+			fillParameter (cmd);
 
-            DataController.UpdateObject(cmd);
-        }
-    }
+			DataController.UpdateObject (cmd);
+		}
+
+		private void fillParameter (SqlCommand cmd) {
+			cmd.Parameters.Add (new SqlParameter ("@Anzahl", this.int_Anzahl));
+			cmd.Parameters.Add (new SqlParameter ("@Preis", this.dbl_Preis));
+			cmd.Parameters.Add (new SqlParameter ("@Bestellung", this.int_Bestellung));
+			cmd.Parameters.Add (new SqlParameter ("@Artikel", this.int_Artikel));
+		}
+
+		public override void Insert () {
+			var cmd = new SqlCommand ();
+			cmd.CommandText = "dbo.InsertBestellungPositionRow";
+			fillParameter (cmd);
+
+			DataController.UpdateObject (cmd);
+		}
+	}
 }

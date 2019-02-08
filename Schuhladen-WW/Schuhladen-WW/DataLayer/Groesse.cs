@@ -11,7 +11,6 @@ namespace Schuhladen_WW.DataLayer
 {
     public class Groesse : BaseClassDataLayer
     {
-        private int int_id;
         private string str_us;
         private string str_eu;
         private string str_gb;
