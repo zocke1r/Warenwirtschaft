@@ -11,7 +11,6 @@ namespace Schuhladen_WW.DataLayer
 {
     public class Lieferant : BaseClassDataLayer
     {
-        private int int_id;
         private string str_bezeichnung;
 
         [PropertyBridge("ID")]
@@ -49,6 +48,15 @@ namespace Schuhladen_WW.DataLayer
 			cmd.CommandText = "dbo.UpdateLieferantRow";
 			cmd.Parameters.Add (new SqlParameter ("@Bezeichnung", this.str_Description));
 			cmd.Parameters.Add (new SqlParameter ("@ID", this.int_Id));
+
+			DataController.UpdateObject (cmd);
+		}
+
+		public override void Insert () {
+			var cmd = new SqlCommand ();
+			cmd.CommandType = System.Data.CommandType.StoredProcedure;
+			cmd.CommandText = "dbo.InsertLieferantRow";
+			cmd.Parameters.Add (new SqlParameter ("@Bezeichnung", this.str_Description));
 
 			DataController.UpdateObject (cmd);
 		}

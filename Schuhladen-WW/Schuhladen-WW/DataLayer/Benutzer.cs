@@ -11,7 +11,6 @@ namespace Schuhladen_WW.DataLayer
 {
     public class Benutzer : BaseClassDataLayer
     {
-        private int int_id;
         private string str_name;
         private string str_password;
         private int int_adresse;

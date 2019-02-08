@@ -92,11 +92,25 @@ namespace Schuhladen_WW.DataLayer
 			// Insert validation method here :)
 			var cmd = new SqlCommand ();
 			cmd.CommandType = System.Data.CommandType.StoredProcedure;
-			cmd.CommandText = "dbo.UpdateKategorieRow";
+			cmd.CommandText = "dbo.UpdateGroesseRow";
+			cmd.Parameters.Add (new SqlParameter ("@ID", this.int_Id));
+			fillParameter (cmd);
+
+			DataController.UpdateObject (cmd);
+		}
+
+		private void fillParameter (SqlCommand cmd) {
 			cmd.Parameters.Add (new SqlParameter ("@US", this.str_US));
 			cmd.Parameters.Add (new SqlParameter ("@EU", this.str_EU));
 			cmd.Parameters.Add (new SqlParameter ("@GB", this.str_GB));
 			cmd.Parameters.Add (new SqlParameter ("@cm", this.dbl_CM));
+		}
+
+		public override void Insert () {
+			var cmd = new SqlCommand ();
+			cmd.CommandType = System.Data.CommandType.StoredProcedure;
+			cmd.CommandText = "dbo.InsertGroesseRow";
+			fillParameter (cmd);
 
 			DataController.UpdateObject (cmd);
 		}

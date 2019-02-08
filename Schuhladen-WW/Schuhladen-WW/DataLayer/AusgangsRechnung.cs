@@ -14,7 +14,6 @@ namespace Schuhladen_WW.DataLayer
     {
 
         #region Private Members
-        private int int_id;
         private string str_nummer;
         private DateTime t_datum;
         private int int_status;

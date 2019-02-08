@@ -12,7 +12,6 @@ namespace Schuhladen_WW.DataLayer
     public class AusgangsrechnungPosition : BaseClassDataLayer
     {
         #region Private Members
-        private int int_id;
         private int int_anzahl;
         private double dbl_preis;
         private int int_ausgangsrechnung;

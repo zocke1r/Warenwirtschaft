@@ -156,7 +156,7 @@ namespace WW_GUI
         private void HerstellerDeleteButton_Click(object sender, RoutedEventArgs e)
         {
             Hersteller _Hersteller = (Hersteller)HerstellerGrid.SelectedItem;
-            _Hersteller.DeleteHersteller();
+            _Hersteller.Delete();
 
             HerstellerNameUpdate.Text = "";
             HerstellerStrasseUpdate.Text = "";

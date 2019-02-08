@@ -12,7 +12,6 @@ namespace Schuhladen_WW.DataLayer
     public class Status : BaseClassDataLayer
     {
 		#region private Members
-		private int int_id;
         private int int_numeral;
         private string str_bezeichnung;
 		#endregion
@@ -64,9 +63,19 @@ namespace Schuhladen_WW.DataLayer
 			var sqlCommand = new SqlCommand ();
 			sqlCommand.CommandType = System.Data.CommandType.StoredProcedure;
 			sqlCommand.CommandText = "dbo.UpdateStatusRow";
+			sqlCommand.Parameters.Add (new SqlParameter ("@ID", this.int_Id));
 			sqlCommand.Parameters.Add (new SqlParameter ("@Bezeichnung", this.str_Bezeichnung));
 			sqlCommand.Parameters.Add (new SqlParameter ("@Numeral", this.int_Numeral));
-			sqlCommand.Parameters.Add (new SqlParameter ("@ID", this.int_Id));
+
+			DataController.UpdateObject (sqlCommand);
+		}
+
+		public override void Insert () {
+			var sqlCommand = new SqlCommand ();
+			sqlCommand.CommandType = System.Data.CommandType.StoredProcedure;
+			sqlCommand.CommandText = "dbo.InsertStatusRow";
+			sqlCommand.Parameters.Add (new SqlParameter ("@Bezeichnung", this.str_Bezeichnung));
+			sqlCommand.Parameters.Add (new SqlParameter ("@Numeral", this.int_Numeral));
 
 			DataController.UpdateObject (sqlCommand);
 		}
