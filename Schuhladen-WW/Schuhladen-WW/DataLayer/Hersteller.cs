@@ -59,14 +59,7 @@ namespace Schuhladen_WW.DataLayer
         }
 
 		public override void Update () {
-			var cmd = new SqlCommand ();
-			cmd.CommandType = System.Data.CommandType.StoredProcedure;
-			cmd.CommandText = "dbo.UpdateHerstellerRow";
-			cmd.Parameters.Add (new SqlParameter ("@Name", this.str_Name));
-			cmd.Parameters.Add (new SqlParameter ("@Adresse", this.int_AdressId));
-			cmd.Parameters.Add (new SqlParameter ("@ID", this.int_ID));
-
-			DataController.UpdateObject (cmd);
+			executeUpdate ("dbo.UpdateHerstellerRow");
         }
 
         public void InsertNewHersteller(Hersteller _Hersteller, Adresse __Adresse)
@@ -91,14 +84,12 @@ namespace Schuhladen_WW.DataLayer
         }
 
 		public override void Insert () {
+			executeUpdate ("dbo.InsertHerstellerRow");
+		}
 
-			var cmd = new SqlCommand ();
-			cmd.CommandType = System.Data.CommandType.StoredProcedure;
-			cmd.CommandText = "dbo.InsertHerstellerRow";
-			cmd.Parameters.Add (new SqlParameter ("@Name", this.str_Name));
-			cmd.Parameters.Add (new SqlParameter ("@Adresse", this.int_AdressId));
-
-			DataController.UpdateObject (cmd);
+		protected override void fillParameter (SqlCommand cmd_Command) {
+			cmd_Command.Parameters.Add (new SqlParameter ("@Name", this.str_Name));
+			cmd_Command.Parameters.Add (new SqlParameter ("@Adresse", this.int_AdressId));
 		}
 	}
 }

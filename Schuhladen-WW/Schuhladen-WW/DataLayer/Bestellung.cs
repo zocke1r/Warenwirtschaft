@@ -105,16 +105,10 @@ namespace Schuhladen_WW.DataLayer
         }
 
         public override void Update() {
-			// Insert validation method here :)
-			var cmd = new SqlCommand ();
-			cmd.CommandType = System.Data.CommandType.StoredProcedure;
-			cmd.CommandText = "dbo.UpdateBestellungRow";
-			cmd.Parameters.Add (new SqlParameter ("@ID", this.int_Id));
-			fillParameter (cmd);
-			DataController.UpdateObject (cmd);
+			executeUpdate ("dbo.UpdateBestellungRow");
 		}
 
-		private void fillParameter (SqlCommand cmd) {
+		protected override void fillParameter (SqlCommand cmd) {
 			cmd.Parameters.Add (new SqlParameter ("@Nummer", this.str_Nummer));
 			cmd.Parameters.Add (new SqlParameter ("@Datum", this.t_datum));
 			cmd.Parameters.Add (new SqlParameter ("@Lieferant", this.int_Lieferant));
@@ -123,11 +117,7 @@ namespace Schuhladen_WW.DataLayer
 		}
 
 		public override void Insert () {
-			var cmd = new SqlCommand ();
-			cmd.CommandType = System.Data.CommandType.StoredProcedure;
-			cmd.CommandText = "dbo.InsertBestellungRow";
-			fillParameter (cmd);
-			DataController.UpdateObject (cmd);
+			executeCommand ("dbo.UpdateBestellungRow");
 		}
 	}
 }
