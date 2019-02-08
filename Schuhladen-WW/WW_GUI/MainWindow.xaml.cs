@@ -195,9 +195,11 @@ namespace WW_GUI
                 ArtikelModelUpdate.Text = _LiveArtikel._Model.str_Description;
                 ArtikelHerstellerUpdate.Text = _LiveArtikel._Model._Hersteller.str_Name;
                 ArtikelEANUpdate.Text = _LiveArtikel.str_EAN;
-                ArtikelGroesseUpdate.Text = _Hersteller._Adresse.str_Plz;
-                HerstellerOrtUpdate.Text = _Hersteller._Adresse.str_Ort;
-                HerstellerAdresszusatzUpdate.Text = _Hersteller._Adresse.str_Adresszusatz;
+
+                //ArtikelGroesseUpdate.Text = _._Adresse.str_Plz;
+                ArtikelEKUpdate.Text = _LiveArtikel.dbl_BuyPrice.ToString();
+                ArtikelVKUpdate.Text = _LiveArtikel.dbl_SellPrice.ToString();
+                ArtikelBestandUpdate.Text = _LiveArtikel.int_Stock.ToString();
             }
         }
 

@@ -25,7 +25,7 @@ namespace WW_GUI
             ThemeManager.ChangeAppStyle(Application.Current,
                                        // ThemeManager.GetAccent("Red"),
                                        // ThemeManager.GetAccent("Green"),
-                                       // ThemeManager.GetAccent("Blue"),
+                                        ThemeManager.GetAccent("Blue"),
                                        // ThemeManager.GetAccent("Purple"),
                                        // ThemeManager.GetAccent("Orange"),
                                        // ThemeManager.GetAccent("Lime"),
@@ -45,7 +45,7 @@ namespace WW_GUI
                                        // ThemeManager.GetAccent("Steel"),
                                        // ThemeManager.GetAccent("Mauve"),
                                        // ThemeManager.GetAccent("Taupe"),
-                                        ThemeManager.GetAccent("Sienna"),
+                                       // ThemeManager.GetAccent("Sienna"),
                                         ThemeManager.GetAppTheme("BaseLight")); // or appStyle.Item1
 
             base.OnStartup(e);
