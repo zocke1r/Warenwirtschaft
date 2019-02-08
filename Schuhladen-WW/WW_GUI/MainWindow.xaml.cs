@@ -1,23 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using Schuhladen_WW.DataLayer.Mapping;
-using Schuhladen_WW.Mapping;
-using Schuhladen_WW.CustomEvents;
 using Schuhladen_WW.DataLayer;
-using MahApps.Metro;
-using MahApps.Metro.Controls;
+
 
 namespace WW_GUI
 {
@@ -38,6 +26,9 @@ namespace WW_GUI
         public void FillArticleGrid()
         {
             List<Live_Article> _ListArticles = DataController.ReturnLiveArtikel();
+            
+            // Clear items
+            ArticleGrid.Items.Clear();
 
             foreach (Live_Article Article in _ListArticles)
             {
@@ -84,6 +75,7 @@ namespace WW_GUI
 
             _Hersteller.InsertNewHersteller(_Hersteller, _Adresse);
 
+            DataController.UpdateHerstellerRelations();
             FillHerstellerGrid();
             HerstellerGrid.Items.Refresh();
 
@@ -207,7 +199,6 @@ namespace WW_GUI
                     }
                 }
                 ArtikelModelUpdate.Items.Refresh();
-                ArtikelHerstellerUpdate.Text = _LiveArtikel._Model._Hersteller.str_Name;
                 ArtikelEANUpdate.Text = _LiveArtikel.str_EAN;
                 ArtikelGroesseUpdate.Items.Clear();
                 foreach (Groesse item in DataController.ReturnGroesse())
@@ -232,7 +223,39 @@ namespace WW_GUI
 
         private void ArtikelSaveButtonUpdate_Click(object sender, RoutedEventArgs e)
         {
+            // Leider keine Zeit mehr für Validierung des Inputs gehabt...
+            if (ArtikelBestandUpdate.Text != "" && ArtikelVKUpdate.Text != "" && ArtikelEKUpdate.Text != "" && ArtikelGroesseUpdate.Text != "" && ArtikelGroesseUpdate.Text != "" && ArtikelEANUpdate.Text != "")
+            {
+                // Fill objects for update
+                Live_Article _LiveArticle = (Live_Article)ArticleGrid.SelectedItem;
 
+                foreach (Model item in DataController.ReturnModels())
+                {
+                    if (item.str_Description == ArtikelModelUpdate.Text)
+                    {
+                        _LiveArticle.int_ModelID = item.int_Id;
+                    }
+                }
+
+                _LiveArticle.str_EAN = ArtikelEANUpdate.Text;
+
+                double dbl;
+                double.TryParse(ArtikelEKUpdate.Text, out dbl);
+                _LiveArticle.dbl_BuyPrice = dbl;
+                double.TryParse(ArtikelVKUpdate.Text, out dbl);
+                _LiveArticle.dbl_SellPrice = dbl;
+                _LiveArticle.int_Stock = Convert.ToInt32(ArtikelBestandUpdate.Text);
+
+                _LiveArticle.Update();
+                DataController.UpdateArtikel();
+                FillArticleGrid();
+                ArticleGrid.Items.Refresh();
+
+                ArtikelNothingSelected.Content = "Datensatz erfolgreich aktualisiert!";
+                ArtikelNothingSelected.Foreground = Brushes.Green;
+                ArtikelNothingSelected.Visibility = Visibility.Visible;
+                ArtikelSaveButtonUpdate.IsEnabled = false;
+            }
         }
         #endregion
     }

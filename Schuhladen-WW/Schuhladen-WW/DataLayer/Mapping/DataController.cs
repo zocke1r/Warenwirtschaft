@@ -43,7 +43,6 @@ namespace Schuhladen_WW.DataLayer.Mapping
 
         // Initialize object mappers
         private static PropertyMapper<Live_Article> ___LiveArticleMapper = new PropertyMapper<Live_Article>();
-
         private static PropertyMapper<Model> ___ModelListMapper = new PropertyMapper<Model>();
         private static PropertyMapper<Groesse> ___GroesseListMapper = new PropertyMapper<Groesse>();
         private static PropertyMapper<Hersteller> ___HerstellerListMapper = new PropertyMapper<Hersteller>();
@@ -114,6 +113,12 @@ namespace Schuhladen_WW.DataLayer.Mapping
            
             // Get Adresse collection
             __Adresse = ___AdresseListMapper.Map(_Connection.GetData("SELECT * FROM dbo.Adresse;")).ToList();
+        }
+
+        public static void UpdateArtikel()
+        {
+            // Gets Live_Article collection
+            __LiveArticle = ___LiveArticleMapper.Map(_Connection.GetData("SELECT * FROM dbo.Live_Artikel;")).ToList();
         }
 
         public static void CreateDataLayer()
