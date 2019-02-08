@@ -106,18 +106,11 @@ namespace Schuhladen_WW.DataLayer
         }
 
         public override void Update() {
-			// Insert validation method here :)
-			SqlCommand cmd_Command = new SqlCommand ();
-			cmd_Command.CommandType = System.Data.CommandType.StoredProcedure;
-			cmd_Command.CommandText = "dbo.UpdateAdressRow";
-			cmd_Command.Parameters.Add (new SqlParameter ("@ID", this.int_Id));
-			fillParameter (cmd_Command);
-			DataController.UpdateObject (cmd_Command);
+			executeUpdate ("dbo.UpdateAdressRow");
 			DataController.UpdateHerstellerRelations ();
-
 		}
 
-		private void fillParameter (SqlCommand cmd_Command) {
+		protected override void fillParameter (SqlCommand cmd_Command) {
 			cmd_Command.Parameters.Add (new SqlParameter ("@Strasse", this.str_Strasse));
 			cmd_Command.Parameters.Add (new SqlParameter ("@Hausnummer", this.str_Hausnummer));
 			cmd_Command.Parameters.Add (new SqlParameter ("@Ort", this.str_Ort));
@@ -126,11 +119,7 @@ namespace Schuhladen_WW.DataLayer
 		}
 
 		public override void Insert () {
-			SqlCommand cmd_Command = new SqlCommand ();
-			cmd_Command.CommandType = System.Data.CommandType.StoredProcedure;
-			cmd_Command.CommandText = "dbo.InsertAdressRow";
-			cmd_Command.Parameters.Add (new SqlParameter ("@ID", this.int_Id));
-			DataController.UpdateObject (cmd_Command);
+			executeCommand ("dbo.InsertAdressRow");
 			DataController.UpdateHerstellerRelations ();
 		}
 		#endregion

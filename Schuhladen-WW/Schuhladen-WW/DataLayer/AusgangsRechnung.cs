@@ -94,16 +94,9 @@ namespace Schuhladen_WW.DataLayer
         }
 
         public override void Update() {
-			// Insert validation method here :)
-			SqlCommand cmd_Command = new SqlCommand ();
-			cmd_Command.CommandType = System.Data.CommandType.StoredProcedure;
-			cmd_Command.CommandText = "dbo.UpdateAusgangsrechnungRow";
-			cmd_Command.Parameters.Add (new SqlParameter ("@ID", this.int_Id));
-			fillParameter (cmd_Command);
-			DataController.UpdateObject (cmd_Command);
+			executeUpdate("dbo.UpdateAusgangsrechnungRow");
 		}
-
-		private void fillParameter (SqlCommand cmd_Command) {
+		protected override void fillParameter (SqlCommand cmd_Command) {
 			cmd_Command.Parameters.Add (new SqlParameter ("@Nummer ", this.str_Nummer));
 			cmd_Command.Parameters.Add (new SqlParameter ("@Datum ", this.t_Datum));
 			cmd_Command.Parameters.Add (new SqlParameter ("@Status", this.int_Status));
@@ -111,11 +104,7 @@ namespace Schuhladen_WW.DataLayer
 		}
 
 		public override void Insert () {
-			SqlCommand cmd_Command = new SqlCommand ();
-			cmd_Command.CommandType = System.Data.CommandType.StoredProcedure;
-			cmd_Command.CommandText = "dbo.InsertAusgangsrechnungRow";
-			fillParameter (cmd_Command);
-			DataController.UpdateObject (cmd_Command);
+			executeCommand ("dbo.InsertAusgangsrechnungRow");
 		}
 		#endregion
 	}

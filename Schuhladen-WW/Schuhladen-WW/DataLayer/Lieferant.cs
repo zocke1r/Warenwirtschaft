@@ -42,23 +42,15 @@ namespace Schuhladen_WW.DataLayer
         }
 
 		public override void Update () {
-			// Insert validation method here :)
-			var cmd = new SqlCommand();
-			cmd.CommandType = System.Data.CommandType.StoredProcedure;
-			cmd.CommandText = "dbo.UpdateLieferantRow";
-			cmd.Parameters.Add (new SqlParameter ("@Bezeichnung", this.str_Description));
-			cmd.Parameters.Add (new SqlParameter ("@ID", this.int_Id));
-
-			DataController.UpdateObject (cmd);
+			executeUpdate ("dbo.UpdateLieferantRow");
 		}
 
 		public override void Insert () {
-			var cmd = new SqlCommand ();
-			cmd.CommandType = System.Data.CommandType.StoredProcedure;
-			cmd.CommandText = "dbo.InsertLieferantRow";
-			cmd.Parameters.Add (new SqlParameter ("@Bezeichnung", this.str_Description));
+			executeCommand ("dbo.InsertLieferantRow");
+		}
 
-			DataController.UpdateObject (cmd);
+		protected override void fillParameter (SqlCommand cmd_Command) {
+			cmd_Command.Parameters.Add (new SqlParameter ("@Bezeichnung", this.str_Description));
 		}
 	}
 }
