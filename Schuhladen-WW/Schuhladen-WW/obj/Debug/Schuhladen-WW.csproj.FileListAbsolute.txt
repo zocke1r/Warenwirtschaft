@@ -15,3 +15,9 @@ C:\Users\Kevin\Source\Repos\Warenwirtschaft\Schuhladen-WW\Schuhladen-WW\bin\Debu
 C:\Users\Kevin\Source\Repos\Warenwirtschaft\Schuhladen-WW\Schuhladen-WW\bin\Debug\Schuhladen-WW.exe
 C:\Users\Kevin\Source\Repos\Warenwirtschaft\Schuhladen-WW\Schuhladen-WW\bin\Debug\Schuhladen-WW.pdb
 C:\Users\Kevin\Source\Repos\Warenwirtschaft\Schuhladen-WW\Schuhladen-WW\obj\Debug\Schuhladen-WW.csprojAssemblyReference.cache
+C:\Users\3218122648\Source\Repos\Warenwirtschaft\Schuhladen-WW\Schuhladen-WW\bin\Debug\Schuhladen-WW.exe.config
+C:\Users\3218122648\Source\Repos\Warenwirtschaft\Schuhladen-WW\Schuhladen-WW\obj\Debug\Schuhladen-WW.exe
+C:\Users\3218122648\Source\Repos\Warenwirtschaft\Schuhladen-WW\Schuhladen-WW\obj\Debug\Schuhladen-WW.pdb
+C:\Users\3218122648\Source\Repos\Warenwirtschaft\Schuhladen-WW\Schuhladen-WW\bin\Debug\Schuhladen-WW.exe
+C:\Users\3218122648\Source\Repos\Warenwirtschaft\Schuhladen-WW\Schuhladen-WW\bin\Debug\Schuhladen-WW.pdb
+C:\Users\3218122648\Source\Repos\Warenwirtschaft\Schuhladen-WW\Schuhladen-WW\obj\Debug\Schuhladen-WW.csprojResolveAssemblyReference.cache

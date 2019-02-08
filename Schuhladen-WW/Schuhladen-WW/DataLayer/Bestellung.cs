@@ -11,7 +11,6 @@ namespace Schuhladen_WW.DataLayer
 {
     public class Bestellung : BaseClassDataLayer
     {
-        private int int_id;
         private string str_nummer;
         private DateTime t_datum;
         private int int_lieferant;
@@ -105,19 +104,30 @@ namespace Schuhladen_WW.DataLayer
             }
         }
 
-        public override void Update()
-        {
-            // Insert validation method here :)
+        public override void Update() {
+			// Insert validation method here :)
 			var cmd = new SqlCommand ();
 			cmd.CommandType = System.Data.CommandType.StoredProcedure;
 			cmd.CommandText = "dbo.UpdateBestellungRow";
-			cmd.Parameters.Add(new SqlParameter ("@ID", this.int_Id));
-			cmd.Parameters.Add(new SqlParameter ("@Nummer", this.str_Nummer));
-			cmd.Parameters.Add(new SqlParameter ("@Datum", this.t_datum));
-			cmd.Parameters.Add(new SqlParameter ("@Lieferant", this.int_Lieferant));
-			cmd.Parameters.Add(new SqlParameter ("@Status", this.int_Status));
-			cmd.Parameters.Add(new SqlParameter ("@Betrag", this.str_Betrag));
-            DataController.UpdateObject(cmd);
-        }
-    }
+			cmd.Parameters.Add (new SqlParameter ("@ID", this.int_Id));
+			fillParameter (cmd);
+			DataController.UpdateObject (cmd);
+		}
+
+		private void fillParameter (SqlCommand cmd) {
+			cmd.Parameters.Add (new SqlParameter ("@Nummer", this.str_Nummer));
+			cmd.Parameters.Add (new SqlParameter ("@Datum", this.t_datum));
+			cmd.Parameters.Add (new SqlParameter ("@Lieferant", this.int_Lieferant));
+			cmd.Parameters.Add (new SqlParameter ("@Status", this.int_Status));
+			cmd.Parameters.Add (new SqlParameter ("@Betrag", this.str_Betrag));
+		}
+
+		public override void Insert () {
+			var cmd = new SqlCommand ();
+			cmd.CommandType = System.Data.CommandType.StoredProcedure;
+			cmd.CommandText = "dbo.InsertBestellungRow";
+			fillParameter (cmd);
+			DataController.UpdateObject (cmd);
+		}
+	}
 }

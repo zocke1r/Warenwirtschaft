@@ -11,7 +11,6 @@ namespace Schuhladen_WW.DataLayer
 {
     public class Hersteller : BaseClassDataLayer
     {
-        private int int_id;
         private string str_name;
         private int int_adressid;
 
@@ -85,23 +84,21 @@ namespace Schuhladen_WW.DataLayer
             DataController.UpdateObject(cmd);
         }
 
-        public void DeleteHersteller()
+        public override void Delete()
         {
-            var cmd = new SqlCommand();
-            cmd.CommandType = System.Data.CommandType.StoredProcedure;
-            cmd.CommandText = "dbo.DeleteRow";
-            cmd.Parameters.Add(new SqlParameter("@ID", this.int_ID));
-            cmd.Parameters.Add(new SqlParameter("@Table", this.GetType().Name));
-
-            DataController.UpdateObject(cmd);
-
-            var cmd1 = new SqlCommand();
-            cmd1.CommandType = System.Data.CommandType.StoredProcedure;
-            cmd1.CommandText = "dbo.DeleteRow";
-            cmd1.Parameters.Add(new SqlParameter("@ID", this._Adresse.int_Id));
-            cmd1.Parameters.Add(new SqlParameter("@Table", this._Adresse.GetType().Name));
-
-            DataController.UpdateObject(cmd1);
+			base.Delete ();
+			_Adresse.Delete ();
         }
-    }
+
+		public override void Insert () {
+
+			var cmd = new SqlCommand ();
+			cmd.CommandType = System.Data.CommandType.StoredProcedure;
+			cmd.CommandText = "dbo.InsertHerstellerRow";
+			cmd.Parameters.Add (new SqlParameter ("@Name", this.str_Name));
+			cmd.Parameters.Add (new SqlParameter ("@Adresse", this.int_AdressId));
+
+			DataController.UpdateObject (cmd);
+		}
+	}
 }

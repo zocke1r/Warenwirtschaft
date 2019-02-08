@@ -10,7 +10,6 @@ namespace Schuhladen_WW.DataLayer
 {
     public class Model : BaseClassDataLayer
     {
-        private int int_id { get; set; }
         private string str_description { get; set; }
         private int int_manufacturer { get; set; }
 
@@ -63,9 +62,22 @@ namespace Schuhladen_WW.DataLayer
 			SqlCommand cmd = new SqlCommand ();
 			cmd.CommandType = System.Data.CommandType.StoredProcedure;
 			cmd.CommandText = "dbo.UpdateModelRow";
+			cmd.Parameters.Add (new SqlParameter ("@ID", this.int_Id));
+			fillParameter (cmd);
+
+			DataController.UpdateObject (cmd);
+		}
+
+		private void fillParameter (SqlCommand cmd) {
 			cmd.Parameters.Add (new SqlParameter ("@Bezeichnung", this.str_Description));
 			cmd.Parameters.Add (new SqlParameter ("@Hersteller", this.int_Manufacturer));
-			cmd.Parameters.Add (new SqlParameter ("@ID", this.int_Id));
+		}
+
+		public override void Insert () {
+			SqlCommand cmd = new SqlCommand ();
+			cmd.CommandType = System.Data.CommandType.StoredProcedure;
+			cmd.CommandText = "dbo.UpdateModelRow";
+			fillParameter (cmd);
 
 			DataController.UpdateObject (cmd);
 		}

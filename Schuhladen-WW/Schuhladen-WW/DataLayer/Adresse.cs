@@ -13,7 +13,6 @@ namespace Schuhladen_WW.DataLayer
     public class Adresse : BaseClassDataLayer
     {
         #region Private Members
-        private int int_id;
         private string str_strasse;
         private string str_hausnummer;
         private string str_ort;
@@ -106,23 +105,35 @@ namespace Schuhladen_WW.DataLayer
             }
         }
 
-        public override void Update()
-        {
-            // Insert validation method here :)
-            SqlCommand cmd_Command = new SqlCommand();
-            cmd_Command.CommandType = System.Data.CommandType.StoredProcedure;
-            cmd_Command.CommandText = "dbo.UpdateAdressRow";
-            cmd_Command.Parameters.Add(new SqlParameter("@ID", this.int_Id));
-            cmd_Command.Parameters.Add(new SqlParameter("@Strasse", this.str_Strasse));
-            cmd_Command.Parameters.Add(new SqlParameter("@Hausnummer", this.str_Hausnummer));
-            cmd_Command.Parameters.Add(new SqlParameter("@Ort", this.str_Ort));
-            cmd_Command.Parameters.Add(new SqlParameter("@PLZ", this.str_Plz));
-            cmd_Command.Parameters.Add(new SqlParameter("@Adresszusatz", this.str_Adresszusatz));
-            DataController.UpdateObject(cmd_Command);
-            DataController.UpdateHerstellerRelations();
+        public override void Update() {
+			// Insert validation method here :)
+			SqlCommand cmd_Command = new SqlCommand ();
+			cmd_Command.CommandType = System.Data.CommandType.StoredProcedure;
+			cmd_Command.CommandText = "dbo.UpdateAdressRow";
+			cmd_Command.Parameters.Add (new SqlParameter ("@ID", this.int_Id));
+			fillParameter (cmd_Command);
+			DataController.UpdateObject (cmd_Command);
+			DataController.UpdateHerstellerRelations ();
 
-        }
-        #endregion
+		}
 
-    }
+		private void fillParameter (SqlCommand cmd_Command) {
+			cmd_Command.Parameters.Add (new SqlParameter ("@Strasse", this.str_Strasse));
+			cmd_Command.Parameters.Add (new SqlParameter ("@Hausnummer", this.str_Hausnummer));
+			cmd_Command.Parameters.Add (new SqlParameter ("@Ort", this.str_Ort));
+			cmd_Command.Parameters.Add (new SqlParameter ("@PLZ", this.str_Plz));
+			cmd_Command.Parameters.Add (new SqlParameter ("@Adresszusatz", this.str_Adresszusatz));
+		}
+
+		public override void Insert () {
+			SqlCommand cmd_Command = new SqlCommand ();
+			cmd_Command.CommandType = System.Data.CommandType.StoredProcedure;
+			cmd_Command.CommandText = "dbo.InsertAdressRow";
+			cmd_Command.Parameters.Add (new SqlParameter ("@ID", this.int_Id));
+			DataController.UpdateObject (cmd_Command);
+			DataController.UpdateHerstellerRelations ();
+		}
+		#endregion
+
+	}
 }

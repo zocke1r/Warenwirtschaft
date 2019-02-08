@@ -14,7 +14,6 @@ namespace Schuhladen_WW.DataLayer
     {
 
         #region Private Members
-        private int int_id;
         private string str_nummer;
         private DateTime t_datum;
         private int int_status;
@@ -94,19 +93,30 @@ namespace Schuhladen_WW.DataLayer
             }
         }
 
-        public override void Update()
-        {
-            // Insert validation method here :)
-            SqlCommand cmd_Command = new SqlCommand();
-            cmd_Command.CommandType = System.Data.CommandType.StoredProcedure;
-            cmd_Command.CommandText = "dbo.UpdateAusgangsrechnungRow";
-            cmd_Command.Parameters.Add(new SqlParameter("@ID", this.int_Id));
-            cmd_Command.Parameters.Add(new SqlParameter("@Nummer ", this.str_Nummer));
-            cmd_Command.Parameters.Add(new SqlParameter("@Datum ", this.t_Datum));
-            cmd_Command.Parameters.Add(new SqlParameter("@Status", this.int_Status));
-            cmd_Command.Parameters.Add(new SqlParameter("@Betrag ", this.str_Betrag));
-            DataController.UpdateObject(cmd_Command);
-        }
-        #endregion
-    }
+        public override void Update() {
+			// Insert validation method here :)
+			SqlCommand cmd_Command = new SqlCommand ();
+			cmd_Command.CommandType = System.Data.CommandType.StoredProcedure;
+			cmd_Command.CommandText = "dbo.UpdateAusgangsrechnungRow";
+			cmd_Command.Parameters.Add (new SqlParameter ("@ID", this.int_Id));
+			fillParameter (cmd_Command);
+			DataController.UpdateObject (cmd_Command);
+		}
+
+		private void fillParameter (SqlCommand cmd_Command) {
+			cmd_Command.Parameters.Add (new SqlParameter ("@Nummer ", this.str_Nummer));
+			cmd_Command.Parameters.Add (new SqlParameter ("@Datum ", this.t_Datum));
+			cmd_Command.Parameters.Add (new SqlParameter ("@Status", this.int_Status));
+			cmd_Command.Parameters.Add (new SqlParameter ("@Betrag ", this.str_Betrag));
+		}
+
+		public override void Insert () {
+			SqlCommand cmd_Command = new SqlCommand ();
+			cmd_Command.CommandType = System.Data.CommandType.StoredProcedure;
+			cmd_Command.CommandText = "dbo.InsertAusgangsrechnungRow";
+			fillParameter (cmd_Command);
+			DataController.UpdateObject (cmd_Command);
+		}
+		#endregion
+	}
 }

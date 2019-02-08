@@ -12,7 +12,6 @@ namespace Schuhladen_WW.DataLayer
     public class AusgangsrechnungPosition : BaseClassDataLayer
     {
         #region Private Members
-        private int int_id;
         private int int_anzahl;
         private double dbl_preis;
         private int int_ausgangsrechnung;
@@ -92,19 +91,31 @@ namespace Schuhladen_WW.DataLayer
             }
         }
 
-        public override void Update()
-        {
-            // Insert validation method here :)
-            SqlCommand cmd_Command = new SqlCommand();
-            cmd_Command.CommandType = System.Data.CommandType.StoredProcedure;
-            cmd_Command.CommandText = "dbo.UpdateAusgangsrechnungPositionRow";
-            cmd_Command.Parameters.Add(new SqlParameter("@ID", this.int_Id));
-            cmd_Command.Parameters.Add(new SqlParameter("@Anzahl", this.int_Anzahl));
-            cmd_Command.Parameters.Add(new SqlParameter("@Preis ", this.dbl_Preis));
-            cmd_Command.Parameters.Add(new SqlParameter("@Ausgangsrechnung", this.int_AusgansRechnung));
-            cmd_Command.Parameters.Add(new SqlParameter("@Artikel  ", this.int_Artikel));
-            DataController.UpdateObject(cmd_Command);
-        }
-        #endregion
-    }
+        public override void Update() {
+			// Insert validation method here :)
+			SqlCommand cmd_Command = new SqlCommand ();
+			cmd_Command.CommandType = System.Data.CommandType.StoredProcedure;
+			cmd_Command.CommandText = "dbo.UpdateAusgangsrechnungPositionRow";
+			cmd_Command.Parameters.Add (new SqlParameter ("@ID", this.int_Id));
+			fillParameter (cmd_Command);
+			DataController.UpdateObject (cmd_Command);
+		}
+
+		private void fillParameter (SqlCommand cmd_Command) {
+			cmd_Command.Parameters.Add (new SqlParameter ("@Anzahl", this.int_Anzahl));
+			cmd_Command.Parameters.Add (new SqlParameter ("@Preis ", this.dbl_Preis));
+			cmd_Command.Parameters.Add (new SqlParameter ("@Ausgangsrechnung", this.int_AusgansRechnung));
+			cmd_Command.Parameters.Add (new SqlParameter ("@Artikel  ", this.int_Artikel));
+		}
+
+		public override void Insert () {
+			SqlCommand cmd_Command = new SqlCommand ();
+			cmd_Command.CommandType = System.Data.CommandType.StoredProcedure;
+			cmd_Command.CommandText = "dbo.InsertAusgangsrechnungPositionRow";
+			cmd_Command.Parameters.Add (new SqlParameter ("@ID", this.int_Id));
+			fillParameter (cmd_Command);
+			DataController.UpdateObject (cmd_Command);
+		}
+		#endregion
+	}
 }

@@ -88,14 +88,14 @@ namespace Schuhladen_WW.DataBase
             }
         }
 
-        public bool UpdateData(SqlCommand _CommandBuilder)
+        public bool UpdateData(SqlCommand _command)
         {
             try
             {
                 if (Open())
                 {
-                    _CommandBuilder.Connection = _Connection;
-                    _CommandBuilder.ExecuteNonQuery();
+                    _command.Connection = _Connection;
+                    _command.ExecuteNonQuery();
                     Close();
                     return true;
                 }
