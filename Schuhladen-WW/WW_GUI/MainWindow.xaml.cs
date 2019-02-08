@@ -192,11 +192,38 @@ namespace WW_GUI
                 ArtikelSaveButtonUpdate.IsEnabled = true;
                 // ArtikelDeleteButton.IsEnabled = true;
 
-                ArtikelModelUpdate.Text = _LiveArtikel._Model.str_Description;
+                ArtikelModelUpdate.Items.Clear();
+                foreach (Model item in DataController.ReturnModels())
+                {
+                    ComboBoxItem cbitem = new ComboBoxItem();
+                    cbitem.Content = item.str_Description;
+                    ArtikelModelUpdate.Items.Add(cbitem);
+                }
+                foreach (ComboBoxItem item in ArtikelModelUpdate.Items)
+                {
+                    if (item.Content.ToString() == _LiveArtikel._Model.str_Description)
+                    {
+                        ArtikelModelUpdate.SelectedItem = item;
+                    }
+                }
+                ArtikelModelUpdate.Items.Refresh();
                 ArtikelHerstellerUpdate.Text = _LiveArtikel._Model._Hersteller.str_Name;
                 ArtikelEANUpdate.Text = _LiveArtikel.str_EAN;
-
-                //ArtikelGroesseUpdate.Text = _._Adresse.str_Plz;
+                ArtikelGroesseUpdate.Items.Clear();
+                foreach (Groesse item in DataController.ReturnGroesse())
+                {
+                    ComboBoxItem cbitem = new ComboBoxItem();
+                    cbitem.Content = item.str_EU;
+                    ArtikelGroesseUpdate.Items.Add(cbitem);
+                }
+                foreach (ComboBoxItem item in ArtikelGroesseUpdate.Items)
+                {
+                    if (item.Content.ToString() == _LiveArtikel._Groesse.str_EU)
+                    {
+                        ArtikelGroesseUpdate.SelectedItem = item;
+                    }
+                }
+                ArtikelGroesseUpdate.Items.Refresh();
                 ArtikelEKUpdate.Text = _LiveArtikel.dbl_BuyPrice.ToString();
                 ArtikelVKUpdate.Text = _LiveArtikel.dbl_SellPrice.ToString();
                 ArtikelBestandUpdate.Text = _LiveArtikel.int_Stock.ToString();
