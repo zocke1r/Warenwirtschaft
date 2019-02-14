@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Schuhladen_WW.Mapping;
-using Schuhladen_WW.DataLayer.Mapping;
+﻿using Schuhladen_WW.Mapping;
 using System.Data.SqlClient;
 
 namespace Schuhladen_WW.DataLayer

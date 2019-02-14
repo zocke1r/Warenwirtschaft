@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.ComponentModel;
 using Schuhladen_WW.CustomEvents;
-using System.Reflection;
 using Schuhladen_WW.DataLayer.Mapping;
 using System.Data.SqlClient;
 using System.Data;

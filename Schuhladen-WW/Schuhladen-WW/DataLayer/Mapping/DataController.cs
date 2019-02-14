@@ -3,7 +3,6 @@ using System.Linq;
 using Schuhladen_WW.DataBase;
 using Schuhladen_WW.Mapping;
 using System.Data.SqlClient;
-using System;
 
 namespace Schuhladen_WW.DataLayer.Mapping
 {

@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using Schuhladen_WW.DataLayer.Mapping;
+﻿using Schuhladen_WW.DataLayer.Mapping;
 using Schuhladen_WW.Mapping;
 using System.Data.SqlClient;
-using Schuhladen_WW.DataLayer;
 using System.Linq;
 
 namespace Schuhladen_WW.DataLayer
