@@ -1,14 +1,15 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using Schuhladen_WW.DataBase;
+﻿using Schuhladen_WW.DataBase;
 using Schuhladen_WW.Mapping;
+using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Linq;
 
 namespace Schuhladen_WW.DataLayer.Mapping
 {
     public static class DataController
     {
         #region Private Members
+
         // New database connection
         private static DBConnection _Connection = DBConnection.Instance();
 
@@ -38,10 +39,10 @@ namespace Schuhladen_WW.DataLayer.Mapping
         private static List<BestellungPositionPosition> __BestellungPositionPosition { get; set; }
 
         private static List<AusgangsrechnungPosition> __AusgangsrechnungPosition { get; set; }
-		
 
         // Initialize object mappers
         private static PropertyMapper<Live_Article> ___LiveArticleMapper = new PropertyMapper<Live_Article>();
+
         private static PropertyMapper<Model> ___ModelListMapper = new PropertyMapper<Model>();
         private static PropertyMapper<Groesse> ___GroesseListMapper = new PropertyMapper<Groesse>();
         private static PropertyMapper<Hersteller> ___HerstellerListMapper = new PropertyMapper<Hersteller>();
@@ -54,45 +55,47 @@ namespace Schuhladen_WW.DataLayer.Mapping
         private static PropertyMapper<Bestellung> ___BestellungListMapper = new PropertyMapper<Bestellung>();
         private static PropertyMapper<BestellungPositionPosition> ___BestellungPositionPositionListMapper = new PropertyMapper<BestellungPositionPosition>();
         private static PropertyMapper<AusgangsrechnungPosition> ___AusgangsrechnungPositionListMapper = new PropertyMapper<AusgangsrechnungPosition>();
-        #endregion
+
+        #endregion Private Members
 
         #region Public Members
-        public static List<Model> ReturnModels ()
+
+        public static List<Model> ReturnModels()
         {
             return __Model;
         }
 
-        public static List<Groesse> ReturnGroesse ()
+        public static List<Groesse> ReturnGroesse()
         {
             return __Groesse;
         }
 
-        public static List<Status> ReturnStatus ()
+        public static List<Status> ReturnStatus()
         {
             return __Status;
         }
 
-        public static List<Adresse> ReturnAdresse ()
+        public static List<Adresse> ReturnAdresse()
         {
             return __Adresse;
         }
 
-        public static List<Lieferant> ReturnLieferant ()
+        public static List<Lieferant> ReturnLieferant()
         {
             return __Lieferant;
         }
 
-        public static List<Live_Article> ReturnLiveArtikel ()
+        public static List<Live_Article> ReturnLiveArtikel()
         {
             return __LiveArticle;
         }
 
-        public static List<Bestellung> ReturnBestellung ()
+        public static List<Bestellung> ReturnBestellung()
         {
             return __Bestellung;
         }
 
-        public static List<AusgangsRechnung> ReturnAusgangsRechnung ()
+        public static List<AusgangsRechnung> ReturnAusgangsRechnung()
         {
             return __AusgangsRechnung;
         }
@@ -101,7 +104,8 @@ namespace Schuhladen_WW.DataLayer.Mapping
         {
             return __Hersteller;
         }
-        #endregion
+
+        #endregion Public Members
 
         #region Public Methods
 
@@ -109,7 +113,7 @@ namespace Schuhladen_WW.DataLayer.Mapping
         {
             // Get Hersteller collection
             __Hersteller = ___HerstellerListMapper.Map(_Connection.GetData("SELECT * FROM dbo.Hersteller;")).ToList();
-           
+
             // Get Adresse collection
             __Adresse = ___AdresseListMapper.Map(_Connection.GetData("SELECT * FROM dbo.Adresse;")).ToList();
         }
@@ -171,7 +175,6 @@ namespace Schuhladen_WW.DataLayer.Mapping
             return false;
         }
 
-        #endregion
-
+        #endregion Public Methods
     }
 }

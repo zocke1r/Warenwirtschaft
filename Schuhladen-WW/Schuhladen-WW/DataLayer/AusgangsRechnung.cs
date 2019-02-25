@@ -1,22 +1,24 @@
-﻿using System;
-using System.Linq;
+﻿using Schuhladen_WW.DataLayer.Mapping;
 using Schuhladen_WW.Mapping;
-using Schuhladen_WW.DataLayer.Mapping;
+using System;
 using System.Data.SqlClient;
+using System.Linq;
 
 namespace Schuhladen_WW.DataLayer
 {
     public class AusgangsRechnung : BaseClassDataLayer
     {
-
         #region Private Members
+
         private string str_nummer;
         private DateTime t_datum;
         private int int_status;
         private string str_betrag;
-        #endregion
+
+        #endregion Private Members
 
         #region Public Members
+
         public Status _Status => DataController.ReturnStatus().Where(x => x.int_Id == int_Status).First();
 
         [PropertyBridge("ID")]
@@ -53,7 +55,7 @@ namespace Schuhladen_WW.DataLayer
             get { return t_datum; }
             set
             {
-                if(t_datum != value)
+                if (t_datum != value)
                 {
                     t_datum = value;
                     RaiseEvent(this.GetType(), "Datum", t_datum);
@@ -89,19 +91,24 @@ namespace Schuhladen_WW.DataLayer
             }
         }
 
-        public override void Update() {
-			executeUpdate("dbo.UpdateAusgangsrechnungRow");
-		}
-		protected override void fillParameter (SqlCommand cmd_Command) {
-			cmd_Command.Parameters.Add (new SqlParameter ("@Nummer ", this.str_Nummer));
-			cmd_Command.Parameters.Add (new SqlParameter ("@Datum ", this.t_Datum));
-			cmd_Command.Parameters.Add (new SqlParameter ("@Status", this.int_Status));
-			cmd_Command.Parameters.Add (new SqlParameter ("@Betrag ", this.str_Betrag));
-		}
+        public override void Update()
+        {
+            executeUpdate("dbo.UpdateAusgangsrechnungRow");
+        }
 
-		public override void Insert () {
-			executeCommand ("dbo.InsertAusgangsrechnungRow");
-		}
-		#endregion
-	}
+        protected override void fillParameter(SqlCommand cmd_Command)
+        {
+            cmd_Command.Parameters.Add(new SqlParameter("@Nummer ", this.str_Nummer));
+            cmd_Command.Parameters.Add(new SqlParameter("@Datum ", this.t_Datum));
+            cmd_Command.Parameters.Add(new SqlParameter("@Status", this.int_Status));
+            cmd_Command.Parameters.Add(new SqlParameter("@Betrag ", this.str_Betrag));
+        }
+
+        public override void Insert()
+        {
+            executeCommand("dbo.InsertAusgangsrechnungRow");
+        }
+
+        #endregion Public Members
+    }
 }

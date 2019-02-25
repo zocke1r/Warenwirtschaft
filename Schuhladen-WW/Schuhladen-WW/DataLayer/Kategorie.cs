@@ -35,16 +35,19 @@ namespace Schuhladen_WW.DataLayer
             }
         }
 
-		public override void Update () {
-			executeUpdate ("dbo.UpdateKategorieRow");
-		}
+        public override void Update()
+        {
+            executeUpdate("dbo.UpdateKategorieRow");
+        }
 
-		public override void Insert () {
-			executeCommand ("dbo.InsertKategorieRow");
-		}
+        public override void Insert()
+        {
+            executeCommand("dbo.InsertKategorieRow");
+        }
 
-		protected override void fillParameter (SqlCommand cmd_Command) {
-			cmd_Command.Parameters.Add (new SqlParameter ("@Bezeichnung", this.str_Bezeichnung));
-		}
-	}
+        protected override void fillParameter(SqlCommand cmd_Command)
+        {
+            cmd_Command.Parameters.Add(new SqlParameter("@Bezeichnung", this.str_Bezeichnung));
+        }
+    }
 }

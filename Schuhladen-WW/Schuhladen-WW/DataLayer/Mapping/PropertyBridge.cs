@@ -3,13 +3,13 @@
 namespace Schuhladen_WW.Mapping
 {
     [AttributeUsage(AttributeTargets.Property)]
-    class PropertyBridge : Attribute
+    internal class PropertyBridge : Attribute
     {
         private string str_propertyNames { get; set; }
 
         public string str_PropertyNames
         {
-            get { return str_propertyNames;  }
+            get { return str_propertyNames; }
             set { str_propertyNames = value; }
         }
 

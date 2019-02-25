@@ -1,20 +1,23 @@
+using Schuhladen_WW.DataLayer.Mapping;
 using Schuhladen_WW.Mapping;
 using System.Data.SqlClient;
-using Schuhladen_WW.DataLayer.Mapping;
 
 namespace Schuhladen_WW.DataLayer
 {
     public class Adresse : BaseClassDataLayer
     {
         #region Private Members
+
         private string str_strasse;
         private string str_hausnummer;
         private string str_ort;
         private string str_plz;
         private string str_adresszusatz;
-        #endregion
+
+        #endregion Private Members
 
         #region Public Members
+
         [PropertyBridge("ID")]
         public int int_Id
         {
@@ -99,24 +102,27 @@ namespace Schuhladen_WW.DataLayer
             }
         }
 
-        public override void Update() {
-			executeUpdate ("dbo.UpdateAdressRow");
-			DataController.UpdateHerstellerRelations ();
-		}
+        public override void Update()
+        {
+            executeUpdate("dbo.UpdateAdressRow");
+            DataController.UpdateHerstellerRelations();
+        }
 
-		protected override void fillParameter (SqlCommand cmd_Command) {
-			cmd_Command.Parameters.Add (new SqlParameter ("@Strasse", this.str_Strasse));
-			cmd_Command.Parameters.Add (new SqlParameter ("@Hausnummer", this.str_Hausnummer));
-			cmd_Command.Parameters.Add (new SqlParameter ("@Ort", this.str_Ort));
-			cmd_Command.Parameters.Add (new SqlParameter ("@PLZ", this.str_Plz));
-			cmd_Command.Parameters.Add (new SqlParameter ("@Adresszusatz", this.str_Adresszusatz));
-		}
+        protected override void fillParameter(SqlCommand cmd_Command)
+        {
+            cmd_Command.Parameters.Add(new SqlParameter("@Strasse", this.str_Strasse));
+            cmd_Command.Parameters.Add(new SqlParameter("@Hausnummer", this.str_Hausnummer));
+            cmd_Command.Parameters.Add(new SqlParameter("@Ort", this.str_Ort));
+            cmd_Command.Parameters.Add(new SqlParameter("@PLZ", this.str_Plz));
+            cmd_Command.Parameters.Add(new SqlParameter("@Adresszusatz", this.str_Adresszusatz));
+        }
 
-		public override void Insert () {
-			executeCommand ("dbo.InsertAdressRow");
-			DataController.UpdateHerstellerRelations ();
-		}
-		#endregion
+        public override void Insert()
+        {
+            executeCommand("dbo.InsertAdressRow");
+            DataController.UpdateHerstellerRelations();
+        }
 
-	}
+        #endregion Public Members
+    }
 }

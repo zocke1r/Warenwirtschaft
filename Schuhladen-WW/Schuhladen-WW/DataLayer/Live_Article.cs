@@ -1,7 +1,7 @@
-﻿using System.Linq;
+﻿using Schuhladen_WW.DataLayer.Mapping;
 using Schuhladen_WW.Mapping;
-using Schuhladen_WW.DataLayer.Mapping;
 using System.Data.SqlClient;
+using System.Linq;
 
 namespace Schuhladen_WW.DataLayer
 {
@@ -9,6 +9,7 @@ namespace Schuhladen_WW.DataLayer
     {
         // private Methods
         private string str_ean { get; set; }
+
         private double dbl_sellprice { get; set; }
         private double dbl_buyprice { get; set; }
         private int int_stock { get; set; }
@@ -58,7 +59,6 @@ namespace Schuhladen_WW.DataLayer
                     dbl_sellprice = value;
                     RaiseEvent(this.GetType(), "VK", dbl_SellPrice);
                 }
-
             }
         }
 
@@ -118,21 +118,24 @@ namespace Schuhladen_WW.DataLayer
             }
         }
 
-		public override void Update () {
-			executeUpdate ("dbo.UpdateLiveArtikelRow");
-		}
+        public override void Update()
+        {
+            executeUpdate("dbo.UpdateLiveArtikelRow");
+        }
 
-		protected override void fillParameter (SqlCommand cmd_Command) {
-			cmd_Command.Parameters.Add (new SqlParameter ("@EAN", this.str_EAN));
-			cmd_Command.Parameters.Add (new SqlParameter ("@VK", this.dbl_SellPrice));
-			cmd_Command.Parameters.Add (new SqlParameter ("@EK", this.dbl_BuyPrice));
-			cmd_Command.Parameters.Add (new SqlParameter ("@Bestand", this.int_Stock));
-			cmd_Command.Parameters.Add (new SqlParameter ("@Model", this.int_ModelID));
-			cmd_Command.Parameters.Add (new SqlParameter ("@Groesse", this.int_SizeID));
-		}
+        protected override void fillParameter(SqlCommand cmd_Command)
+        {
+            cmd_Command.Parameters.Add(new SqlParameter("@EAN", this.str_EAN));
+            cmd_Command.Parameters.Add(new SqlParameter("@VK", this.dbl_SellPrice));
+            cmd_Command.Parameters.Add(new SqlParameter("@EK", this.dbl_BuyPrice));
+            cmd_Command.Parameters.Add(new SqlParameter("@Bestand", this.int_Stock));
+            cmd_Command.Parameters.Add(new SqlParameter("@Model", this.int_ModelID));
+            cmd_Command.Parameters.Add(new SqlParameter("@Groesse", this.int_SizeID));
+        }
 
-		public override void Insert () {
-			executeCommand ("dbo.InsertLiveArtikelRow");
-		}
-	}
+        public override void Insert()
+        {
+            executeCommand("dbo.InsertLiveArtikelRow");
+        }
+    }
 }

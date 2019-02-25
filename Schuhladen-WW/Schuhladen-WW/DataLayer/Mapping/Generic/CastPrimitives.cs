@@ -6,13 +6,13 @@ namespace Schuhladen_WW.Mapping.Generic
 {
     public static class CastPrimitives
     {
-        public static PropertyInfo CastToString (PropertyInfo _PropertyInfo, object obj_BaseClass, object obj_Value)
+        public static PropertyInfo CastToString(PropertyInfo _PropertyInfo, object obj_BaseClass, object obj_Value)
         {
             _PropertyInfo.SetValue(obj_BaseClass, obj_Value.ToString().Trim(), null);
             return _PropertyInfo;
         }
 
-        public static PropertyInfo CastToBool (PropertyInfo _PropertyInfo, object obj_BaseClass, object obj_Value)
+        public static PropertyInfo CastToBool(PropertyInfo _PropertyInfo, object obj_BaseClass, object obj_Value)
         {
             if (obj_Value == null)
             {
@@ -25,13 +25,13 @@ namespace Schuhladen_WW.Mapping.Generic
             return _PropertyInfo;
         }
 
-        public static PropertyInfo CastToLong (PropertyInfo _PropertyInfo, object obj_BaseClass, object obj_Value)
+        public static PropertyInfo CastToLong(PropertyInfo _PropertyInfo, object obj_BaseClass, object obj_Value)
         {
             _PropertyInfo.SetValue(obj_BaseClass, long.Parse(obj_Value.ToString()), null);
             return _PropertyInfo;
         }
 
-        public static PropertyInfo CastToInt (PropertyInfo _PropertyInfo, object obj_BaseClass, object obj_Value)
+        public static PropertyInfo CastToInt(PropertyInfo _PropertyInfo, object obj_BaseClass, object obj_Value)
         {
             if (obj_Value == null)
             {
@@ -44,13 +44,13 @@ namespace Schuhladen_WW.Mapping.Generic
             return _PropertyInfo;
         }
 
-        public static PropertyInfo CastToDecimal (PropertyInfo _PropertyInfo, object obj_BaseClass, object obj_Value)
+        public static PropertyInfo CastToDecimal(PropertyInfo _PropertyInfo, object obj_BaseClass, object obj_Value)
         {
             _PropertyInfo.SetValue(obj_BaseClass, double.Parse(obj_Value.ToString()), null);
             return _PropertyInfo;
         }
 
-        public static PropertyInfo CastToDouble (PropertyInfo _PropertyInfo, object obj_BaseClass, object obj_Value)
+        public static PropertyInfo CastToDouble(PropertyInfo _PropertyInfo, object obj_BaseClass, object obj_Value)
         {
             double dbl_Number;
             bool bool_isValid = double.TryParse(obj_Value.ToString(), out dbl_Number);

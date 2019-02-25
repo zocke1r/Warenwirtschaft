@@ -1,20 +1,23 @@
-﻿using System.Linq;
+﻿using Schuhladen_WW.DataLayer.Mapping;
 using Schuhladen_WW.Mapping;
-using Schuhladen_WW.DataLayer.Mapping;
 using System.Data.SqlClient;
+using System.Linq;
 
 namespace Schuhladen_WW.DataLayer
 {
     public class AusgangsrechnungPosition : BaseClassDataLayer
     {
         #region Private Members
+
         private int int_anzahl;
         private double dbl_preis;
         private int int_ausgangsrechnung;
         private int int_artikel;
-        #endregion
+
+        #endregion Private Members
 
         #region Public Members
+
         public Live_Article _LiveArticle => DataController.ReturnLiveArtikel().Where(x => x.int_ID == int_artikel).First();
         public AusgangsRechnung _AusgangsRechnung => DataController.ReturnAusgangsRechnung().Where(x => x.int_Id == int_ausgangsrechnung).First();
 
@@ -45,6 +48,7 @@ namespace Schuhladen_WW.DataLayer
                 }
             }
         }
+
         [PropertyBridge("Preis")]
         public double dbl_Preis
         {
@@ -87,20 +91,24 @@ namespace Schuhladen_WW.DataLayer
             }
         }
 
-        public override void Update() {
-			executeUpdate ("dbo.UpdateAusgangsrechnungPositionRow");
-		}
+        public override void Update()
+        {
+            executeUpdate("dbo.UpdateAusgangsrechnungPositionRow");
+        }
 
-		protected override void fillParameter (SqlCommand cmd_Command) {
-			cmd_Command.Parameters.Add (new SqlParameter ("@Anzahl", this.int_Anzahl));
-			cmd_Command.Parameters.Add (new SqlParameter ("@Preis ", this.dbl_Preis));
-			cmd_Command.Parameters.Add (new SqlParameter ("@Ausgangsrechnung", this.int_AusgansRechnung));
-			cmd_Command.Parameters.Add (new SqlParameter ("@Artikel  ", this.int_Artikel));
-		}
+        protected override void fillParameter(SqlCommand cmd_Command)
+        {
+            cmd_Command.Parameters.Add(new SqlParameter("@Anzahl", this.int_Anzahl));
+            cmd_Command.Parameters.Add(new SqlParameter("@Preis ", this.dbl_Preis));
+            cmd_Command.Parameters.Add(new SqlParameter("@Ausgangsrechnung", this.int_AusgansRechnung));
+            cmd_Command.Parameters.Add(new SqlParameter("@Artikel  ", this.int_Artikel));
+        }
 
-		public override void Insert () {
-			executeCommand ("dbo.InsertAusgangsrechnungPositionRow");
-		}
-		#endregion
-	}
+        public override void Insert()
+        {
+            executeCommand("dbo.InsertAusgangsrechnungPositionRow");
+        }
+
+        #endregion Public Members
+    }
 }

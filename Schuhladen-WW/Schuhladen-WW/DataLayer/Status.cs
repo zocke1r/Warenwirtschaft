@@ -5,12 +5,16 @@ namespace Schuhladen_WW.DataLayer
 {
     public class Status : BaseClassDataLayer
     {
-		#region private Members
+        #region private Members
+
         private int int_numeral;
         private string str_bezeichnung;
-		#endregion
-		#region public members
-		[PropertyBridge ("ID")]
+
+        #endregion private Members
+
+        #region public members
+
+        [PropertyBridge("ID")]
         public int int_Id
         {
             get { return int_id; }
@@ -52,18 +56,22 @@ namespace Schuhladen_WW.DataLayer
             }
         }
 
-		public override void Update () {
-			executeUpdate ("dbo.UpdateStatusRow");
-		}
+        public override void Update()
+        {
+            executeUpdate("dbo.UpdateStatusRow");
+        }
 
-		public override void Insert () {
-			executeCommand ("dbo.InsertStatusRow");
-		}
+        public override void Insert()
+        {
+            executeCommand("dbo.InsertStatusRow");
+        }
 
-		protected override void fillParameter (SqlCommand cmd_Command) {
-			cmd_Command.Parameters.Add (new SqlParameter ("@Bezeichnung", this.str_Bezeichnung));
-			cmd_Command.Parameters.Add (new SqlParameter ("@Numeral", this.int_Numeral));
-		}
-		#endregion
-	}
+        protected override void fillParameter(SqlCommand cmd_Command)
+        {
+            cmd_Command.Parameters.Add(new SqlParameter("@Bezeichnung", this.str_Bezeichnung));
+            cmd_Command.Parameters.Add(new SqlParameter("@Numeral", this.int_Numeral));
+        }
+
+        #endregion public members
+    }
 }

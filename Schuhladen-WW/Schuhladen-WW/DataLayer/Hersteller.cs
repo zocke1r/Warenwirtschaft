@@ -1,7 +1,7 @@
-﻿using System.Linq;
+﻿using Schuhladen_WW.DataLayer.Mapping;
 using Schuhladen_WW.Mapping;
-using Schuhladen_WW.DataLayer.Mapping;
 using System.Data.SqlClient;
+using System.Linq;
 
 namespace Schuhladen_WW.DataLayer
 {
@@ -13,7 +13,7 @@ namespace Schuhladen_WW.DataLayer
         public Adresse _Adresse => DataController.ReturnAdresse().Where(x => x.int_Id == int_adressid).First();
 
         [PropertyBridge("ID")]
-       public int int_ID
+        public int int_ID
         {
             get { return int_id; }
             set
@@ -54,8 +54,9 @@ namespace Schuhladen_WW.DataLayer
             }
         }
 
-		public override void Update () {
-			executeUpdate ("dbo.UpdateHerstellerRow");
+        public override void Update()
+        {
+            executeUpdate("dbo.UpdateHerstellerRow");
         }
 
         public void InsertNewHersteller(Hersteller _Hersteller, Adresse __Adresse)
@@ -75,17 +76,19 @@ namespace Schuhladen_WW.DataLayer
 
         public override void Delete()
         {
-			base.Delete ();
-			_Adresse.Delete ();
+            base.Delete();
+            _Adresse.Delete();
         }
 
-		public override void Insert () {
-			executeUpdate ("dbo.InsertHerstellerRow");
-		}
+        public override void Insert()
+        {
+            executeUpdate("dbo.InsertHerstellerRow");
+        }
 
-		protected override void fillParameter (SqlCommand cmd_Command) {
-			cmd_Command.Parameters.Add (new SqlParameter ("@Name", this.str_Name));
-			cmd_Command.Parameters.Add (new SqlParameter ("@Adresse", this.int_AdressId));
-		}
-	}
+        protected override void fillParameter(SqlCommand cmd_Command)
+        {
+            cmd_Command.Parameters.Add(new SqlParameter("@Name", this.str_Name));
+            cmd_Command.Parameters.Add(new SqlParameter("@Adresse", this.int_AdressId));
+        }
+    }
 }

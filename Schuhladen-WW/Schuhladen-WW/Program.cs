@@ -1,11 +1,9 @@
-﻿
-namespace Schuhladen_WW
+﻿namespace Schuhladen_WW
 {
-    class Program
+    internal class Program
     {
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
-
         }
     }
 }

@@ -23,7 +23,7 @@
                 </ItemsPanelTemplate>
             </StatusBar.ItemsPanel>
             <StatusBarItem>
-                <ProgressBar Value="100" Width="200" Height="16" HorizontalAlignment="Center"/>
+                <ProgressBar Value="100" Width="200" Height="16" HorizontalAlignment="Center" />
             </StatusBarItem>
             <Separator Grid.Column="1" />
             <StatusBarItem Grid.Column="2">
@@ -39,36 +39,36 @@
                 <Grid Background="White" Margin="135,-113,-914,-33">
                     <DataGrid x:Name="ArticleGrid" Margin="286,0,0,0" FontFamily="Titillium Web" GridLinesVisibility="All" HorizontalGridLinesBrush="Black" VerticalGridLinesBrush="Black" EnableColumnVirtualization="True" Controls:ScrollViewerHelper.IsHorizontalScrollWheelEnabled="True" IsReadOnly="True" Background="#FFDEE3E1" SelectionChanged="ArtikelGrid_SelectionChanged_1">
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="#" Width="35" Binding="{Binding int_ID}"/>
+                            <DataGridTextColumn Header="#" Width="35" Binding="{Binding int_ID}" />
                             <DataGridTextColumn Header="Model" Width="70" Binding="{Binding _Model.str_Description}" />
                             <DataGridTextColumn Header="Hersteller" Width="100" Binding="{Binding _Model._Hersteller.str_Name}" />
                             <DataGridTextColumn Header="EAN" Width="105" Binding="{Binding str_EAN}" />
                             <DataGridTextColumn Header="Größe" Width="80" Binding="{Binding _Groesse.str_EU}" />
-                            <DataGridTextColumn Header="EK" Width="60" Binding="{Binding dbl_BuyPrice}"/>
-                            <DataGridTextColumn Header="VK" Width="60" Binding="{Binding dbl_SellPrice}"/>
-                            <DataGridTextColumn Header="Bestand" Width="*" Binding="{Binding int_Stock}"/>
+                            <DataGridTextColumn Header="EK" Width="60" Binding="{Binding dbl_BuyPrice}" />
+                            <DataGridTextColumn Header="VK" Width="60" Binding="{Binding dbl_SellPrice}" />
+                            <DataGridTextColumn Header="Bestand" Width="*" Binding="{Binding int_Stock}" />
                         </DataGrid.Columns>
                     </DataGrid>
                     <TabControl HorizontalAlignment="Left" Height="488" Margin="10,10,0,0" VerticalAlignment="Top" Width="260" BorderBrush="Black" BorderThickness="1,0,1,0">
                         <TabItem Header="Erstellen">
-                            <Grid Background="White" Margin="0,0,0,1"/>
+                            <Grid Background="White" Margin="0,0,0,1" />
                         </TabItem>
                         <TabItem Header="Bearbeiten">
                             <Grid Background="White" Margin="0,0,0,1">
                                 <Label x:Name="ArtikelNothingSelected" Content="Bitte alle Felder ausfüllen" HorizontalAlignment="Center" Margin="38,10,39,0" VerticalAlignment="Top" RenderTransformOrigin="0.378,0.393" Width="177" Height="29" FontWeight="Medium" Foreground="Red" IsEnabled="False" Visibility="Hidden" />
-                                <Label Content="Model:" HorizontalAlignment="Left" Margin="8,63,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.081,-0.321" Height="29" Width="53"/>
-                                <Label Content="EAN:" HorizontalAlignment="Left" Margin="8,92,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.081,-0.321" Height="29" Width="53"/>
-                                <Label Content="Größe:" HorizontalAlignment="Left" Margin="8,126,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.081,-0.321" Height="29" Width="72"/>
-                                <Label Content="EK:" HorizontalAlignment="Left" Margin="8,156,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.081,-0.321" Height="29" Width="72"/>
-                                <Label Content="VK:" HorizontalAlignment="Left" Margin="8,185,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.081,-0.321" Height="29" Width="82"/>
-                                <Label Content="Bestand:" HorizontalAlignment="Left" Margin="8,219,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.081,-0.321" Height="29" Width="82"/>
-                                <ComboBox x:Name="ArtikelModelUpdate" HorizontalAlignment="Left" Height="23" Margin="97,63,0,0" VerticalAlignment="Top" Width="149" BorderBrush="LightGray" BorderThickness="1,1,1,1"/>
-                                <TextBox x:Name="ArtikelEANUpdate" HorizontalAlignment="Left" Height="23" Margin="97,94,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="149" BorderBrush="LightGray" BorderThickness="1,1,1,1" TextChanged="textBox_TextChanged"/>
-                                <ComboBox x:Name="ArtikelGroesseUpdate" HorizontalAlignment="Left" Height="23" Margin="97,126,0,0"  VerticalAlignment="Top" Width="149"/>
-                                <TextBox x:Name="ArtikelEKUpdate" HorizontalAlignment="Left" Height="23" Margin="97,157,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="149" BorderBrush="LightGray" BorderThickness="1,1,1,1" TextChanged="textBox_TextChanged" RenderTransformOrigin="0.567,5.212"/>
-                                <TextBox x:Name="ArtikelVKUpdate" HorizontalAlignment="Left" Height="23" Margin="97,188,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="149" BorderBrush="LightGray" BorderThickness="1,1,1,1" TextChanged="textBox_TextChanged"/>
+                                <Label Content="Model:" HorizontalAlignment="Left" Margin="8,63,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.081,-0.321" Height="29" Width="53" />
+                                <Label Content="EAN:" HorizontalAlignment="Left" Margin="8,92,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.081,-0.321" Height="29" Width="53" />
+                                <Label Content="Größe:" HorizontalAlignment="Left" Margin="8,126,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.081,-0.321" Height="29" Width="72" />
+                                <Label Content="EK:" HorizontalAlignment="Left" Margin="8,156,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.081,-0.321" Height="29" Width="72" />
+                                <Label Content="VK:" HorizontalAlignment="Left" Margin="8,185,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.081,-0.321" Height="29" Width="82" />
+                                <Label Content="Bestand:" HorizontalAlignment="Left" Margin="8,219,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.081,-0.321" Height="29" Width="82" />
+                                <ComboBox x:Name="ArtikelModelUpdate" HorizontalAlignment="Left" Height="23" Margin="97,63,0,0" VerticalAlignment="Top" Width="149" BorderBrush="LightGray" BorderThickness="1,1,1,1" />
+                                <TextBox x:Name="ArtikelEANUpdate" HorizontalAlignment="Left" Height="23" Margin="97,94,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="149" BorderBrush="LightGray" BorderThickness="1,1,1,1" TextChanged="textBox_TextChanged" />
+                                <ComboBox x:Name="ArtikelGroesseUpdate" HorizontalAlignment="Left" Height="23" Margin="97,126,0,0"  VerticalAlignment="Top" Width="149" />
+                                <TextBox x:Name="ArtikelEKUpdate" HorizontalAlignment="Left" Height="23" Margin="97,157,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="149" BorderBrush="LightGray" BorderThickness="1,1,1,1" TextChanged="textBox_TextChanged" RenderTransformOrigin="0.567,5.212" />
+                                <TextBox x:Name="ArtikelVKUpdate" HorizontalAlignment="Left" Height="23" Margin="97,188,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="149" BorderBrush="LightGray" BorderThickness="1,1,1,1" TextChanged="textBox_TextChanged" />
                                 <TextBox x:Name="ArtikelBestandUpdate" HorizontalAlignment="Left" Height="23" Margin="97,222,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="149" BorderBrush="LightGray" BorderThickness="1,1,1,1" TextChanged="textBox_TextChanged" />
-                                <Button x:Name="ArtikelSaveButtonUpdate" Content="Speichern" HorizontalAlignment="Left" Margin="10,407,0,0" VerticalAlignment="Top" Width="234" RenderTransformOrigin="0.16,0.185" IsEnabled="False" Click="ArtikelSaveButtonUpdate_Click"/>
+                                <Button x:Name="ArtikelSaveButtonUpdate" Content="Speichern" HorizontalAlignment="Left" Margin="10,407,0,0" VerticalAlignment="Top" Width="234" RenderTransformOrigin="0.16,0.185" IsEnabled="False" Click="ArtikelSaveButtonUpdate_Click" />
                             </Grid>
                         </TabItem>
                     </TabControl>
@@ -78,59 +78,59 @@
                 <Grid Background="White" Margin="135,-113,-914,-33">
                     <DataGrid x:Name="HerstellerGrid" Margin="286,0,0,0" FontFamily="Titillium Web" GridLinesVisibility="All" HorizontalGridLinesBrush="Black" VerticalGridLinesBrush="Black" EnableColumnVirtualization="True" Controls:ScrollViewerHelper.IsHorizontalScrollWheelEnabled="True" IsReadOnly="True" Background="#FFDEE3E1" SelectionChanged="HerstellerGrid_SelectionChanged_1">
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="#" Width="35" Binding="{Binding int_ID}"/>
+                            <DataGridTextColumn Header="#" Width="35" Binding="{Binding int_ID}" />
                             <DataGridTextColumn Header="Namen" Width="100" Binding="{Binding str_Name}" />
                             <DataGridTextColumn Header="Strasse" Width="170" Binding="{Binding _Adresse.str_Strasse}" />
                             <DataGridTextColumn Header="Hausnr." Width="80" Binding="{Binding _Adresse.str_Hausnummer}" />
-                            <DataGridTextColumn Header="Ort" Width="60" Binding="{Binding _Adresse.str_Ort}"/>
-                            <DataGridTextColumn Header="PLZ" Width="60" Binding="{Binding _Adresse.str_Plz}"/>
-                            <DataGridTextColumn Header="Adresszusatz" Width="*" Binding="{Binding _Adresse.str_Adresszusatz}"/>
+                            <DataGridTextColumn Header="Ort" Width="60" Binding="{Binding _Adresse.str_Ort}" />
+                            <DataGridTextColumn Header="PLZ" Width="60" Binding="{Binding _Adresse.str_Plz}" />
+                            <DataGridTextColumn Header="Adresszusatz" Width="*" Binding="{Binding _Adresse.str_Adresszusatz}" />
                         </DataGrid.Columns>
                     </DataGrid>
                     <TabControl HorizontalAlignment="Left" Height="488" Margin="10,10,0,0" VerticalAlignment="Top" Width="260" BorderBrush="Black" BorderThickness="1,0,1,0">
                         <TabItem Header="Erstellen">
                             <Grid Background="White" Margin="0,0,0,-5">
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="57*"/>
-                                    <ColumnDefinition Width="28*"/>
+                                    <ColumnDefinition Width="57*" />
+                                    <ColumnDefinition Width="28*" />
                                 </Grid.ColumnDefinitions>
                                 <Label x:Name="HerstellerNothingSelectedInsert" Content="Bitte alle Felder ausfülen" HorizontalAlignment="Center" Margin="38,10,39,0" VerticalAlignment="Top" RenderTransformOrigin="0.378,0.393" Width="177" Height="29" FontWeight="Medium" Foreground="Red" IsEnabled="False" Visibility="Hidden" Grid.ColumnSpan="2" />
-                                <Label Content="Namen:" HorizontalAlignment="Left" Margin="10,60,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.081,-0.321" Height="29" Width="53"/>
-                                <Label Content="Strasse:" HorizontalAlignment="Left" Margin="10,94,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.081,-0.321" Height="29" Width="53"/>
-                                <Label Content="Hausnr.:" HorizontalAlignment="Left" Margin="10,128,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.081,-0.321" Height="29" Width="53"/>
-                                <Label Content="Ort:" HorizontalAlignment="Left" Margin="10,162,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.081,-0.321" Height="29" Width="53"/>
-                                <Label Content="Postleitzahl:" HorizontalAlignment="Left" Margin="10,196,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.081,-0.321" Height="29" Width="72"/>
-                                <Label Content="Adresszusatz:" HorizontalAlignment="Left" Margin="10,230,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.081,-0.321" Height="29" Width="82"/>
-                                <TextBox x:Name="HerstellerNameUpdateInsert" HorizontalAlignment="Left" Height="23" Margin="95,63,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="149" BorderBrush="LightGray" BorderThickness="1,1,1,1" TextChanged="textBox_TextChanged" Grid.ColumnSpan="2"/>
-                                <TextBox x:Name="HerstellerStrasseUpdateInsert" HorizontalAlignment="Left" Height="23" Margin="95,97,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="149" BorderBrush="LightGray" BorderThickness="1,1,1,1" TextChanged="textBox_TextChanged" Grid.ColumnSpan="2"/>
-                                <TextBox x:Name="HerstellerHausnummerUpdateInsert" HorizontalAlignment="Left" Height="23" Margin="95,128,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="149" BorderBrush="LightGray" BorderThickness="1,1,1,1" TextChanged="textBox_TextChanged" Grid.ColumnSpan="2"/>
-                                <TextBox x:Name="HerstellerOrtUpdateInsert" HorizontalAlignment="Left" Height="23" Margin="95,162,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="149" BorderBrush="LightGray" BorderThickness="1,1,1,1" TextChanged="textBox_TextChanged" Grid.ColumnSpan="2"/>
-                                <TextBox x:Name="HerstellerPostleitzahlUpdateInsert" HorizontalAlignment="Left" Height="23" Margin="95,196,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="149" BorderBrush="LightGray" BorderThickness="1,1,1,1" TextChanged="textBox_TextChanged" Grid.ColumnSpan="2"/>
+                                <Label Content="Namen:" HorizontalAlignment="Left" Margin="10,60,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.081,-0.321" Height="29" Width="53" />
+                                <Label Content="Strasse:" HorizontalAlignment="Left" Margin="10,94,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.081,-0.321" Height="29" Width="53" />
+                                <Label Content="Hausnr.:" HorizontalAlignment="Left" Margin="10,128,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.081,-0.321" Height="29" Width="53" />
+                                <Label Content="Ort:" HorizontalAlignment="Left" Margin="10,162,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.081,-0.321" Height="29" Width="53" />
+                                <Label Content="Postleitzahl:" HorizontalAlignment="Left" Margin="10,196,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.081,-0.321" Height="29" Width="72" />
+                                <Label Content="Adresszusatz:" HorizontalAlignment="Left" Margin="10,230,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.081,-0.321" Height="29" Width="82" />
+                                <TextBox x:Name="HerstellerNameUpdateInsert" HorizontalAlignment="Left" Height="23" Margin="95,63,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="149" BorderBrush="LightGray" BorderThickness="1,1,1,1" TextChanged="textBox_TextChanged" Grid.ColumnSpan="2" />
+                                <TextBox x:Name="HerstellerStrasseUpdateInsert" HorizontalAlignment="Left" Height="23" Margin="95,97,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="149" BorderBrush="LightGray" BorderThickness="1,1,1,1" TextChanged="textBox_TextChanged" Grid.ColumnSpan="2" />
+                                <TextBox x:Name="HerstellerHausnummerUpdateInsert" HorizontalAlignment="Left" Height="23" Margin="95,128,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="149" BorderBrush="LightGray" BorderThickness="1,1,1,1" TextChanged="textBox_TextChanged" Grid.ColumnSpan="2" />
+                                <TextBox x:Name="HerstellerOrtUpdateInsert" HorizontalAlignment="Left" Height="23" Margin="95,162,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="149" BorderBrush="LightGray" BorderThickness="1,1,1,1" TextChanged="textBox_TextChanged" Grid.ColumnSpan="2" />
+                                <TextBox x:Name="HerstellerPostleitzahlUpdateInsert" HorizontalAlignment="Left" Height="23" Margin="95,196,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="149" BorderBrush="LightGray" BorderThickness="1,1,1,1" TextChanged="textBox_TextChanged" Grid.ColumnSpan="2" />
                                 <TextBox x:Name="HerstellerAdresszusatzUpdateInsert" HorizontalAlignment="Left" Height="23" Margin="95,230,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="149" BorderBrush="LightGray" BorderThickness="1,1,1,1" TextChanged="textBox_TextChanged" Grid.ColumnSpan="2" />
-                                <Button x:Name="HerstellerSaveButtonInsert" Content="Speichern" HorizontalAlignment="Left" Margin="10,407,0,0" VerticalAlignment="Top" Width="234" RenderTransformOrigin="0.16,0.185" Click="HerstellerSaveButtonInsert_Click" IsEnabled="False" Grid.ColumnSpan="2"/>
+                                <Button x:Name="HerstellerSaveButtonInsert" Content="Speichern" HorizontalAlignment="Left" Margin="10,407,0,0" VerticalAlignment="Top" Width="234" RenderTransformOrigin="0.16,0.185" Click="HerstellerSaveButtonInsert_Click" IsEnabled="False" Grid.ColumnSpan="2" />
                             </Grid>
                         </TabItem>
                         <TabItem Header="Bearbeiten">
                             <Grid Background="White" Margin="0,0,0,-5">
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="16*"/>
-                                    <ColumnDefinition Width="111*"/>
+                                    <ColumnDefinition Width="16*" />
+                                    <ColumnDefinition Width="111*" />
                                 </Grid.ColumnDefinitions>
                                 <Label x:Name="HerstellerNothingSelected" Content="Selektieren Sie einen Datensatz. " HorizontalAlignment="Center" Margin="29,10,39,0" VerticalAlignment="Top" RenderTransformOrigin="0.378,0.393" Width="186" Height="29" FontWeight="Medium" Foreground="Red" IsEnabled="False" Grid.ColumnSpan="2" />
-                                <Label Content="Namen:" HorizontalAlignment="Left" Margin="10,60,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.081,-0.321" Height="29" Width="53" Grid.ColumnSpan="2"/>
-                                <Label Content="Strasse:" HorizontalAlignment="Left" Margin="10,94,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.081,-0.321" Height="29" Width="53" Grid.ColumnSpan="2"/>
-                                <Label Content="Hausnr.:" HorizontalAlignment="Left" Margin="10,128,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.081,-0.321" Height="29" Width="53" Grid.ColumnSpan="2"/>
-                                <Label Content="Ort:" HorizontalAlignment="Left" Margin="10,162,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.081,-0.321" Height="29" Width="53" Grid.ColumnSpan="2"/>
-                                <Label Content="Postleitzahl:" HorizontalAlignment="Left" Margin="10,196,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.081,-0.321" Height="29" Width="72" Grid.ColumnSpan="2"/>
-                                <Label Content="Adresszusatz:" HorizontalAlignment="Left" Margin="10,230,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.081,-0.321" Height="29" Width="82" Grid.ColumnSpan="2"/>
-                                <TextBox x:Name="HerstellerNameUpdate" HorizontalAlignment="Left" Height="23" Margin="63,63,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="149" BorderBrush="LightGray" BorderThickness="1,1,1,1" Grid.Column="1"/>
-                                <TextBox x:Name="HerstellerStrasseUpdate" HorizontalAlignment="Left" Height="23" Margin="63,97,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="149" BorderBrush="LightGray" BorderThickness="1,1,1,1" Grid.Column="1"/>
-                                <TextBox x:Name="HerstellerHausnummerUpdate" HorizontalAlignment="Left" Height="23" Margin="63,128,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="149" BorderBrush="LightGray" BorderThickness="1,1,1,1" Grid.Column="1"/>
-                                <TextBox x:Name="HerstellerOrtUpdate" HorizontalAlignment="Left" Height="23" Margin="63,162,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="149" BorderBrush="LightGray" BorderThickness="1,1,1,1" Grid.Column="1"/>
-                                <TextBox x:Name="HerstellerPostleitzahlUpdate" HorizontalAlignment="Left" Height="23" Margin="63,196,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="149" BorderBrush="LightGray" BorderThickness="1,1,1,1" Grid.Column="1"/>
-                                <TextBox x:Name="HerstellerAdresszusatzUpdate" HorizontalAlignment="Left" Height="23" Margin="63,230,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="149" BorderBrush="LightGray" BorderThickness="1,1,1,1" Grid.Column="1"/>
-                                <Button x:Name="HerstellerSaveButton" Content="Speichern" HorizontalAlignment="Left" Margin="10,370,0,0" VerticalAlignment="Top" Width="234" RenderTransformOrigin="0.16,0.185" Click="Button_Click" Grid.ColumnSpan="2"/>
-                                <Button x:Name="HerstellerDeleteButton" Content="Datensatz löschen" HorizontalAlignment="Left" Margin="10,407,0,0" VerticalAlignment="Top" Width="234" RenderTransformOrigin="0.16,0.185" IsEnabled="False" Click="HerstellerDeleteButton_Click" Grid.ColumnSpan="2"/>
+                                <Label Content="Namen:" HorizontalAlignment="Left" Margin="10,60,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.081,-0.321" Height="29" Width="53" Grid.ColumnSpan="2" />
+                                <Label Content="Strasse:" HorizontalAlignment="Left" Margin="10,94,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.081,-0.321" Height="29" Width="53" Grid.ColumnSpan="2" />
+                                <Label Content="Hausnr.:" HorizontalAlignment="Left" Margin="10,128,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.081,-0.321" Height="29" Width="53" Grid.ColumnSpan="2" />
+                                <Label Content="Ort:" HorizontalAlignment="Left" Margin="10,162,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.081,-0.321" Height="29" Width="53" Grid.ColumnSpan="2" />
+                                <Label Content="Postleitzahl:" HorizontalAlignment="Left" Margin="10,196,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.081,-0.321" Height="29" Width="72" Grid.ColumnSpan="2" />
+                                <Label Content="Adresszusatz:" HorizontalAlignment="Left" Margin="10,230,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.081,-0.321" Height="29" Width="82" Grid.ColumnSpan="2" />
+                                <TextBox x:Name="HerstellerNameUpdate" HorizontalAlignment="Left" Height="23" Margin="63,63,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="149" BorderBrush="LightGray" BorderThickness="1,1,1,1" Grid.Column="1" />
+                                <TextBox x:Name="HerstellerStrasseUpdate" HorizontalAlignment="Left" Height="23" Margin="63,97,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="149" BorderBrush="LightGray" BorderThickness="1,1,1,1" Grid.Column="1" />
+                                <TextBox x:Name="HerstellerHausnummerUpdate" HorizontalAlignment="Left" Height="23" Margin="63,128,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="149" BorderBrush="LightGray" BorderThickness="1,1,1,1" Grid.Column="1" />
+                                <TextBox x:Name="HerstellerOrtUpdate" HorizontalAlignment="Left" Height="23" Margin="63,162,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="149" BorderBrush="LightGray" BorderThickness="1,1,1,1" Grid.Column="1" />
+                                <TextBox x:Name="HerstellerPostleitzahlUpdate" HorizontalAlignment="Left" Height="23" Margin="63,196,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="149" BorderBrush="LightGray" BorderThickness="1,1,1,1" Grid.Column="1" />
+                                <TextBox x:Name="HerstellerAdresszusatzUpdate" HorizontalAlignment="Left" Height="23" Margin="63,230,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="149" BorderBrush="LightGray" BorderThickness="1,1,1,1" Grid.Column="1" />
+                                <Button x:Name="HerstellerSaveButton" Content="Speichern" HorizontalAlignment="Left" Margin="10,370,0,0" VerticalAlignment="Top" Width="234" RenderTransformOrigin="0.16,0.185" Click="Button_Click" Grid.ColumnSpan="2" />
+                                <Button x:Name="HerstellerDeleteButton" Content="Datensatz löschen" HorizontalAlignment="Left" Margin="10,407,0,0" VerticalAlignment="Top" Width="234" RenderTransformOrigin="0.16,0.185" IsEnabled="False" Click="HerstellerDeleteButton_Click" Grid.ColumnSpan="2" />
                             </Grid>
                         </TabItem>
                     </TabControl>
@@ -138,13 +138,5 @@
             </TabItem>
         </TabControl>
         <Label Content="Menü" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="121" Height="36" FontSize="20" />
-
     </Grid>
-
-
-
-
-
 </Controls:MetroWindow>
-
-

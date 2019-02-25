@@ -1,5 +1,5 @@
-﻿using System.Collections.Generic;
-using Schuhladen_WW.Mapping;
+﻿using Schuhladen_WW.Mapping;
+using System.Collections.Generic;
 using System.Data.SqlClient;
 
 namespace Schuhladen_WW.DataLayer
@@ -13,14 +13,14 @@ namespace Schuhladen_WW.DataLayer
 
         private Dictionary<string, string> _SizeList = new Dictionary<string, string>();
 
-
         [PropertyBridge("ID")]
         public int int_Id
         {
             get { return int_id; }
             set
             {
-                if (int_id != value) {
+                if (int_id != value)
+                {
                     int_id = value;
                     RaiseEvent(this.GetType(), "ID", int_id);
                 }
@@ -83,19 +83,22 @@ namespace Schuhladen_WW.DataLayer
             }
         }
 
-		public override void Update () {
-			executeUpdate ("dbo.UpdateGroesseRow");
-		}
+        public override void Update()
+        {
+            executeUpdate("dbo.UpdateGroesseRow");
+        }
 
-		protected override void fillParameter (SqlCommand cmd) {
-			cmd.Parameters.Add (new SqlParameter ("@US", this.str_US));
-			cmd.Parameters.Add (new SqlParameter ("@EU", this.str_EU));
-			cmd.Parameters.Add (new SqlParameter ("@GB", this.str_GB));
-			cmd.Parameters.Add (new SqlParameter ("@cm", this.dbl_CM));
-		}
+        protected override void fillParameter(SqlCommand cmd)
+        {
+            cmd.Parameters.Add(new SqlParameter("@US", this.str_US));
+            cmd.Parameters.Add(new SqlParameter("@EU", this.str_EU));
+            cmd.Parameters.Add(new SqlParameter("@GB", this.str_GB));
+            cmd.Parameters.Add(new SqlParameter("@cm", this.dbl_CM));
+        }
 
-		public override void Insert () {
-			executeCommand ("dbo.UpdateGroesseRow");
-		}
-	}
+        public override void Insert()
+        {
+            executeCommand("dbo.UpdateGroesseRow");
+        }
+    }
 }

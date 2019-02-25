@@ -1,11 +1,10 @@
-﻿using System;
+﻿using Schuhladen_WW.DataLayer;
+using Schuhladen_WW.DataLayer.Mapping;
+using System;
 using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
-using Schuhladen_WW.DataLayer.Mapping;
-using Schuhladen_WW.DataLayer;
-
 
 namespace WW_GUI
 {
@@ -26,7 +25,7 @@ namespace WW_GUI
         public void FillArticleGrid()
         {
             List<Live_Article> _ListArticles = DataController.ReturnLiveArtikel();
-            
+
             // Clear items
             ArticleGrid.Items.Clear();
 
@@ -37,6 +36,7 @@ namespace WW_GUI
         }
 
         #region Hersteller
+
         public void FillHerstellerGrid()
         {
             List<Hersteller> _ListArticles = DataController.ReturnHersteller();
@@ -91,11 +91,12 @@ namespace WW_GUI
             HerstellerNothingSelectedInsert.Foreground = Brushes.Green;
             HerstellerNothingSelectedInsert.Visibility = Visibility.Visible;
             HerstellerSaveButtonInsert.IsEnabled = false;
-
         }
-        #endregion
+
+        #endregion Erstellen
 
         #region Bearbeiten
+
         private void HerstellerGrid_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
         {
             if (HerstellerGrid.SelectedIndex != -1)
@@ -168,9 +169,9 @@ namespace WW_GUI
             HerstellerSaveButton.IsEnabled = false;
         }
 
-        #endregion
+        #endregion Bearbeiten
 
-        #endregion
+        #endregion Hersteller
 
         #region Live_Artikel
 
@@ -257,7 +258,7 @@ namespace WW_GUI
                 ArtikelSaveButtonUpdate.IsEnabled = false;
             }
         }
-        #endregion
-    }
 
+        #endregion Live_Artikel
+    }
 }

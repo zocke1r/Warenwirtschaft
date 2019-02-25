@@ -1,11 +1,11 @@
 ﻿using System;
-using System.Data.SqlClient;
 using System.Configuration;
 using System.Data;
+using System.Data.SqlClient;
 
 namespace Schuhladen_WW.DataBase
 {
-    sealed class DBConnection
+    internal sealed class DBConnection
     {
         private SqlConnection _Connection;
         private string str_ConnectionString;
@@ -22,6 +22,7 @@ namespace Schuhladen_WW.DataBase
         }
 
         #region Public Methods
+
         // Gibt die zuvor deklarierte Instanz zurück
         public static DBConnection Instance()
         {
@@ -48,13 +49,13 @@ namespace Schuhladen_WW.DataBase
                     }
                 }
                 return _ResultTable;
-
             }
             catch (Exception ex)
             {
                 Console.WriteLine("An Exception occured: " + ex.Message);
                 return _ResultTable;
-            } finally
+            }
+            finally
             {
                 _Connection.Close();
             }
@@ -78,7 +79,8 @@ namespace Schuhladen_WW.DataBase
             {
                 Console.WriteLine("An Exception occured: " + ex.Message);
                 return false;
-            } finally
+            }
+            finally
             {
                 _Connection.Close();
             }
@@ -101,15 +103,17 @@ namespace Schuhladen_WW.DataBase
             {
                 Console.WriteLine("An Exception occured: " + ex.Message);
                 return false;
-            } finally
+            }
+            finally
             {
                 _Connection.Close();
             }
         }
 
-        #endregion
+        #endregion Public Methods
 
         #region Private Methods
+
         // Öffnet eine Verbindung zu Datenbank
         private bool Open()
         {
@@ -147,7 +151,8 @@ namespace Schuhladen_WW.DataBase
             {
                 Console.WriteLine("An Exception occured: " + ex.Message);
                 return false;
-            } finally
+            }
+            finally
             {
                 _Connection.Close();
             }
@@ -164,8 +169,6 @@ namespace Schuhladen_WW.DataBase
             return str_ValueToReturn;
         }
 
-        #endregion
-
-
+        #endregion Private Methods
     }
 }

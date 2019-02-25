@@ -1,7 +1,7 @@
-﻿using System.Linq;
+﻿using Schuhladen_WW.DataLayer.Mapping;
 using Schuhladen_WW.Mapping;
-using Schuhladen_WW.DataLayer.Mapping;
 using System.Data.SqlClient;
+using System.Linq;
 
 namespace Schuhladen_WW.DataLayer
 {
@@ -13,7 +13,7 @@ namespace Schuhladen_WW.DataLayer
         private int int_artikel;
 
         public Live_Article _LiveArticle => DataController.ReturnLiveArtikel().Where(x => x.int_ID == int_artikel).First();
-        public Bestellung _Bestellung  => DataController.ReturnBestellung().Where(x => x.int_Id == int_bestellung).First();
+        public Bestellung _Bestellung => DataController.ReturnBestellung().Where(x => x.int_Id == int_bestellung).First();
 
         [PropertyBridge("ID")]
         public int int_Id
@@ -42,6 +42,7 @@ namespace Schuhladen_WW.DataLayer
                 }
             }
         }
+
         [PropertyBridge("Preis")]
         public double dbl_Preis
         {
@@ -84,19 +85,22 @@ namespace Schuhladen_WW.DataLayer
             }
         }
 
-        public override void Update() {
-			executeUpdate ("dbo.UpdateBestellungPositionRow");
-		}
+        public override void Update()
+        {
+            executeUpdate("dbo.UpdateBestellungPositionRow");
+        }
 
-		protected override void fillParameter (SqlCommand cmd) {
-			cmd.Parameters.Add (new SqlParameter ("@Anzahl", this.int_Anzahl));
-			cmd.Parameters.Add (new SqlParameter ("@Preis", this.dbl_Preis));
-			cmd.Parameters.Add (new SqlParameter ("@Bestellung", this.int_Bestellung));
-			cmd.Parameters.Add (new SqlParameter ("@Artikel", this.int_Artikel));
-		}
+        protected override void fillParameter(SqlCommand cmd)
+        {
+            cmd.Parameters.Add(new SqlParameter("@Anzahl", this.int_Anzahl));
+            cmd.Parameters.Add(new SqlParameter("@Preis", this.dbl_Preis));
+            cmd.Parameters.Add(new SqlParameter("@Bestellung", this.int_Bestellung));
+            cmd.Parameters.Add(new SqlParameter("@Artikel", this.int_Artikel));
+        }
 
-		public override void Insert () {
-			executeCommand("dbo.UpdateBestellungPositionRow");
-		}
-	}
+        public override void Insert()
+        {
+            executeCommand("dbo.UpdateBestellungPositionRow");
+        }
+    }
 }

@@ -1,8 +1,8 @@
-﻿using System;
-using System.Linq;
+﻿using Schuhladen_WW.DataLayer.Mapping;
 using Schuhladen_WW.Mapping;
-using Schuhladen_WW.DataLayer.Mapping;
+using System;
 using System.Data.SqlClient;
+using System.Linq;
 
 namespace Schuhladen_WW.DataLayer
 {
@@ -101,20 +101,23 @@ namespace Schuhladen_WW.DataLayer
             }
         }
 
-        public override void Update() {
-			executeUpdate ("dbo.UpdateBestellungRow");
-		}
+        public override void Update()
+        {
+            executeUpdate("dbo.UpdateBestellungRow");
+        }
 
-		protected override void fillParameter (SqlCommand cmd) {
-			cmd.Parameters.Add (new SqlParameter ("@Nummer", this.str_Nummer));
-			cmd.Parameters.Add (new SqlParameter ("@Datum", this.t_datum));
-			cmd.Parameters.Add (new SqlParameter ("@Lieferant", this.int_Lieferant));
-			cmd.Parameters.Add (new SqlParameter ("@Status", this.int_Status));
-			cmd.Parameters.Add (new SqlParameter ("@Betrag", this.str_Betrag));
-		}
+        protected override void fillParameter(SqlCommand cmd)
+        {
+            cmd.Parameters.Add(new SqlParameter("@Nummer", this.str_Nummer));
+            cmd.Parameters.Add(new SqlParameter("@Datum", this.t_datum));
+            cmd.Parameters.Add(new SqlParameter("@Lieferant", this.int_Lieferant));
+            cmd.Parameters.Add(new SqlParameter("@Status", this.int_Status));
+            cmd.Parameters.Add(new SqlParameter("@Betrag", this.str_Betrag));
+        }
 
-		public override void Insert () {
-			executeCommand ("dbo.UpdateBestellungRow");
-		}
-	}
+        public override void Insert()
+        {
+            executeCommand("dbo.UpdateBestellungRow");
+        }
+    }
 }

@@ -1,7 +1,7 @@
-﻿using System.Linq;
+﻿using Schuhladen_WW.DataLayer.Mapping;
 using Schuhladen_WW.Mapping;
-using Schuhladen_WW.DataLayer.Mapping;
 using System.Data.SqlClient;
+using System.Linq;
 
 namespace Schuhladen_WW.DataLayer
 {
@@ -114,21 +114,24 @@ namespace Schuhladen_WW.DataLayer
             }
         }
 
-        public override void Update() {
-			executeUpdate ("dbo.UpdateBenutzerRow");
-		}
+        public override void Update()
+        {
+            executeUpdate("dbo.UpdateBenutzerRow");
+        }
 
-		protected override void fillParameter (SqlCommand cmd_Command) {
-			cmd_Command.Parameters.Add (new SqlParameter ("@Name", this.str_Name));
-			cmd_Command.Parameters.Add (new SqlParameter ("@Password", this.str_Password));
-			cmd_Command.Parameters.Add (new SqlParameter ("@Adresse", this.int_Adresse));
-			cmd_Command.Parameters.Add (new SqlParameter ("@Email", this.str_Email));
-			cmd_Command.Parameters.Add (new SqlParameter ("@Berechtigung", this.int_berechtigung));
-			cmd_Command.Parameters.Add (new SqlParameter ("@Telefon", this.str_Telefon));
-		}
+        protected override void fillParameter(SqlCommand cmd_Command)
+        {
+            cmd_Command.Parameters.Add(new SqlParameter("@Name", this.str_Name));
+            cmd_Command.Parameters.Add(new SqlParameter("@Password", this.str_Password));
+            cmd_Command.Parameters.Add(new SqlParameter("@Adresse", this.int_Adresse));
+            cmd_Command.Parameters.Add(new SqlParameter("@Email", this.str_Email));
+            cmd_Command.Parameters.Add(new SqlParameter("@Berechtigung", this.int_berechtigung));
+            cmd_Command.Parameters.Add(new SqlParameter("@Telefon", this.str_Telefon));
+        }
 
-		public override void Insert () {
-			executeCommand ("dbo.InsertBenutzerRow");
-		}
-	}
+        public override void Insert()
+        {
+            executeCommand("dbo.InsertBenutzerRow");
+        }
+    }
 }
