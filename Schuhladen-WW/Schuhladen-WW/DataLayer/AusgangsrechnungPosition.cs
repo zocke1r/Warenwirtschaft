@@ -18,7 +18,7 @@ namespace Schuhladen_WW.DataLayer
 
         #region Public Members
 
-        public Live_Article _LiveArticle => DataController.ReturnLiveArtikel().Where(x => x.int_ID == int_artikel).First();
+        public Live_Artikel _LiveArticle => DataController.ReturnLiveArtikel().Where(x => x.int_ID == int_artikel).First();
         public AusgangsRechnung _AusgangsRechnung => DataController.ReturnAusgangsRechnung().Where(x => x.int_Id == int_ausgangsrechnung).First();
 
         [PropertyBridge("ID")]

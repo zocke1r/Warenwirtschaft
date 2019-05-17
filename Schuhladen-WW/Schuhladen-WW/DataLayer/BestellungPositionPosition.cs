@@ -12,7 +12,7 @@ namespace Schuhladen_WW.DataLayer
         private int int_bestellung;
         private int int_artikel;
 
-        public Live_Article _LiveArticle => DataController.ReturnLiveArtikel().Where(x => x.int_ID == int_artikel).First();
+        public Live_Artikel _LiveArticle => DataController.ReturnLiveArtikel().Where(x => x.int_ID == int_artikel).First();
         public Bestellung _Bestellung => DataController.ReturnBestellung().Where(x => x.int_Id == int_bestellung).First();
 
         [PropertyBridge("ID")]

@@ -58,7 +58,7 @@
     <Compile Include="DataLayer\Hersteller.cs" />
     <Compile Include="DataLayer\Kategorie.cs" />
     <Compile Include="DataLayer\Lieferant.cs" />
-    <Compile Include="DataLayer\Live_Article.cs" />
+    <Compile Include="DataLayer\Live_Artikel.cs" />
     <Compile Include="DataLayer\Mapping\DataController.cs" />
     <Compile Include="DataLayer\Mapping\Generic\CastPrimitives.cs" />
     <Compile Include="DataLayer\Mapping\PropertyBridge.cs" />
@@ -67,8 +67,10 @@
     <Compile Include="DataLayer\Mapping\PropertyMapper.cs" />
     <Compile Include="DataLayer\Model.cs" />
     <Compile Include="DataLayer\Status.cs" />
+    <Compile Include="DataLayer\Stellplatz.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="DataLayer\StellplatzArtikel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

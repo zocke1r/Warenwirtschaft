@@ -6,7 +6,7 @@
         xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         xmlns:local="clr-namespace:WW_GUI"
         mc:Ignorable="d"
-        Title="Schuhladen - Warenwirtschaft" Height="592" Width="1066.932" FontFamily="Titillium Web" ResizeMode="NoResize">
+        Title="Schuhladen - Warenwirtschaft" Height="592" Width="1066.932" FontFamily="Titillium Web" ResizeMode="NoResize" Closing="MetroWindow_Closing">
     <Grid>
         <StatusBar HorizontalAlignment="Left" Height="21" Margin="0,542,-9,0" VerticalAlignment="Top" Width="1070">
             <StatusBar.ItemsPanel>
@@ -26,6 +26,7 @@
                 <ProgressBar Value="100" Width="200" Height="16" HorizontalAlignment="Center" />
             </StatusBarItem>
             <Separator Grid.Column="1" />
+
             <StatusBarItem Grid.Column="2">
                 <TextBlock Text="Benutzer: Testuser" />
             </StatusBarItem>
@@ -51,10 +52,29 @@
                     </DataGrid>
                     <TabControl HorizontalAlignment="Left" Height="488" Margin="10,10,0,0" VerticalAlignment="Top" Width="260" BorderBrush="Black" BorderThickness="1,0,1,0">
                         <TabItem Header="Erstellen">
-                            <Grid Background="White" Margin="0,0,0,1" />
+                            <Grid x:Name="ArtikelInsertGrid" Background="White" Margin="0,-2,0,3">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="18*"/>
+                                    <ColumnDefinition Width="67*"/>
+                                </Grid.ColumnDefinitions>
+                                <Label x:Name="ArtikelNothingSelectedInsert" Content="Bitte alle Felder ausfüllen" HorizontalAlignment="Center" Margin="38,10,39,0" VerticalAlignment="Top" RenderTransformOrigin="0.378,0.393" Width="177" Height="29" FontWeight="Medium" Foreground="Red" IsEnabled="False" Visibility="Hidden" Grid.ColumnSpan="2" />
+                                <Label Content="Model:" HorizontalAlignment="Left" Margin="8,63,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.081,-0.321" Height="29" Width="53" Grid.ColumnSpan="2" />
+                                <Label Content="EAN:" HorizontalAlignment="Left" Margin="8,92,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.081,-0.321" Height="29" Width="53" Grid.ColumnSpan="2" />
+                                <Label Content="Größe:" HorizontalAlignment="Left" Margin="8,126,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.081,-0.321" Height="29" Width="72" Grid.ColumnSpan="2" />
+                                <Label Content="EK:" HorizontalAlignment="Left" Margin="8,156,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.081,-0.321" Height="29" Width="72" Grid.ColumnSpan="2" />
+                                <Label Content="VK:" HorizontalAlignment="Left" Margin="8,185,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.081,-0.321" Height="29" Width="82" Grid.ColumnSpan="2" />
+                                <Label Content="Bestand:" HorizontalAlignment="Left" Margin="8,219,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.081,-0.321" Height="29" Width="82" Grid.ColumnSpan="2" />
+                                <ComboBox x:Name="ArtikelModelInsert" HorizontalAlignment="Left" Height="23" Margin="43.5,63,0,0" VerticalAlignment="Top" Width="149" BorderBrush="LightGray" BorderThickness="1,1,1,1" Grid.Column="1" SelectionChanged="textBox3_TextChanged" />
+                                <TextBox x:Name="ArtikelEANInsert" HorizontalAlignment="Left" Height="23" Margin="43.5,94,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="149" BorderBrush="LightGray" BorderThickness="1,1,1,1" TextChanged="textBox2_TextChanged" Grid.Column="1" />
+                                <ComboBox x:Name="ArtikelGroesseInsert" HorizontalAlignment="Left" Height="23" Margin="43.5,126,0,0"  VerticalAlignment="Top" Width="149" Grid.Column="1" SelectionChanged="textBox3_TextChanged" />
+                                <TextBox x:Name="ArtikelEKInserte" HorizontalAlignment="Left" Height="23" Margin="43.5,157,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="149" BorderBrush="LightGray" BorderThickness="1,1,1,1" TextChanged="textBox2_TextChanged" RenderTransformOrigin="0.567,5.212" Grid.Column="1" />
+                                <TextBox x:Name="ArtikelVKInsert" HorizontalAlignment="Left" Height="23" Margin="43.5,188,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="149" BorderBrush="LightGray" BorderThickness="1,1,1,1" TextChanged="textBox2_TextChanged" Grid.Column="1" />
+                                <TextBox x:Name="ArtikelBestandInsert" HorizontalAlignment="Left" Height="23" Margin="43.5,222,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="149" BorderBrush="LightGray" BorderThickness="1,1,1,1" TextChanged="textBox2_TextChanged" Grid.Column="1" />
+                                <Button x:Name="ArtikelSaveButtonInsert" Content="Speichern" HorizontalAlignment="Left" Margin="10,365,0,0" VerticalAlignment="Top" Width="234" RenderTransformOrigin="0.16,0.185" IsEnabled="False" Click="ArtikelSaveButtonInsert_Click" Grid.ColumnSpan="2" />
+                            </Grid>
                         </TabItem>
                         <TabItem Header="Bearbeiten">
-                            <Grid Background="White" Margin="0,0,0,1">
+                            <Grid x:Name="ArtikelUpdateGrid" Background="White" Margin="0,-2,0,3">
                                 <Label x:Name="ArtikelNothingSelected" Content="Bitte alle Felder ausfüllen" HorizontalAlignment="Center" Margin="38,10,39,0" VerticalAlignment="Top" RenderTransformOrigin="0.378,0.393" Width="177" Height="29" FontWeight="Medium" Foreground="Red" IsEnabled="False" Visibility="Hidden" />
                                 <Label Content="Model:" HorizontalAlignment="Left" Margin="8,63,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.081,-0.321" Height="29" Width="53" />
                                 <Label Content="EAN:" HorizontalAlignment="Left" Margin="8,92,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.081,-0.321" Height="29" Width="53" />
@@ -68,7 +88,14 @@
                                 <TextBox x:Name="ArtikelEKUpdate" HorizontalAlignment="Left" Height="23" Margin="97,157,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="149" BorderBrush="LightGray" BorderThickness="1,1,1,1" TextChanged="textBox_TextChanged" RenderTransformOrigin="0.567,5.212" />
                                 <TextBox x:Name="ArtikelVKUpdate" HorizontalAlignment="Left" Height="23" Margin="97,188,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="149" BorderBrush="LightGray" BorderThickness="1,1,1,1" TextChanged="textBox_TextChanged" />
                                 <TextBox x:Name="ArtikelBestandUpdate" HorizontalAlignment="Left" Height="23" Margin="97,222,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="149" BorderBrush="LightGray" BorderThickness="1,1,1,1" TextChanged="textBox_TextChanged" />
-                                <Button x:Name="ArtikelSaveButtonUpdate" Content="Speichern" HorizontalAlignment="Left" Margin="10,407,0,0" VerticalAlignment="Top" Width="234" RenderTransformOrigin="0.16,0.185" IsEnabled="False" Click="ArtikelSaveButtonUpdate_Click" />
+                                <Button x:Name="ArtikelSaveButtonUpdate" Content="Speichern" HorizontalAlignment="Left" Margin="10,338,0,0" VerticalAlignment="Top" Width="234" RenderTransformOrigin="0.16,0.185" IsEnabled="True" Click="ArtikelSaveButtonUpdate_Click" />
+                                <Button x:Name="ArtikelLabelDelete" Content="Offline" HorizontalAlignment="Left" Margin="179,296,0,0" VerticalAlignment="Top" Width="64" RenderTransformOrigin="0.16,0.185" IsEnabled="False" Click="ArtikelLabelDelete_Click" />
+                                <Label Content="Stellplatz:" HorizontalAlignment="Left" Margin="8,250,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.081,-0.321" Height="29" Width="82" />
+                                <ComboBox x:Name="ArtikelStellplatzUpdate" HorizontalAlignment="Left" Height="23" Margin="97,253,0,0"  VerticalAlignment="Top" Width="149" />
+                                <Button x:Name="ArtikelDeleteButton" Content="Datensatz löschen" HorizontalAlignment="Left" Margin="10,370,0,0" VerticalAlignment="Top" Width="234" RenderTransformOrigin="0.16,0.185" IsEnabled="False" Click="ArticleDeleteButton_Click" />
+                                <Label Content="Stellplatz:" HorizontalAlignment="Left" Margin="8,250,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.081,-0.321" Height="29" Width="82" />
+                                <Label Content="Ist Aktiv:" HorizontalAlignment="Left" Margin="10,295,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.081,-0.321" Height="29" Width="82" />
+                                <Label x:Name="ArtikelIsActive" Content="Nicht Aktiv!" HorizontalAlignment="Left" Margin="97,295,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.081,-0.321" Foreground="Red" Height="29" Width="82" />
                             </Grid>
                         </TabItem>
                     </TabControl>
@@ -89,7 +116,7 @@
                     </DataGrid>
                     <TabControl HorizontalAlignment="Left" Height="488" Margin="10,10,0,0" VerticalAlignment="Top" Width="260" BorderBrush="Black" BorderThickness="1,0,1,0">
                         <TabItem Header="Erstellen">
-                            <Grid Background="White" Margin="0,0,0,-5">
+                            <Grid x:Name="HerstellerInsertGrid" Background="White" Margin="0,0,0,-5">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="57*" />
                                     <ColumnDefinition Width="28*" />
@@ -107,11 +134,11 @@
                                 <TextBox x:Name="HerstellerOrtUpdateInsert" HorizontalAlignment="Left" Height="23" Margin="95,162,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="149" BorderBrush="LightGray" BorderThickness="1,1,1,1" TextChanged="textBox_TextChanged" Grid.ColumnSpan="2" />
                                 <TextBox x:Name="HerstellerPostleitzahlUpdateInsert" HorizontalAlignment="Left" Height="23" Margin="95,196,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="149" BorderBrush="LightGray" BorderThickness="1,1,1,1" TextChanged="textBox_TextChanged" Grid.ColumnSpan="2" />
                                 <TextBox x:Name="HerstellerAdresszusatzUpdateInsert" HorizontalAlignment="Left" Height="23" Margin="95,230,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="149" BorderBrush="LightGray" BorderThickness="1,1,1,1" TextChanged="textBox_TextChanged" Grid.ColumnSpan="2" />
-                                <Button x:Name="HerstellerSaveButtonInsert" Content="Speichern" HorizontalAlignment="Left" Margin="10,407,0,0" VerticalAlignment="Top" Width="234" RenderTransformOrigin="0.16,0.185" Click="HerstellerSaveButtonInsert_Click" IsEnabled="False" Grid.ColumnSpan="2" />
+                                <Button x:Name="HerstellerSaveButtonInsert" Content="Speichern" HorizontalAlignment="Left" Margin="10,369,0,0" VerticalAlignment="Top" Width="234" RenderTransformOrigin="0.16,0.185" Click="HerstellerSaveButtonInsert_Click" IsEnabled="False" Grid.ColumnSpan="2" />
                             </Grid>
                         </TabItem>
                         <TabItem Header="Bearbeiten">
-                            <Grid Background="White" Margin="0,0,0,-5">
+                            <Grid  x:Name="HerstellerUpdateGrid" Background="White" Margin="0,0,0,-5">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="16*" />
                                     <ColumnDefinition Width="111*" />
@@ -129,8 +156,50 @@
                                 <TextBox x:Name="HerstellerOrtUpdate" HorizontalAlignment="Left" Height="23" Margin="63,162,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="149" BorderBrush="LightGray" BorderThickness="1,1,1,1" Grid.Column="1" />
                                 <TextBox x:Name="HerstellerPostleitzahlUpdate" HorizontalAlignment="Left" Height="23" Margin="63,196,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="149" BorderBrush="LightGray" BorderThickness="1,1,1,1" Grid.Column="1" />
                                 <TextBox x:Name="HerstellerAdresszusatzUpdate" HorizontalAlignment="Left" Height="23" Margin="63,230,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="149" BorderBrush="LightGray" BorderThickness="1,1,1,1" Grid.Column="1" />
-                                <Button x:Name="HerstellerSaveButton" Content="Speichern" HorizontalAlignment="Left" Margin="10,370,0,0" VerticalAlignment="Top" Width="234" RenderTransformOrigin="0.16,0.185" Click="Button_Click" Grid.ColumnSpan="2" />
-                                <Button x:Name="HerstellerDeleteButton" Content="Datensatz löschen" HorizontalAlignment="Left" Margin="10,407,0,0" VerticalAlignment="Top" Width="234" RenderTransformOrigin="0.16,0.185" IsEnabled="False" Click="HerstellerDeleteButton_Click" Grid.ColumnSpan="2" />
+                                <Button x:Name="HerstellerSaveButton" Content="Speichern" HorizontalAlignment="Left" Margin="10,333,0,0" VerticalAlignment="Top" Width="234" RenderTransformOrigin="0.16,0.185" Click="Button_Click" Grid.ColumnSpan="2" />
+                                <Button x:Name="HerstellerDeleteButton" Content="Datensatz löschen" HorizontalAlignment="Left" Margin="10,365,0,0" VerticalAlignment="Top" Width="234" RenderTransformOrigin="0.16,0.185" IsEnabled="False" Click="HerstellerDeleteButton_Click" Grid.ColumnSpan="2" />
+                            </Grid>
+                        </TabItem>
+                    </TabControl>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Model">
+                <Grid Background="White" Margin="135,-113,-914,-33">
+                    <DataGrid x:Name="ModelGrid" Margin="286,0,0,0" FontFamily="Titillium Web" GridLinesVisibility="All" HorizontalGridLinesBrush="Black" VerticalGridLinesBrush="Black" EnableColumnVirtualization="True" Controls:ScrollViewerHelper.IsHorizontalScrollWheelEnabled="True" IsReadOnly="True" Background="#FFDEE3E1" SelectionChanged="ModelGrid_SelectionChanged_1">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="#" Width="35" Binding="{Binding int_Id}" />
+                            <DataGridTextColumn Header="Bezeichnung" Width="100" Binding="{Binding str_Description}" />
+                            <DataGridTextColumn Header="Hersteller" Width="170" Binding="{Binding _Hersteller.str_Name}" />
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <TabControl HorizontalAlignment="Left" Height="488" Margin="10,10,0,0" VerticalAlignment="Top" Width="260" BorderBrush="Black" BorderThickness="1,0,1,0">
+                        <TabItem Header="Erstellen">
+                            <Grid x:Name="ModelInsertGrid" Background="White" Margin="0,0,0,-5">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="57*" />
+                                    <ColumnDefinition Width="28*" />
+                                </Grid.ColumnDefinitions>
+                                <Label x:Name="ModelNothingSelectedInsert" Content="Bitte alle Felder ausfülen" HorizontalAlignment="Center" Margin="43,32,34,0" VerticalAlignment="Top" RenderTransformOrigin="0.378,0.393" Width="177" Height="29" FontWeight="Medium" Foreground="Red" IsEnabled="True"  Grid.ColumnSpan="2" />
+                                <Label Content="Bezeichnung:" HorizontalAlignment="Left" Margin="10,94,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.081,-0.321" Height="29" Width="80" />
+                                <Label Content="Hersteller:" HorizontalAlignment="Left" Margin="10,128,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.081,-0.321" Height="29" Width="69" />
+                                <TextBox x:Name="ModelBezeichnungUpdateInsert" HorizontalAlignment="Left" Height="23" Margin="95,97,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="149" BorderBrush="LightGray" BorderThickness="1,1,1,1" TextChanged="textBox1_TextChanged" Grid.ColumnSpan="2" />
+                                <ComboBox x:Name="ModelHerstellerUpdateInsert" HorizontalAlignment="Left" Height="23" Margin="95,131,0,0"  VerticalAlignment="Top" Width="149" Grid.ColumnSpan="2" SelectionChanged="textBox1_TextChanged" />
+                                <Button x:Name="ModelSaveButtonInsert" Content="Speichern" HorizontalAlignment="Left" Margin="10,369,0,0" VerticalAlignment="Top" Width="234" RenderTransformOrigin="0.16,0.185" Click="ModelSaveButtonInsert_Click" IsEnabled="False" Grid.ColumnSpan="2" />
+                            </Grid>
+                        </TabItem>
+                        <TabItem Header="Bearbeiten">
+                            <Grid x:Name="ModelUpdateGrid" Background="White" Margin="0,0,0,-5">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="16*" />
+                                    <ColumnDefinition Width="111*" />
+                                </Grid.ColumnDefinitions>
+                                <Label x:Name="ModelNothingSelectedUpdate" Content="Bitte alle Felder ausfülen" HorizontalAlignment="Center" Margin="0,33,21,0" VerticalAlignment="Top" RenderTransformOrigin="0.378,0.393" Width="201" Height="29" FontWeight="Medium" Foreground="Red" IsEnabled="True" Grid.Column="1" />
+                                <Label Content="Bezeichnung:" HorizontalAlignment="Left" Margin="10,94,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.081,-0.321" Height="29" Width="80" Grid.ColumnSpan="2" />
+                                <Label Content="Hersteller:" HorizontalAlignment="Left" Margin="10,128,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.081,-0.321" Height="29" Width="80" Grid.ColumnSpan="2" />
+                                <TextBox x:Name="ModelBezeichnungUpdateUpdate" HorizontalAlignment="Left" Height="23" Margin="95,97,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="149" BorderBrush="LightGray" BorderThickness="1,1,1,1" TextChanged="textBox1_TextChanged" Grid.ColumnSpan="2" />
+                                <ComboBox x:Name="ModelHerstellerUpdateUpdate" HorizontalAlignment="Left" Height="23" Margin="95,131,0,0"  VerticalAlignment="Top" Width="149" Grid.ColumnSpan="2" SelectionChanged="textBox1_TextChanged" />
+                                <Button x:Name="ModelSaveButtonUpdate" Content="Speichern" HorizontalAlignment="Left" Margin="10,332,0,0" VerticalAlignment="Top" Width="234" RenderTransformOrigin="0.16,0.185" Click="ModelSaveButtonUpdate_Click" Grid.ColumnSpan="2" />
+                                <Button x:Name="ModelDeleteButtonUpdate" Content="Datensatz löschen" HorizontalAlignment="Left" Margin="10,364,0,0" VerticalAlignment="Top" Width="234" RenderTransformOrigin="0.16,0.185" IsEnabled="False" Click="ModelDeleteButton_Click" Grid.ColumnSpan="2" />
                             </Grid>
                         </TabItem>
                     </TabControl>

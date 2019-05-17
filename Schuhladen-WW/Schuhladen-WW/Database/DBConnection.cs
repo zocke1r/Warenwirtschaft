@@ -8,7 +8,6 @@ namespace Schuhladen_WW.DataBase
     internal sealed class DBConnection
     {
         private SqlConnection _Connection;
-        private string str_ConnectionString;
 
         // Instanz die zurückgegeben werden soll
         private static DBConnection _DBConnection;
@@ -54,31 +53,6 @@ namespace Schuhladen_WW.DataBase
             {
                 Console.WriteLine("An Exception occured: " + ex.Message);
                 return _ResultTable;
-            }
-            finally
-            {
-                _Connection.Close();
-            }
-        }
-
-        // Aktualisiert Daten in der Datenbank
-        public bool UpdateData(SqlCommandBuilder _CommandBuilder)
-        {
-            try
-            {
-                if (Open())
-                {
-                    _CommandBuilder.GetUpdateCommand().Connection = _Connection;
-                    _CommandBuilder.GetUpdateCommand().ExecuteNonQuery();
-                    Close();
-                    return true;
-                }
-                return false;
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("An Exception occured: " + ex.Message);
-                return false;
             }
             finally
             {

@@ -64,6 +64,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="CustomViews\Customization.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -72,6 +76,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Frontend\FrontenController.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -102,9 +107,19 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\MQTTServer\MQTTServer.csproj">
+      <Project>{4164832e-7961-4acf-9f05-0bcd3dbe1bbc}</Project>
+      <Name>MQTTServer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MQTT\MQTT.csproj">
+      <Project>{0bdd2706-7f3e-498b-9ddb-0f1d53960ee6}</Project>
+      <Name>MQTT</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Schuhladen-WW\Schuhladen-WW.csproj">
       <Project>{1d949ee3-6fde-465e-b7a4-922c6f8feb5c}</Project>
       <Name>Schuhladen-WW</Name>

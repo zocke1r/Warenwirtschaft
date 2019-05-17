@@ -14,7 +14,7 @@ namespace Schuhladen_WW.DataLayer.Mapping
         private static DBConnection _Connection = DBConnection.Instance();
 
         // Collections (Lazyloading)
-        private static List<Live_Article> __LiveArticle { get; set; }
+        private static List<Live_Artikel> __LiveArticle { get; set; }
 
         private static List<Model> __Model { get; set; }
 
@@ -40,9 +40,12 @@ namespace Schuhladen_WW.DataLayer.Mapping
 
         private static List<AusgangsrechnungPosition> __AusgangsrechnungPosition { get; set; }
 
-        // Initialize object mappers
-        private static PropertyMapper<Live_Article> ___LiveArticleMapper = new PropertyMapper<Live_Article>();
+        private static List<Stellplatz> __Stellplatz { get; set; }
 
+        private static List<StellplatzArtikel> __StellplatzArtikel { get; set; }
+
+        // Initialize object mappers
+        private static PropertyMapper<Live_Artikel> ___LiveArticleMapper = new PropertyMapper<Live_Artikel>();
         private static PropertyMapper<Model> ___ModelListMapper = new PropertyMapper<Model>();
         private static PropertyMapper<Groesse> ___GroesseListMapper = new PropertyMapper<Groesse>();
         private static PropertyMapper<Hersteller> ___HerstellerListMapper = new PropertyMapper<Hersteller>();
@@ -55,10 +58,24 @@ namespace Schuhladen_WW.DataLayer.Mapping
         private static PropertyMapper<Bestellung> ___BestellungListMapper = new PropertyMapper<Bestellung>();
         private static PropertyMapper<BestellungPositionPosition> ___BestellungPositionPositionListMapper = new PropertyMapper<BestellungPositionPosition>();
         private static PropertyMapper<AusgangsrechnungPosition> ___AusgangsrechnungPositionListMapper = new PropertyMapper<AusgangsrechnungPosition>();
+        private static PropertyMapper<Stellplatz> ___StellplatzMapper = new PropertyMapper<Stellplatz>();
+        private static PropertyMapper<StellplatzArtikel> ___StellplatzArtikelMapper = new PropertyMapper<StellplatzArtikel>();
 
         #endregion Private Members
 
         #region Public Members
+
+        
+
+        static DataController()
+        {
+            //SqlCommand _cmd = new SqlCommand();
+            //_cmd.CommandType = System.Data.CommandType.Text;
+            //_cmd.CommandText = "DELETE FROM dbo.StellplatzArtikel WHERE ID != 0;";
+            //_Connection.UpdateData(_cmd);
+            //_cmd.CommandText = "DELETE FROM dbo.Stellplatz WHERE ID != 0;";
+            //_Connection.UpdateData(_cmd);
+        }
 
         public static List<Model> ReturnModels()
         {
@@ -85,7 +102,7 @@ namespace Schuhladen_WW.DataLayer.Mapping
             return __Lieferant;
         }
 
-        public static List<Live_Article> ReturnLiveArtikel()
+        public static List<Live_Artikel> ReturnLiveArtikel()
         {
             return __LiveArticle;
         }
@@ -103,6 +120,16 @@ namespace Schuhladen_WW.DataLayer.Mapping
         public static List<Hersteller> ReturnHersteller()
         {
             return __Hersteller;
+        }
+
+        public static List<Stellplatz> ReturnStellplatz()
+        {
+            return __Stellplatz;
+        }
+
+        public static List<StellplatzArtikel> ReturnStellplatzArtikel()
+        {
+            return __StellplatzArtikel;
         }
 
         #endregion Public Members
@@ -160,10 +187,16 @@ namespace Schuhladen_WW.DataLayer.Mapping
             __Bestellung = ___BestellungListMapper.Map(_Connection.GetData("SELECT * FROM dbo.Bestellung;")).ToList();
 
             // Get BestellungPositionPosition collection
-            __BestellungPositionPosition = ___BestellungPositionPositionListMapper.Map(_Connection.GetData("SELECT * FROM dbo.BestellungPosition;")).ToList();
+            // __BestellungPositionPosition = ___BestellungPositionPositionListMapper.Map(_Connection.GetData("SELECT * FROM dbo.BestellungPosition;")).ToList();
 
             // Get AusgangsrechnungPosition collection
             __AusgangsrechnungPosition = ___AusgangsrechnungPositionListMapper.Map(_Connection.GetData("SELECT * FROM dbo.AusgangsrechnungPosition;")).ToList();
+
+            // Get Stellplatz collection
+            __Stellplatz = ___StellplatzMapper.Map(_Connection.GetData("SELECT * FROM dbo.Stellplatz;")).ToList();
+
+            // Get Stellplatz collection
+            __StellplatzArtikel = ___StellplatzArtikelMapper.Map(_Connection.GetData("SELECT * FROM dbo.StellplatzArtikel;")).ToList();
         }
 
         public static bool UpdateObject(SqlCommand _Command)

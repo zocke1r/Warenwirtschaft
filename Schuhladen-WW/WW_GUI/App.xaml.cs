@@ -15,17 +15,20 @@ namespace WW_GUI
             // you can then use the current theme and custom accent instead set a new theme
             Tuple<AppTheme, Accent> appStyle = ThemeManager.DetectAppStyle(Application.Current);
 
+            // ThemeManager.AddAccent("AccentColorBrush2", new Uri("C:\\Users\\Kevin\\Source\\Repos\\Warenwirtschaft\\Schuhladen-WW\\WW_GUI\\CustomViews\\Customization.xaml"));
+
+
             // now set the Green accent and dark theme
             ThemeManager.ChangeAppStyle(Application.Current,
                                         // ThemeManager.GetAccent("Red"),
                                         // ThemeManager.GetAccent("Green"),
-                                        ThemeManager.GetAccent("Blue"),
+                                        // ThemeManager.GetAccent("Blue"),
                                         // ThemeManager.GetAccent("Purple"),
-                                        // ThemeManager.GetAccent("Orange"),
+                                        // ThemeManager.GetAccent("AccentColorBrush2"),
                                         // ThemeManager.GetAccent("Lime"),
                                         // ThemeManager.GetAccent("Emerald"),
                                         // ThemeManager.GetAccent("Teal"),
-                                        // ThemeManager.GetAccent("Cyan"),
+                                        ThemeManager.GetAccent("Cyan"),
                                         // ThemeManager.GetAccent("Cobalt"),
                                         // ThemeManager.GetAccent("Indigo"),
                                         // ThemeManager.GetAccent("Violet"),

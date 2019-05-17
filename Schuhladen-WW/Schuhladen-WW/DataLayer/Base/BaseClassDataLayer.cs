@@ -18,7 +18,9 @@ namespace Schuhladen_WW.DataLayer
                 _CustomPropertyChanged(_Type, str_ColumnName, obj_Value);
         }
 
+        public abstract void Insert();
         public abstract void Update();
+        protected abstract void fillParameter(SqlCommand cmd_Command);
 
         public virtual void Delete()
         {
@@ -31,8 +33,6 @@ namespace Schuhladen_WW.DataLayer
             DataController.UpdateObject(cmd);
         }
 
-        public abstract void Insert();
-
         protected virtual void executeCommand(string commandText, bool needsId = false)
         {
             SqlCommand command = new SqlCommand(commandText);
@@ -44,8 +44,6 @@ namespace Schuhladen_WW.DataLayer
             fillParameter(command);
             executeCommand(command);
         }
-
-        protected abstract void fillParameter(SqlCommand cmd_Command);
 
         protected void executeCommand(SqlCommand cmd_Command)
         {

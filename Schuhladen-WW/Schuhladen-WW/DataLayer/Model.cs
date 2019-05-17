@@ -59,10 +59,10 @@ namespace Schuhladen_WW.DataLayer
             executeUpdate("dbo.UpdateModelRow");
         }
 
-        protected override void fillParameter(SqlCommand cmd)
+        protected override void fillParameter(SqlCommand cmd_Command)
         {
-            cmd.Parameters.Add(new SqlParameter("@Bezeichnung", this.str_Description));
-            cmd.Parameters.Add(new SqlParameter("@Hersteller", this.int_Manufacturer));
+            cmd_Command.Parameters.Add(new SqlParameter("@Bezeichnung", this.str_Description));
+            cmd_Command.Parameters.Add(new SqlParameter("@Hersteller", this.int_Manufacturer));
         }
 
         public override void Insert()

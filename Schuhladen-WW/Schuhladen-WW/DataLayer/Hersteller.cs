@@ -12,6 +12,8 @@ namespace Schuhladen_WW.DataLayer
 
         public Adresse _Adresse => DataController.ReturnAdresse().Where(x => x.int_Id == int_adressid).First();
 
+        public Hersteller() : base() { }
+
         [PropertyBridge("ID")]
         public int int_ID
         {
